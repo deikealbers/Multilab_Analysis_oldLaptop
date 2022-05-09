@@ -1,0 +1,7 @@
+﻿"Exp","HMI","overall","TC01_HandsOffAllow_Observed_rel","TC02_HandsOffAllow_Observed_rel","TC03_HandsOffAllow_Observed_rel","TC04_HandsOffAllow_Observed_rel","TC05_HandsOffAllow_Observed_rel","TC06_HandsOffAllow_Observed_rel","TC07_HandsOffAllow_Observed_rel","TC08_HandsOffAllow_Observed_rel","TC09_HandsOffAllow_Observed_rel","TC10_HandsOffAllow_Observed_rel","TC11_HandsOffAllow_Observed_rel","TC12_HandsOffAllow_Observed_rel","n"
+"1","HC",98.72,100,100,88.46,100,96.15,100,100,100,100,100,100,100,26
+"1","LC",96.79,100,96.15,84.62,88.46,96.15,100,96.15,100,100,100,100,100,26
+"2","HC",90.4,96.97,93.94,84.85,93.94,84.85,81.82,81.82,87.88,93.94,93.94,96.97,93.94,33
+"2","LC",85.12,100,89.29,64.29,85.71,85.71,89.29,78.57,85.71,82.14,89.29,85.71,85.71,28
+"3","HC",91.27,100,85.71,80.95,95.24,85.71,90.48,80.95,90.48,100,100,100,85.71,21
+"3","LC",85.71,85.71,85.71,80.95,85.71,80.95,71.43,80.95,80.95,90.48,100,95.24,90.48,21

@@ -1,0 +1,448 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/yiistrap.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/bootstrap-switch.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/select2.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/select2-bootstrap.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/roboto.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/icomoon.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/lstutorial.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/adminbasics.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/adminsidepanel.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/lime-admin-colors.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/statistics.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/expressions.css">
+<link rel="stylesheet" type="text/css" href="Exp03_pre_logicfile-Dateien/expressionlogicfile.css">
+<script type="text/javascript">window.debugState = {frontend : (0 === 1), backend : (0 === 1)};</script><script type="text/javascript" src="Exp03_pre_logicfile-Dateien/jquery-3.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/jquery-migrate-3.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/jquery-ui.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/adminsidepanel.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/js.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/bootstrap.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/bootstrapconfirm.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/moment-with-locales.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/select2.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/lslog.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/pjax.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/ckeditor.js" class="headScriptTag"></script><style>.cke{visibility:hidden;}</style><style>.cke{visibility:hidden;}</style>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/config.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/ckeditoradditions.js" class="headScriptTag"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/em_javascript.js" class="headScriptTag"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+
+           window.LS = window.LS || {}; window.LS.globalUserId = "111";
+/*]]>*/
+</script>
+</head><body><script type="text/javascript" src="Exp03_pre_logicfile-Dateien/bootstrap-switch.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/adminbasics.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/modaleditor.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/decimal.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/decimalcustom.js"></script>
+<style>
+           @page { 
+               size: landscape;
+           }
+            @media print { 
+                html {width: 670px; white-space: pre-wrap; overflow: visible;}
+                body {width: 100%; white-space: pre-wrap; overflow: visible; font-size: 12pt;}
+                table { overflow: visible !important; }
+                div { overflow: visible !important; }
+                * { overflow: visible !important; }
+                
+            }
+           </style><p class="LEMheading alert alert-success">Keine Syntaxfehler in dieser Umfrage festgestellt.</p>
+<div id="showlogicfilediv" class="table-responsive"><h3>Logikdatei für 
+die Umfrage #[399533]: Preliminary survey - real vehicle study for the 
+evaluation of display concepts for automated driving</h3>
+<table id="logicfiletable" class="table table-bordered"><tbody><tr class="LEMgroup"><td class="">Willkommenstext:</td><td colspan="3"><p><span style="font-size:14px;">Dear participant,</span></p>
+
+<p><span style="font-size:14px;">Many thanks for supporting and participating in this study.</span></p>
+
+<p><span style="font-size:14px;">The human-machine interface plays a big
+ role in terms of (semi-)automated driving, which will be possible in 
+the future. Current research and implementation of increasingly advanced
+ systems for automated vehicles creates additional challenges. These 
+challenges occur above all when developing the communication between the
+ system and driver in the form of the human-machine interface (HMI). The
+ HMI is intended to provide the driver with important information so 
+that they are aware of the automation status at all times, for instance,
+ and in order to facilitate transitions between the automation levels.</span></p>
+
+<p><span style="font-size:14px;">Various HMI versions have been 
+developed for this study to research the usability of these HMIs in the 
+interaction and communication between the system and driver. In this 
+study you will drive various routes with one of these HMIs. The HMI will
+ communicate to you the availability of different automation levels, as 
+well as driver- and system-initiated transitions between the automation 
+levels in the combined display, which should be recognized or carried 
+out by you. The automation levels in this study extend to automated 
+driving.</span></p>
+
+<p><span style="font-size:14px;">You will receive a more detailed explanation before the start of the test drive.</span></p>
+
+<p><span style="font-size:14px;">Please note that there are no right or wrong answers. The answers will also be collected pseudonymously.</span></p>
+
+<p><span style="font-size:14px;">Thank you very much.</span></p>
+
+<p>&nbsp;</p>
+</td></tr><tr class="LEMgroup"><td class="">Endnachricht:</td><td colspan="3"><p>Thank you for your participation!</p>
+
+<p>You have now completed the first part of the study. We look forward to your visit to the test site to complete the experiment.</p>
+
+<p>If you have any questions about the content of the study, you can contact us at deike.albers@tum.de.</p>
+
+<p>You may close this window now.</p>
+</td></tr><tr class="LEMgroup"><td class="">Umfrage-Datenschutzerklärung Hinweis:</td><td colspan="3"><p class="KontaktCxSpFirst" style="text-align:justify;margin-top:21px;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Dear participant,</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">We hereby ask you to participate in the study: <b>“User study in an instrumented vehicle for usability assessment of human-machine interfaces for automated driving”.</b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Responsibility of the study</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">The
+ study is being carried out by Ms. Deike Albers, M.Sc. at the Department
+ for Ergonomics at the Technical University of Munich. The study is 
+taking place as part of the BMW project Multilab.</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Purpose</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">The
+ introduction of vehicles with systems for semi-automated driving (SAE 
+Level 3) is expected in the coming years. The human-machine interface 
+(HMI) plays a central role in the development. When developing the HMIs,
+ special emphasis must be placed on the usability for the user. Thanks 
+to the real vehicle study, the usability of the system and the behavior 
+of potential users can be analyzed in a very real, but at the same time 
+standardized environment. </span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Research question</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">As
+ part of this research work, the usability of human-machine interfaces 
+for automated driving is to be evaluated. To do this, various methods 
+for collecting objective data (e.g. eye tracking) and subjective data 
+(e.g. questionnaires) are used.</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>What is involved</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">During
+ the user study, you will be asked to drive various test routes 
+following an introduction and training phase. There will be a short 
+survey between each of the routes. The overall test will last 
+approximately 120 minutes, including filling out the questionnaires. </span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Risks</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpFirst" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">A
+ real vehicle study in principle entails the same risks as driving a 
+vehicle. However, extensive measures have been taken to minimize the 
+risks for test participants. For example, you will not have to drive 
+faster than 30 km/h. Please always follow the instructions of the test 
+leader when driving. They are available at all times for any questions 
+or doubts you may have. </span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Voluntary participation in the test</u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Participation
+ in this study is voluntary. You can end your participation in the test 
+at any time without having to give reasons. Refusal to participate or 
+withdrawing from the study early will not have any negative consequences
+ for you.</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;">&nbsp;</p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;"><b><u>Data protection </u></b></span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:15pt;">In
+ this study, the Department for Ergonomics is responsible for data 
+processing. Any data identifying you personally shall only be used as 
+part of the Multilab project. This includes your age or gender, for 
+example. All data directly identifying you personally will be replaced 
+by an identification code (pseudonymized). This largely excludes the 
+possibility of you being personally identified by unauthorized persons. A
+ collected, anonymized data set without personally identifying data 
+shall be passed on to the industry partner and sponsor of the BMW AG 
+study for research and development purposes.</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Sound,
+ image and video material is also recorded during the test using 
+installed microphones, cameras and eye tracking. This material is used 
+for later evaluation. There is no recording of the face. In the event 
+that extracts of the image material are used in public contributions 
+(e.g. presentations at conferences or journal contributions), it shall 
+be ensured that it is not possible to identify you personally.</span></span></span></span></p>
+
+<p class="KontaktCxSpMiddle" style="text-align:justify;"><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Your
+ data will be stored by the Department for Ergonomics in the archive of 
+the Leibniz Supercomputing Centre and by BMW AG. The industry partner 
+and sponsor of the BMW AG study is also subject to the European General 
+Data Protection Regulation. The data will be deleted after the statutory
+ deletion periods have expired. Consent to processing your data is 
+voluntary. You can revoke your consent at any time without having to 
+give reasons and without any negative consequences. You have the right 
+to obtain information about the data concerned, including a copy free of
+ charge. You can also request that your data be corrected or deleted. 
+Please contact the Department for Ergonomics in such cases:</span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Deike Albers, M.Sc.<br>Boltzmannstraße 15, 85748 Garching<br>Tel. +49 89 289-15420<br>E-Mail: deike.albers@tum.de</span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:107%;">For complaints, please contact:</span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">Datenschutzbeauftragter der TU München<br>Technische Universität München<br>Arcisstr. 21<br>80333 München<br>E-Mail: beauftragter@datenschutz.tum.de</span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><span style="line-height:normal;">or:<br>Bayerischer Landesbeauftragter für den Datenschutz<br>Post address: Postfach 22 12 19, 80502 München<br>Address: Wagmüllerstr. 18, 80538 München<br>E-Mail: poststelle@datenschutz-bayern.de.<br>Landesamt für Datenschutzaufsicht<br>Promenade 27<br>91522 Ansbach<br>Tel.: 0981/53-1300<br>Fax: 0981/53-981300<br>E-Mail: poststelle@lda.bayern.de</span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;"><u><strong>Declaration of consent</strong></u></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;">I
+ have read and understood the information for participants in the 
+experiment “Volunteer study in a real vehicle for usability assessment 
+of human-machine interfaces for automated driving” and by signing I 
+confirm that I am taking part in this study voluntarily. All of my 
+questions have been answered comprehensibly and in full. If I have any 
+doubts during the study, I can contact the test leader or the 
+abovementioned contact person at any time.</span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px;">I
+ will comply with the orders that are necessary for carrying out the 
+study. I have the right to withdraw my consent to participate in the 
+study at any time either orally or in writing and without having to give
+ reasons, without this having any negative consequences for me. I have 
+been informed of potential risks for my health.</span></span></span></p>
+</td></tr><tr class="LEMgroup"><td class="">Umfrage-Datenschutzerklärung Fehler:</td><td colspan="3"><span style="font-size:14px;"><span style="font-family:Arial, Helvetica, sans-serif;">To continue, please consent.</span></span></td></tr><tr class="LEMgroup"><td class="">Umfrage-Datenschutzerklärung Beschriftung:</td><td colspan="3">Please confirm your consent for subject information here.</td></tr><tr>
+            <th class="column-0">#</th>
+            <th class="column-1">Name [ID]</th>
+            <th class="column-2">Bedingung [Validierung] (Standardwert)</th>
+            <th class="column-3">Text [Hilfe] (Hinweis)</th>
+            </tr>
+<tr class="LEMgroup"><td class="">G-0</td><td><b>Personal subject code</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionGroupsAdministration/view/surveyid/399533/gid/4211">GID 4211</a>] </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&nbsp;</td></tr>
+<tr class="LEMquestion"><td class="">Q-0</td><td><b><span class="mandatory">*</span>VPCode</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4211/qid/47848">QID 47848</a>]<br>Multiple short text [Q]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Please
+ generate your personal subject code for the study. This code has the 
+advantage that you can regenerate the code at any time using the 
+questions, but outsiders/others can hardly do so. We need this code to 
+link your data from the pre-survey with the data from the test drive.</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VPCode_VPCode1</b></td><td>&nbsp;</td><td>First two letters of the given name of your mother (AN for Anna):</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>VPCode_VPCode2</b></td><td>&nbsp;</td><td>First two letters of the given name of your father(TH for Thomas):</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>VPCode_VPCode3</b></td><td>&nbsp;</td><td>Month of your birthday (two digits: 06 for June):</td></tr><tr class="LEMgroup"><td class="">G-1</td><td><b>Demographic Questionnaire</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionGroupsAdministration/view/surveyid/399533/gid/4210">GID 4210</a>] </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&nbsp;</td></tr>
+<tr class="LEMquestion"><td class="">Q-1</td><td><b>Instruktion</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/49047">QID 49047</a>]<br>Text display [X]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td><p>Please answer as spontaneously as possible. For given answers, please select the answer option that applies best.</p>
+</td></tr>
+<tr class="LEMquestion"><td class="">Q-2</td><td><b><span class="mandatory">*</span>Alter</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47840">QID 47840</a>]<br>Numerical input [N]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Please indicate your age (in years).<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>text_input_width</td><td>4</td></tr>
+<tr><td>min_num_value_n</td><td><span class="em-expression" data-original-title="" title="">18</span></td></tr>
+<tr><td>num_value_int_only</td><td>1</td></tr>
+<tr><td>max_num_value_n</td><td><span class="em-expression" data-original-title="" title="">99</span></td></tr>
+<tr><td>statistics_showgraph</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEMquestion"><td class="">Q-3</td><td><b><span class="mandatory">*</span>Geschlecht</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47833">QID 47833</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Please indicate your gender.<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>Male</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>Female</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>Non-binary</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>Other</td></tr>
+<tr class="LEMquestion"><td class="">Q-4</td><td><b><span class="mandatory">*</span>Nation</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/48634">QID 48634</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>What is your nationality (citizenship)?</td></tr>
+<tr class="LEMquestion"><td class="">Q-5</td><td><b><span class="mandatory">*</span>NationGeb</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/49162">QID 49162</a>]<br>Yes/No [Y]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Did you have another nationality at birth?</td></tr>
+<tr class="LEMquestion"><td class="">Q-6</td><td><b><span class="mandatory">*</span>NationGeb2</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/48635">QID 48635</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/49162" data-original-title="[java399533X4210X49162][G:1][Q:5]: Did you have another nationality at birth?; ,'answers':{  'Y':'Yes','N':'No' }">NationGeb.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>What was your nationality at birth?</td></tr>
+<tr class="LEMquestion"><td class="">Q-7</td><td><b><span class="mandatory">*</span>Farbfehlsichtigkeit</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47837">QID 47837</a>]<br>Yes/No [Y]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Are you recognized color-blind?</td></tr>
+<tr class="LEMquestion"><td class="">Q-8</td><td><b><span class="mandatory">*</span>Farbfehlsichtigkeit2</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47838">QID 47838</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47837" data-original-title="[java399533X4210X47837][G:1][Q:7]: Are you recognized color-blind?; ,'answers':{  'Y':'Yes','N':'No' }">Farbfehlsichtigkeit.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>Please indicate the type of color vision deficiency / color blindness?</td></tr>
+<tr class="LEMquestion"><td class="">Q-9</td><td><b><span class="mandatory">*</span>Erfahrung</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47834">QID 47834</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>How often do you drive a car?<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>Never</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>Less than once a month</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>Several times a month</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>Several times a week</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>Every day</td></tr>
+<tr class="LEMquestion"><td class="">Q-10</td><td><b><span class="mandatory">*</span>KmJahr</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47835">QID 47835</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>How many kilometers have you driven in approximately the last 12 months?<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>&lt; than 5.000 km (on average up to ~ 96 km per week)</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>5.001 - 10.000 km (on average ~ 96km to 192 km per week)</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>10.001 - 20.000 km (on average ~ 192km to 385 km per week)</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>&gt; than 20.000 km (on average more than 385 km per week)</td></tr>
+<tr class="LEMquestion"><td class="">Q-11</td><td><b><span class="mandatory">*</span>Vorwissen</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47839">QID 47839</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Do you already have prior knowledge in the field of automated driving?</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>Vorwissen_VorwissenAut</b></td><td>&nbsp;</td><td>Automated driving prior knowledge</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>No knowledge <br> 0</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>Expert <br> 4</td></tr>
+<tr class="LEMquestion"><td class="">Q-12</td><td><b><span class="mandatory">*</span>FAS</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841">QID 47841</a>]<br>Multiple choice [M]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Which driver assistance systems do you already have experience with?</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>FAS_CC</b></td><td>&nbsp;</td><td>Cruise Control (CC)</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>FAS_ACC</b></td><td>&nbsp;</td><td>Adaptive Cruise Control (ACC)</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>FAS_LKA</b></td><td>&nbsp;</td><td>Lane Keeping Assist (LKA)</td></tr><tr class="LEMsubq"><td>SQ-4</td><td><b>FAS_None</b></td><td>&nbsp;</td><td>None</td></tr><tr class="LEMquestion"><td class="">Q-13</td><td><b><span class="mandatory">*</span>OftCC</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47842">QID 47842</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841CC][G:1][Q:12]: Cruise Control (CC)">FAS_CC.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>How often do you use the system cruise control (CC)?<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>Never</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>Seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>Every month</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>Every week</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>Every day</td></tr>
+<tr class="LEManswer"><td>A[0]-6</td><td><b>5</b></td><td>[VALUE: 0]</td><td>Several times a day</td></tr>
+<tr class="LEMquestion"><td class="">Q-14</td><td><b><span class="mandatory">*</span>AutomarkeCC</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47843">QID 47843</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841CC][G:1][Q:12]: Cruise Control (CC)">FAS_CC.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>With
+ the vehicles of which car manufacturer have you already had experience 
+with the system cruise control (CC)? (Multiple answers possible!)</td></tr>
+<tr class="LEMquestion"><td class="">Q-15</td><td><b><span class="mandatory">*</span>OftACC</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47844">QID 47844</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841ACC][G:1][Q:12]: Adaptive Cruise Control (ACC)">FAS_ACC.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>How often do you use the system adaptive cruise control (ACC)?<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>Never</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>Seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>Every month</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>Every week</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>Every day</td></tr>
+<tr class="LEManswer"><td>A[0]-6</td><td><b>5</b></td><td>[VALUE: 0]</td><td>Several times a day</td></tr>
+<tr class="LEMquestion"><td class="">Q-16</td><td><b><span class="mandatory">*</span>AutomarkeACC</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47845">QID 47845</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841ACC][G:1][Q:12]: Adaptive Cruise Control (ACC)">FAS_ACC.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>With
+ the vehicles of which car manufacturer have you already had experience 
+with the system adaptive cruise control (ACC)? (Multiple answers 
+possible!)</td></tr>
+<tr class="LEMquestion"><td class="">Q-17</td><td><b><span class="mandatory">*</span>OftLKA</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47846">QID 47846</a>]<br>List (Radio) [L]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841LKA][G:1][Q:12]: Lane Keeping Assist (LKA)">FAS_LKA.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>How often do you use the system lane keeping assist (LKA)?<table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>keep_aspect</td><td>0</td></tr>
+<tr><td>horizontal_scroll</td><td>0</td></tr>
+<tr><td>fix_height</td><td>200</td></tr>
+<tr><td>crop_or_resize</td><td>0</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>Never</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>Seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>Every month</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>Every week</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>Every day</td></tr>
+<tr class="LEManswer"><td>A[0]-6</td><td><b>5</b></td><td>[VALUE: 0]</td><td>Several times a day</td></tr>
+<tr class="LEMquestion"><td class="">Q-18</td><td><b><span class="mandatory">*</span>AutomarkeLKA</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47847">QID 47847</a>]<br>Short free text [S]  </td><td><span class="em-expression" data-original-title="" title="">((<a title="" class="em-var-after em-var-inpage" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4210/qid/47841" data-original-title="[java399533X4210X47841LKA][G:1][Q:12]: Lane Keeping Assist (LKA)">FAS_LKA.NAOK</a><span data-original-title="" title=""> == </span><span class="em-var-string" data-original-title="" title="">"Y"</span>))</span></td><td>With
+ the vehicles of which car manufacturer have you already had experience 
+with the lane keeping assist (LKA)? (Multiple answers possible!)</td></tr>
+<tr class="LEMgroup"><td class="">G-2</td><td><b>VSM Questionnaire</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionGroupsAdministration/view/surveyid/399533/gid/4285">GID 4285</a>] </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&nbsp;</td></tr>
+<tr class="LEMquestion"><td class="">Q-19</td><td><b><span class="mandatory">*</span>VSM01</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48571">QID 48571</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Please
+ think of an ideal job, disregarding your present job, if you have one. 
+In choosing an ideal job, how important would it be to you to ...</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM01_VSM01</b></td><td>&nbsp;</td><td>... have sufficient time for your personal or home life.</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>VSM01_VSM02</b></td><td>&nbsp;</td><td>... have a boss (direct superior) you can respect.</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>VSM01_VSM03</b></td><td>&nbsp;</td><td>... get recognition for good performance.</td></tr><tr class="LEMsubq"><td>SQ-4</td><td><b>VSM01_VSM04</b></td><td>&nbsp;</td><td>... have security of employment.</td></tr><tr class="LEMsubq"><td>SQ-5</td><td><b>VSM01_VSM05</b></td><td>&nbsp;</td><td>... have pleasant people to work with.</td></tr><tr class="LEMsubq"><td>SQ-6</td><td><b>VSM01_VSM06</b></td><td>&nbsp;</td><td>... do work that is interesting.</td></tr><tr class="LEMsubq"><td>SQ-7</td><td><b>VSM01_VSM07</b></td><td>&nbsp;</td><td>... be consulted by your boss in decisions involving your work.</td></tr><tr class="LEMsubq"><td>SQ-8</td><td><b>VSM01_VSM08</b></td><td>&nbsp;</td><td>... live in a desirable area.</td></tr><tr class="LEMsubq"><td>SQ-9</td><td><b>VSM01_VSM09</b></td><td>&nbsp;</td><td>... have a job respected by your family and friends.</td></tr><tr class="LEMsubq"><td>SQ-10</td><td><b>VSM01_VSM10</b></td><td>&nbsp;</td><td>... have chances for promotion.</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> of utmost importance</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> very important</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> of moderate importance</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> of little importance</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> of very little or no importance</td></tr>
+<tr class="LEMquestion"><td class="">Q-20</td><td><b><span class="mandatory">*</span>VSM11</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48591">QID 48591</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>In your private life, how important is each of the following to you ...</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM11_VSM11</b></td><td>&nbsp;</td><td>... keeping time free for fun.</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>VSM11_VSM12</b></td><td>&nbsp;</td><td>... moderation: having few desires.</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>VSM11_VSM13</b></td><td>&nbsp;</td><td>... doing a service to a friend.</td></tr><tr class="LEMsubq"><td>SQ-4</td><td><b>VSM11_VSM14</b></td><td>&nbsp;</td><td>... thrift (not spending more than needed).</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> of utmost importance</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> very important</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> of moderate importance</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> of little importance</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> of very little or no importance</td></tr>
+<tr class="LEMquestion"><td class="">Q-21</td><td><b><span class="mandatory">*</span>VSM15</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48614">QID 48614</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&amp;nbsp</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM15_VSM15</b></td><td>&nbsp;</td><td>How often do you feel nervous or tense?</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>VSM15_VSM16</b></td><td>&nbsp;</td><td>Are you a happy person?</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> always</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> usually</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> sometimes</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> never</td></tr>
+<tr class="LEMquestion"><td class="">Q-22</td><td><b><span class="mandatory">*</span>VSM17</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48619">QID 48619</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&amp;nbsp</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM17_VSM17</b></td><td>&nbsp;</td><td>Do other people or circumstances ever prevent you from doing what you really want to?</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> yes, always</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> yes, usually</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> sometimes</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> no, seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> no, never</td></tr>
+<tr class="LEMquestion"><td class="">Q-23</td><td><b><span class="mandatory">*</span>VSM18</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48622">QID 48622</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&amp;nbsp</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM18_VSM18</b></td><td>&nbsp;</td><td>All in all, how would you describe your state of health these days?</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> very good</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> good</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> fair</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> poor</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> very poor</td></tr>
+<tr class="LEMquestion"><td class="">Q-24</td><td><b><span class="mandatory">*</span>VSM19</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48624">QID 48624</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&amp;nbsp</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM19_VSM19</b></td><td>&nbsp;</td><td>How proud are you to be a citizen of your country?</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> very proud</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> fairly proud</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> somewhat proud</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> not very proud</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> not proud at all</td></tr>
+<tr class="LEMquestion"><td class="">Q-25</td><td><b><span class="mandatory">*</span>VSM20</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48626">QID 48626</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&amp;nbsp</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM20_VSM20</b></td><td>&nbsp;</td><td>How often, in your experience, are subordinates afraid to contradict their boss (or
+students their teacher?)</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> never</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> seldom</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> sometimes</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> usually</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> always</td></tr>
+<tr class="LEMquestion"><td class="">Q-26</td><td><b><span class="mandatory">*</span>VSM21</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4285/qid/48629">QID 48629</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>To what extent do you agree or disagree with each of the following statements?</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>VSM21_VSM21</b></td><td>&nbsp;</td><td>One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>VSM21_VSM22</b></td><td>&nbsp;</td><td>Persistent efforts are the surest way to results.</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>VSM21_VSM23</b></td><td>&nbsp;</td><td>An organization structure in which certain subordinates have two bosses should be avoided at all cost.</td></tr><tr class="LEMsubq"><td>SQ-4</td><td><b>VSM21_VSM24</b></td><td>&nbsp;</td><td>A
+ company's or organization's rules should not be broken - not even when 
+the employee thinks breaking the rule would be in the organization's 
+best interest.</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>1</b></td><td>[VALUE: 0]</td><td>1 <br> strongly agree</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>2</b></td><td>[VALUE: 0]</td><td>2 <br> agree</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>3</b></td><td>[VALUE: 0]</td><td>3 <br> undecided</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>4</b></td><td>[VALUE: 0]</td><td>4 <br> disagree</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>5</b></td><td>[VALUE: 0]</td><td>5 <br> strongly disagree</td></tr>
+<tr class="LEMgroup"><td class="">G-3</td><td><b>Usability Factors</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionGroupsAdministration/view/surveyid/399533/gid/4289">GID 4289</a>] </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&nbsp;</td></tr>
+<tr class="LEMquestion"><td class="">Q-27</td><td><b><span class="mandatory">*</span>UsabFactor</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4289/qid/48636">QID 48636</a>]<br>Array [F]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td><p>Please imagine the following situation:</p>
+
+<p>You are about to drive a car that is equipped with an automated 
+driving system. Three different levels of automation are possible. These
+ range from manual to automated driving. While manual driving is always 
+possible, the two levels <em>assisted driving</em> and <em>automated driving</em> are available only if the road and traffic conditions allow this.</p>
+
+<p>An interface informs you about the status of the automated driving 
+system, i.e. the currently active level and other available levels. 
+Furthermore, you can switch between the levels of automation via this 
+interface. You conduct a transition either voluntarily (e.g. you decide 
+to drive yourself or - if the situation permits - you decide to activate
+ assisted or automated driving) or unvoluntarily (e.g. the road 
+conditions get worse and the systems tells you to switch to manual 
+driving).</p>
+
+<p> </p>
+
+<p>Please indicate for each factor, how import the factor and/or product quality is to you for the above described <strong>interface</strong>.</p><table class="logicfileattributetable"><tbody><tr><th>Fragenattribut</th><th>Wert</th></tr>
+<tr><td>repeat_headings</td><td>9</td></tr>
+</tbody></table>
+</td></tr>
+<tr class="LEMsubq"><td>SQ-1</td><td><b>UsabFactor_1</b></td><td>&nbsp;</td><td><b>Appearance/Attractiveness: </b>The product is attractive, beautiful and/or designed in an appealing way.</td></tr><tr class="LEMsubq"><td>SQ-2</td><td><b>UsabFactor_2</b></td><td>&nbsp;</td><td><b>Completeness: </b>The user considers the information and/or functionality provided and/or offered to the user by the product to be complete.</td></tr><tr class="LEMsubq"><td>SQ-3</td><td><b>UsabFactor_3</b></td><td>&nbsp;</td><td><b>Controllability/Dependability: </b>The product always responds to user interaction in a predictable and consistent way.</td></tr><tr class="LEMsubq"><td>SQ-4</td><td><b>UsabFactor_4</b></td><td>&nbsp;</td><td><b>Convenience: </b>The product makes life easier and/or makes performing a task easier.</td></tr><tr class="LEMsubq"><td>SQ-5</td><td><b>UsabFactor_5</b></td><td>&nbsp;</td><td><b>Craftsmanship: </b>The product appears to be of high quality and robust.</td></tr><tr class="LEMsubq"><td>SQ-6</td><td><b>UsabFactor_6</b></td><td>&nbsp;</td><td><b>Ease of use: </b>The product is easy to operate.</td></tr><tr class="LEMsubq"><td>SQ-7</td><td><b>UsabFactor_7</b></td><td>&nbsp;</td><td><b>Efficiency: </b>The user can reach their goals with minimum time required and minimum physical effort.</td></tr><tr class="LEMsubq"><td>SQ-8</td><td><b>UsabFactor_8</b></td><td>&nbsp;</td><td><b>Emotion/Affect: </b>The product causes positive or negative emotions in the user.</td></tr><tr class="LEMsubq"><td>SQ-9</td><td><b>UsabFactor_9</b></td><td>&nbsp;</td><td><b>Flexibility: </b>The user can adapt the product to their personal needs and requirements and/or their working style.</td></tr><tr class="LEMsubq"><td>SQ-10</td><td><b>UsabFactor_10</b></td><td>&nbsp;</td><td><b>Fun: </b>Interacting with the product brings the user fun.</td></tr><tr class="LEMsubq"><td>SQ-11</td><td><b>UsabFactor_11</b></td><td>&nbsp;</td><td><b>Helpfulness: </b>The product helps the user.</td></tr><tr class="LEMsubq"><td>SQ-12</td><td><b>UsabFactor_12</b></td><td>&nbsp;</td><td><b>Identity: </b>The user can relate to the product and adopt properties of the product for himself.</td></tr><tr class="LEMsubq"><td>SQ-13</td><td><b>UsabFactor_13</b></td><td>&nbsp;</td><td><b>Immersion: </b>When interacting with the product, the user loses track of time.</td></tr><tr class="LEMsubq"><td>SQ-14</td><td><b>UsabFactor_14</b></td><td>&nbsp;</td><td><b>Intuitive Operation: </b>The user is able to operate the product with their present skills immediately and without any training or instruction by others.</td></tr><tr class="LEMsubq"><td>SQ-15</td><td><b>UsabFactor_15</b></td><td>&nbsp;</td><td><b>Learnability/Perspicuity: </b>It is easy for the user to perform their tasks with the product.</td></tr><tr class="LEMsubq"><td>SQ-16</td><td><b>UsabFactor_16</b></td><td>&nbsp;</td><td><b>Loyalty: </b>The
+ user is so convinced of the product that they tell others about it in a
+ positive way and use the product again and again themselves.</td></tr><tr class="LEMsubq"><td>SQ-17</td><td><b>UsabFactor_17</b></td><td>&nbsp;</td><td><b>Novelty: </b>The product is new or innovative.</td></tr><tr class="LEMsubq"><td>SQ-18</td><td><b>UsabFactor_18</b></td><td>&nbsp;</td><td><b>Originality: </b>The product is designed in an interesting and unusual way.</td></tr><tr class="LEMsubq"><td>SQ-19</td><td><b>UsabFactor_19</b></td><td>&nbsp;</td><td><b>Overall: </b>Describes
+ the overall impression of the product in general. The product is good 
+or poor in summary. This is typically a valence factor.</td></tr><tr class="LEMsubq"><td>SQ-20</td><td><b>UsabFactor_21</b></td><td>&nbsp;</td><td><b>Pragmatic Quality: </b>The product is practical and functional overall.</td></tr><tr class="LEMsubq"><td>SQ-21</td><td><b>UsabFactor_22</b></td><td>&nbsp;</td><td><b>Simplicity: </b>The product is simple in operation.</td></tr><tr class="LEMsubq"><td>SQ-22</td><td><b>UsabFactor_23</b></td><td>&nbsp;</td><td><b>Social Influences: </b>Interacting with the product helps the user to socialize or present themselves in a favorable way.</td></tr><tr class="LEMsubq"><td>SQ-23</td><td><b>UsabFactor_24</b></td><td>&nbsp;</td><td><b>Stimulation: </b>Working with the product encourages the user to work with it again and again.</td></tr><tr class="LEMsubq"><td>SQ-24</td><td><b>UsabFactor_25</b></td><td>&nbsp;</td><td><b>Trust/Credibility: </b>The product appears trustworthy to the user.</td></tr><tr class="LEManswer"><td>A[0]-1</td><td><b>0</b></td><td>[VALUE: 0]</td><td>-3 <br> not important at all</td></tr>
+<tr class="LEManswer"><td>A[0]-2</td><td><b>1</b></td><td>[VALUE: 0]</td><td>-2</td></tr>
+<tr class="LEManswer"><td>A[0]-3</td><td><b>2</b></td><td>[VALUE: 0]</td><td>-1</td></tr>
+<tr class="LEManswer"><td>A[0]-4</td><td><b>3</b></td><td>[VALUE: 0]</td><td>0</td></tr>
+<tr class="LEManswer"><td>A[0]-5</td><td><b>4</b></td><td>[VALUE: 0]</td><td>+1</td></tr>
+<tr class="LEManswer"><td>A[0]-6</td><td><b>5</b></td><td>[VALUE: 0]</td><td>+2</td></tr>
+<tr class="LEManswer"><td>A[0]-7</td><td><b>6</b></td><td>[VALUE: 0]</td><td>+3 very important</td></tr>
+<tr class="LEMgroup"><td class="">G-4</td><td><b>Comments</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionGroupsAdministration/view/surveyid/399533/gid/4337">GID 4337</a>] </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>&nbsp;</td></tr>
+<tr class="LEMquestion"><td class="">Q-28</td><td><b>TPComments</b><br>[<a target="_blank" href="https://survey.lfe.mw.tum.de/index.php/questionAdministration/view/surveyid/399533/gid/4337/qid/49040">QID 49040</a>]<br>Huge free text [U]  </td><td><span class="em-expression" data-original-title="" title="">1</span></td><td>Do you have any questions or comments about the questionnaire you just completed or your answers?</td></tr>
+</tbody></table></div><script type="text/javascript" src="Exp03_pre_logicfile-Dateien/lstutorial.js"></script>
+<script type="text/javascript" src="Exp03_pre_logicfile-Dateien/expression.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery('body').popover({'selector':'a\x5Brel\x3Dpopover\x5D'});
+jQuery('body').tooltip({'selector':'a\x5Brel\x3Dtooltip\x5D'});
+/*]]>*/
+</script>
+</body></html>
