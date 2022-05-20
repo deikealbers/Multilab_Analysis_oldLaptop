@@ -1,49 +1,18 @@
-#### script for the short interviews ####
-# builds on script 02_all_UsabQ_scores.R
-# includes levels of automation & comparisons of 
-    # observed level vs instructed        --> TC01_LevelObserved_Instr          ### actually belongs to driving behavior
-    # observed level vs reported          --> TC01_LevelObserved_Rep
-    # correct notice availability change  --> TC01_ImplemAvail
-    # correct reason for availability change (only TC06, 10, 12) --> TC06_AvailReasonCorrect
-        # 1 = correct, 0 = incorrect; 0.5 for half-correct (not existent)
-
-
-#### preparations ####
+### preparations ###
 rm(list = ls())
 library(tidyverse)
-library(car)
-library(compute.es); 
-library(ggplot2); 
-library(multcomp);
-library(pastecs); 
-# library(reshape) # doesn't go with dplyr
-library(rstatix)
-library(coin)
-library(vtable)
+setwd("~/R/Multilab_Analysis")
 
-setwd("~/R/Multilab")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ_all.csv", encoding = "UTF-8")
 
-#### load dataset, delete not needed columns ####
-load("data/R_data_all.RData")
+# factorize columns Exp & HMI
+data_all <- data_all %>%
+  mutate(Exp = as.factor(Exp)) %>%
+  mutate(HMI = as.factor(HMI))
 
-data <- data_all %>%
-  select(c(startdate, Exp, HMI, VPNr, 
-           ends_with("_LevelObserved_Rep"), ends_with("_LevelObserved_Instr"), 
-           ends_with("_AvailImplem_Rep"), ends_with("_AvailReasonCorrect"), 
-           ends_with("Allow_Observed"), # HandsOff + Emails
-           ends_with("TransProblems")))
-
-#### calculate scores ####
-  ## LevelObserved_Rep_score      (all TC --> max n*12)
-  ## LevelObserved_Instr_score    (all TC --> max n*12)
-  ## HandsOffAllow_Observed_score (all TC --> max n*12)
-  ## EmailsAllow_Observed_score   (all TC --> max n*12)
-  ## BothAllow_Observed_score     (all TC --> max 2n*12)
-  ## TransProblems_score          (TC03, TC05, TC09, TC10, TC11, TC12 --> max n*6)
-  ## AvailImplem_Rep_score        (all TC --> max n*12)
-  ## AvailReasonCorrect_score     (TC06, TC10, TC12 --> max n*3)
-
-data_scores <- data %>%
+data_scores <- data_all %>%
   add_column(LevelObserved_Rep_score = .$TC01_LevelObserved_Rep + .$TC02_LevelObserved_Rep + .$TC03_LevelObserved_Rep +
                .$TC04_LevelObserved_Rep + .$TC05_LevelObserved_Rep + .$TC06_LevelObserved_Rep +
                .$TC07_LevelObserved_Rep + .$TC08_LevelObserved_Rep + .$TC09_LevelObserved_Rep +
@@ -67,8 +36,10 @@ data_scores <- data %>%
                .$TC04_AvailImplem_Rep + .$TC05_AvailImplem_Rep + .$TC06_AvailImplem_Rep +
                .$TC07_AvailImplem_Rep + .$TC08_AvailImplem_Rep + .$TC09_AvailImplem_Rep +
                .$TC10_AvailImplem_Rep + .$TC11_AvailImplem_Rep + .$TC12_AvailImplem_Rep, .after = "VPNr") %>%
-  add_column(AvailReasonCorrect_score = .$TC06_AvailReasonCorrect + .$TC10_AvailReasonCorrect + .$TC12_AvailReasonCorrect, .after = "VPNr")
-  
+  add_column(AvailReasonCorrect_score = .$TC06_AvailReasonCorrect + .$TC10_AvailReasonCorrect + .$TC12_AvailReasonCorrect, .after = "VPNr") %>%
+  add_column(ER_overall = (.$TC01_ER + .$TC02_ER + .$TC03_ER + .$TC04_ER + .$TC05_ER + .$TC06_ER + .$TC07_ER + .$TC08_ER +
+                             .$TC09_ER + .$TC10_ER + .$TC11_ER + .$TC12_ER)/12)
+
 #### descriptive analysis of the scores ####
 n_groups <- data_scores %>% 
   count(Exp, HMI)
@@ -82,20 +53,20 @@ shortI_summary <- data_scores %>%
 print(as.data.frame(shortI_summary))
 
 #### descriptive proportions of correct answers or observations per TC ####
-    ## LevelObserved_Rep       (all TC, n)
-    ## LevelObserved_Instr     (all TC, n)
-    ## HandsOffAllow_Observed  (all TC, n)
-    ## EmailsAllow_Observed    (all TC, n)
-            ## BothAllow_Observed      (all TC, 2n) <- left out
-    ## TransProblems           (6x TC, n)
-    ## AvailImplem_Rep         (all TC, n)
-    ## AvailReasonCorrect      (3x TC TC, n)
+## LevelObserved_Rep       (all TC, n)
+## LevelObserved_Instr     (all TC, n)
+## HandsOffAllow_Observed  (all TC, n)
+## EmailsAllow_Observed    (all TC, n)
+## BothAllow_Observed      (all TC, 2n) <- left out
+## TransProblems           (6x TC, n)
+## AvailImplem_Rep         (all TC, n)
+## AvailReasonCorrect      (3x TC TC, n)
 
 ## proportion of correct answers per TC for the comparison Observed_Rep
 rel_Observed_Rep <- data_scores %>%
   select(c(Exp, HMI, ends_with("Observed_Rep"))) %>%
   group_by(Exp, HMI) %>%
-    summarise_at(.vars = vars(ends_with("Observed_Rep")), 
+  summarise_at(.vars = vars(ends_with("Observed_Rep")), 
                .funs = c(rel = "sum")) %>%
   left_join(., n_groups, by = c("Exp", "HMI")) %>%
   mutate(across(ends_with("_rel"), ~round((.x / n)*100, digits =2))) %>%
@@ -140,7 +111,7 @@ rel_TransProblems <- data_scores %>%
   left_join(., n_groups, by = c("Exp", "HMI")) %>%
   mutate(across(ends_with("_rel"), ~round((.x / n)*100, digits =2))) %>%
   add_column(overall = round((shortI_summary$TransProblems_score_mean / 6)*100, digits = 2), .after = "HMI")
-          
+
 ## proportion of correct answers per TC for the comparison AvailImplem_Rep
 rel_AvailImplem_Rep_Observed <- data_scores %>%
   select(c(Exp, HMI, VPNr, ends_with("AvailImplem_Rep"))) %>%
@@ -175,7 +146,7 @@ data_qual <- data_all %>%
            ends_with("_Instr"), #12
            ends_with("ImplemAvail"), #12 %>%
            GutGefallen, NichtGefallen, Verbessern, Anmerkungen, AllgAnregungen
-           )) %>%
+  )) %>%
   select(-c(ends_with("Observed_Instr"))) %>%
   select(order(colnames(.))) %>%
   relocate(HMI, .after = "Exp") %>%
@@ -184,6 +155,14 @@ data_qual <- data_all %>%
   relocate(Verbessern, .after = "NichtGefallen") %>%
   relocate(Anmerkungen, .after = "Verbessern") %>%
   relocate(AllgAnregungen, .after = "Anmerkungen")
+
+#### ER summaries ####
+ER_summary <- data_scores %>%
+  group_by(Exp, HMI) %>%
+  summarise_at(.vars = vars(TC01_ER, TC02_ER, TC03_ER, TC04_ER, TC05_ER, TC06_ER, TC07_ER, TC08_ER, TC09_ER, TC10_ER, TC11_ER, TC12_ER, ER_overall), 
+               .funs = c(mean = "mean", sd ="sd", min = "min", max = "max", median = "median"))
+# print(as.data.frame(ER_summary))
+
 
 #### export results ####
 write_excel_csv(shortI_summary, "data/processed/summary_shortInterviews.csv")
@@ -198,4 +177,6 @@ write_excel_csv(rel_TransProblems, "data/processed/singleTC/rel_TransProblems.cs
 
 write_excel_csv(data_qual, "data/processed/data_qualitative.csv")
 
-save(data_scores, file = "data/processed/data_all_scores-shortInterviews.RData")
+write_excel_csv(ER_summary, "data/processed/summary_ER.csv")
+
+write_excel_csv(data_scores, "data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv")
