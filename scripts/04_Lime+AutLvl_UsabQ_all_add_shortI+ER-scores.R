@@ -1,3 +1,6 @@
+#### script for adding short Interviews + ER - scores to the dataset
+# builds on script 03_Lime_AutLvl_add_UsabQ.R
+
 ### preparations ###
 rm(list = ls())
 library(tidyverse)

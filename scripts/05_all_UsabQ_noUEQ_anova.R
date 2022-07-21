@@ -1,5 +1,7 @@
 #### script for anova testing of usability questionnaires ####
-# builds on script 02_all_UsabQ_scores.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
+
 # https://statsandr.com/blog/anova-in-r/#introduction
     # SUS_score
     # UMUX_score
@@ -17,10 +19,14 @@ library(pastecs);
 library(reshape); 
 # library(WRS);
 library(DescTools);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
-#### load dataset ####
-load("data/processed/R_data_all_Q.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
 #### procedure ####
 # 1) Test for requirements
@@ -225,3 +231,4 @@ UsabQ_anova <- bind_rows(UsabQ_anova_12, UsabQ_anova_23)
 #### save data ####
 write_excel_csv(UsabQ_anova, "data/processed/anova_UsabQ_noUEQ.csv")
 rm(list=setdiff(ls(), c("UsabQ_anova", "data_Q", "data_12", "data_23", "fun_mean")))
+

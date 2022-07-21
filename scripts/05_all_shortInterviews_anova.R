@@ -1,5 +1,7 @@
 #### script for the short interviews ####
-# builds on script 04_all_shortInterviews.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
+
 # includes levels of automation & comparisons of 
     # observed level vs instructed        --> LevelObserved_Rep_score          ### actually belongs to driving behavior
     # observed level vs reported          --> LevelObserved_Instr_score
@@ -19,7 +21,7 @@ library(reshape);
 library(dplyr)
 # library(WRS);
 library(DescTools);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
 #### procedure ####
 # 1) Test for requirements
@@ -41,14 +43,19 @@ setwd("~/R/Multilab")
 # data_12 is for comparison sim (GER) vs test track (GER)
 # data_23 is for comparison test track (GER) vs test track (USA)
 
-load("data/processed/data_all_scores-shortInterviews.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
-data_12 <- data_scores %>%
+data_12 <- data_Q %>%
   filter(Exp == '1' | Exp == '2') %>%
   dplyr::select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, EmailsAllow_Observed_score, 
            HandsOffAllow_Observed_score, BothAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
 
-data_23 <- data_scores %>%
+data_23 <- data_Q %>%
   filter(Exp == '2' | Exp == '3') %>%
   dplyr::select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, EmailsAllow_Observed_score, 
            HandsOffAllow_Observed_score, BothAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
@@ -354,3 +361,4 @@ shortInterviews_anova <- bind_rows(shortInterviews_anova_12, shortInterviews_ano
 #### save data ####
 write_excel_csv(shortInterviews_anova, "data/processed/anova_shortInterviews.csv")
 rm(list=setdiff(ls(), c("shortInterviews_anova", "data_scores", "data_12", "data_23")))
+

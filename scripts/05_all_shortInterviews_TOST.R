@@ -1,5 +1,7 @@
 #### script for the short interviews ####
-# builds on script 04_all_shortInterviews.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
+
 # includes levels of automation & comparisons of 
 # observed level vs instructed        --> LevelObserved_Rep_score          ### actually belongs to driving behavior
 # observed level vs reported          --> LevelObserved_Instr_score
@@ -16,24 +18,28 @@
 rm(list = ls())
 library(tidyverse)
 library(TOSTER);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
-#### data sets ####
-load("data/processed/data_all_scores-shortInterviews.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
-data_e1 <- data_scores %>%
+data_e1 <- data_Q %>%
   filter(Exp == 1) %>%
-  select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
+  dplyr::select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
            EmailsAllow_Observed_score, HandsOffAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
 
-data_e2 <- data_scores %>%
+data_e2 <- data_Q %>%
   filter(Exp == 2) %>%
-  select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
-           EmailsAllow_Observed_score, HandsOffAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
+  dplyr::select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
+                  EmailsAllow_Observed_score, HandsOffAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
 
-data_e3 <- data_scores %>%
+data_e3 <- data_Q %>%
   filter(Exp == 3) %>%
-  select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
+  dplyr::select(c(Exp, HMI, VPNr, LevelObserved_Rep_score, LevelObserved_Instr_score, BothAllow_Observed_score, 
            EmailsAllow_Observed_score, HandsOffAllow_Observed_score, TransProblems_score, AvailImplem_Rep_score))
 
 #### define  column names of results table ####

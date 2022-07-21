@@ -1,5 +1,6 @@
-#### script for adding the actual and instructed Automation levels to the Lime_dataset
-# builds on script 01_merge_preprocessed_exp01,02,03.R
+#### script for combining all 3 datasets of Multilab exp
+# not incl.: Hofstede VSM Q (separate analysis with online surveys)
+# not incl.: Kano questions on Speech Outputs
 
 #### notes ####
 # different variables in experiments
@@ -47,12 +48,29 @@ setwd("~/R/Multilab_Analysis")
 
 #### import data ####
 # Read in files
-data_all <- read.csv("data/preprocessed/merged_Lime_all.csv", encoding = "UTF-8")
+data_exp01 <- read.csv("data/preprocessed/preprocessed_data_exp01.csv", encoding = "UTF-8")
+data_exp02 <- read.csv("data/preprocessed/preprocessed_data_exp02.csv", encoding = "UTF-8")
+data_exp03 <- read.csv("data/preprocessed/preprocessed_data_exp03.csv", encoding = "UTF-8")
 
-# factorize columns Exp & HMI
-data_all <- data_all %>%
+#### combine exp01 and exp02 ####
+merge <- bind_rows(data_exp01, data_exp02, data_exp03)
+
+#reorder certain columns
+all_merged <- merge %>%
+  rename(startdate = X.U.FEFF.startdate) %>%
   mutate(Exp = as.factor(Exp)) %>%
-  mutate(HMI = as.factor(HMI))
+  mutate(HMI = as.factor(HMI)) %>%
+  relocate(VPNr, .after = VPCode) %>%
+  relocate(SehhilfeLesenJetzt, .after = Sehhilfe) %>%
+  relocate(SehhilfeLesen, .after = Sehhilfe) %>%
+  relocate(SehhilfeAutoJetzt, .after = Sehhilfe) %>%
+  relocate(SehhilfeAuto, .after = Sehhilfe) %>%
+  relocate(Licht, .after = AutomarkeLKA) %>%
+  relocate(Wetter, .after = AutomarkeLKA) %>%
+  relocate(TPComments_PreQ, .after = AutomarkeLKA) %>%
+  relocate(NationGeb2, .after = Geschlecht) %>%
+  relocate(NationGeb, .after = Geschlecht) %>%
+  relocate(Nation, .after = Geschlecht)
 
 #### transform 99 replies in short interviews and compare ####
 # 1) read in csv with the transformed codes
@@ -60,7 +78,7 @@ transform_99 <- read.csv("data/other/all_shortInterviews_transform99replies.csv"
 transform_99 <- transform_99 %>%
   mutate(Exp = factor(Exp))
 # 2) join data
-all_merged_t99 <- left_join(data_all, transform_99, by = c("VPNr", "Exp"))
+all_merged_t99 <- left_join(all_merged, transform_99, by = c("VPNr", "Exp"))
 # 3) create new column with replacements of 99 (2 steps: new column=original Level; change column if value=99)
 all_merged_t99_newcolumns <- all_merged_t99 %>%
   add_column(TC01_LevelRep = .$TC01_LevelSel, .after = "TC01_LevelSel") %>%
@@ -418,7 +436,8 @@ all_compared <- all_merged_t99_replaced_aut_comp2_avail_comp_all_allow1 %>%
 data_all <- all_compared
 
 #### save data ####
-write_excel_csv(data_all, "data/preprocessed/Lime+AutLvl_all.csv")
+write_excel_csv(data_all, "data/R_data_all+AutLvl_comparisons.csv")
+save(data_all, file = "data/R_data_all+AutLvl_comparisons.RData")
 rm(list=setdiff(ls(), c("data_all")))
 
 # when importing, mutate Exp and HMI

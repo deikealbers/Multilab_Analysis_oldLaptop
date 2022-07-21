@@ -1,5 +1,6 @@
 #### script for anova testing of UEQ scores ####
-# builds on script 02_all_UsabQ_scores.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
 
 # UEQ_Attractiveness
 # UEQ_Perspicuity
@@ -18,10 +19,14 @@ library(multcomp);
 library(pastecs); 
 library(reshape); 
 library(WRS);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
-#### load dataset ####
-load("data/processed/R_data_all_Q.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
 #### data sets ####
 # data_12 is for comparison sim (GER) vs test track (GER)

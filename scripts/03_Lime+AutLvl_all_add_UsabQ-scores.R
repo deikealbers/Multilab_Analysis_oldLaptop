@@ -1,3 +1,6 @@
+#### script for adding the Usability Questionnaire scores to the dataset
+# builds on script 02_Lime_add_AutLvl.R
+
 ### preparations ###
 rm(list = ls())
 library(tidyverse)

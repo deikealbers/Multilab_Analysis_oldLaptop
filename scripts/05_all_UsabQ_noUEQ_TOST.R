@@ -1,5 +1,7 @@
 #### script for TOST of usability questionnaires ####
-# builds on script 02_all_UsabQ_scores.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
+
 # https://statsandr.com/blog/anova-in-r/#introduction
 # SUS_score
 # UMUX_score
@@ -15,10 +17,14 @@
 rm(list = ls())
 library(tidyverse)
 library(TOSTER);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
-#### load dataset ####
-load("data/processed/R_data_all_Q.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
 #### prepare data sets ####
 data_e1 <- data_Q %>%
@@ -163,3 +169,4 @@ TOST_results_table <- bind_rows(TOST_results_table, TOST_tab12ready, TOST_tab23r
 #### save data ####
 write_excel_csv(TOST_results_table, "data/processed/TOST_UsabQ_noUEQ.csv")
 rm(list = ls())
+

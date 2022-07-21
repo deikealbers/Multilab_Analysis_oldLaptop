@@ -1,5 +1,7 @@
 #### script for anova testing of UEQ scores ####
-# builds on script 02_all_UsabQ_scores.R
+
+# builds on script 04_Lime_AutLvl_UsabQ_add_shortI+ER-scores.R
+
 # https://statsandr.com/blog/anova-in-r/#introduction
     # UEQ_Attractiveness
     # UEQ_Perspicuity
@@ -18,10 +20,14 @@ library(multcomp);
 library(pastecs); 
 library(reshape); 
 library(WRS);
-setwd("~/R/Multilab")
+setwd("~/R/Multilab_Analysis")
 
-#### load dataset ####
-load("data/processed/R_data_all_Q.RData")
+#### import data ####
+# Read in files
+data_all <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8")
+data_Q <- data_all %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI))
 
 #### procedure ####
 # 1) Test for requirements
@@ -305,3 +311,4 @@ UEQ_anova <- bind_rows(UEQ_anova_12, UEQ_anova_23)
 #### save data ####
 write_excel_csv(UEQ_anova, "data/processed/anova_UEQ.csv")
 rm(list=setdiff(ls(), c("UEQ_anova", "data_Q", "data_12", "data_23", "fun_mean")))
+
