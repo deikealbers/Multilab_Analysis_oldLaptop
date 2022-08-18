@@ -7,16 +7,6 @@
 rm(list = ls())
 library(tidyverse)
 library(ggplot2); 
-library(car)
-library(compute.es); 
-library(ggplot2); 
-library(multcomp);
-library(pastecs); 
-library(reshape); 
-library(dplyr)
-# library(WRS);
-library(DescTools);
-library(TOSTER);
 setwd("~/R/Multilab_Analysis")
 
 #### import data ####
@@ -46,32 +36,19 @@ data <- data_Q %>%
 #              with the sample size.
 ##     - Homogeneity of variances: Groups are from populations with approximately identical variances of the dependent variable
 #         --> Levene's test [leveneTest(DV ~ IV[*IV], data = dataset)]
-#### readme ####
-# The function TOSTtwo gets notification "this function is defunct. Please use tsum_TOST instead"
-# https://aaroncaldwell.us/TOSTERpkg/articles/IntroductionToTOSTER.html
-# both functions seem to produce the same results. For now the old function will be kept.
 
 
 #### data sets ####
 # data_12 is for comparison sim (GER) vs test track (GER)
 # data_23 is for comparison test track (GER) vs test track (USA)
-# anova
+
 data_12 <- data %>%
   filter(Exp == '1' | Exp == '2')
+
 data_23 <- data %>%
   filter(Exp == '2' | Exp == '3')
 
-# TOST
-data_e1 <- data_Q %>%
-  filter(Exp == 1)
-data_e2 <- data_Q %>%
-  filter(Exp == 2)
-data_e3 <- data_Q %>%
-  filter(Exp == 3)
-
-#### anova ####
-
-#### define  column names of anova results table
+#### define  column names of results table
 c_lev <- c("lev_Df_group", "lev_Df", "lev_F", "lev_x1", "lev_p", "lev_x2")
 c_shap <- c("shap_W", "shap_p" , "method", "data")
 c_aov_t2 <- c("eta_sq_Exp", "eta_sq_HMI", "eta_sq_Interaction", "eta_sq_Residuals",
@@ -129,55 +106,6 @@ ER_anova_23 <- tab_aov_ERo
 #### combine anova 12 and anova 23 results ####
 ER_anova <- bind_rows(ER_anova_12, ER_anova_23)
 
-#### remove not needed data ####
-rm(list=setdiff(ls(), c("ER_anova", "data_Q", "data_e1", "data_e2", "data_e3")))
-
-
-
-#### TOST ####
-
-#### define  column names of TOST results table ####
-c_TOST_tab <- c("Test", "diff_means", "TOST_t1", "TOST_p1", "TOST_t2", "TOST_p2", "TOST_df", "alpha", 
-                "low_eqbound", "high_eqbound", "low_eqbound_d", "high_eqbound_d", "LL_CI_TOST", "UL_CI_TOST", 
-                "LL_CI_TTest", "UL_CI_TTest", "NHST_t", "NHST_p")
-
-#### define TOST SESOI d ####
-d <- 0.5
-
-#### ER_overall #### 
-# adaptations are needed in the next 5 rows for the different tests
-variable1 <- data_e1$ER_overall
-variable2 <- data_e2$ER_overall
-variable3 <- data_e3$ER_overall
-title_12 <- c("ERo_12")
-title_23 <- c("ERo_23")
-## define parameters
-m1 <- mean(variable1)
-sd1 <- sd(variable1)
-n1 <- length(variable1)
-m2 <- mean(variable2)
-sd2 <- sd(variable2)
-n2 <- length(variable2)
-m3 <- mean(variable3)
-sd3 <- sd(variable3)
-n3 <- length(variable3)
-## calculate TOST
-TOST_12 <- TOSTtwo(m1 = m1, m2 = m2, sd1 = sd1, sd2 = sd2, n1 = n1, n2 = n2, low_eqbound_d = -d, high_eqbound_d = d)
-TOST_23 <- TOSTtwo(m1 = m2, m2 = m3, sd1 = sd2, sd2 = sd3, n1 = n2, n2 = n3, low_eqbound_d = -d, high_eqbound_d = d)
-## transform results into dataframe
-TOST_tab12 <- data.frame(matrix(unlist(TOST_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
-TOST_tab23 <- data.frame(matrix(unlist(TOST_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
-## prepare dataframe for accumulation
-TOST_tab12ready <- cbind(title_12, TOST_tab12)
-names(TOST_tab12ready) <- c_TOST_tab
-TOST_tab23ready <- cbind(title_23, TOST_tab23)
-names(TOST_tab23ready) <- c_TOST_tab
-## build results table (first test doesnt include "TOST_results_table")
-ER_TOST <- bind_rows(TOST_tab12ready, TOST_tab23ready)
-
-#### remove not needed data ####
-rm(list=setdiff(ls(), c("ER_anova", "ER_TOST", "data_Q")))
-
 #### save data ####
 write_excel_csv(ER_anova, "data/processed/anova_ER.csv")
-write_excel_csv(ER_TOST, "data/processed/TOST_ER.csv")
+rm(list=setdiff(ls(), c("ER_anova", "data_Q", "data_12", "data_23", "fun_mean")))
