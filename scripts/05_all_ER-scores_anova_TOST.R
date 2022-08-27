@@ -6,7 +6,15 @@
 #### preparations ####
 rm(list = ls())
 library(tidyverse)
+library(car)
+library(compute.es); 
 library(ggplot2); 
+library(multcomp);
+library(pastecs); 
+library(reshape); 
+# library(WRS);
+library(ggplot2);
+library(DescTools)
 setwd("~/R/Multilab_Analysis")
 
 #### import data ####
