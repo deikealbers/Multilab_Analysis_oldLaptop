@@ -16,9 +16,9 @@ library(car)
 library(compute.es); 
 library(ggplot2); 
 library(multcomp);
-library(pastecs); 
-library(reshape); 
-library(WRS);
+library(pastecs) 
+library(reshape) 
+library(WSR2)
 setwd("~/R/Multilab_Analysis")
 
 #### import data ####
@@ -32,10 +32,10 @@ data_Q <- data_all %>%
 # data_12 is for comparison sim (GER) vs test track (GER)
 # data_23 is for comparison test track (GER) vs test track (USA)
 
-data_12 <- data_Q %>%
+data_12 <- data_all %>%
   filter(Exp == '1' | Exp == '2')
 
-data_23 <- data_Q %>%
+data_23 <- data_all %>%
   filter(Exp == '2' | Exp == '3')
 
 #### define  column names of results table
@@ -46,8 +46,11 @@ UEQ_scales_12<-cbind(data_12$UEQ_Attractiveness, data_12$UEQ_Perspicuity, data_1
                   data_12$UEQ_Dependability, data_12$UEQ_Novelty, data_12$UEQ_Stimulation)
 
 manova_UEQ_12<-manova(UEQ_scales_12 ~ Exp*HMI, data = data_12)
+manova_UEQ_12
 # summary(manova_UEQ_12, intercept = TRUE)
-sum_manova_UEQ_12 <- Anova(manova_UEQ_12, type = "II")
+sum_manova_UEQ_12 <- Anova(manova_UEQ_12, type = "III")
+sum_manova_UEQ_12
+
 # tab_manova_UEQ_12 <- data.frame(matrix(unlist(sum_manova_UEQ_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
 # names(tab_manova_UEQ_12) <- c_manova_t2
 a <- capture.output(sum_manova_UEQ_12)
