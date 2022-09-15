@@ -74,10 +74,18 @@ all_merged <- merge %>%
 
 data_all <- all_merged
 
+#### sample overview ####
+sample <- data_all %>%
+  rename(startdate = X.U.FEFF.X.U.FEFF.X.U.FEFF.X.U.FEFF.startdate) %>%
+  select(c(startdate, Exp, HMI, VPCode, VPNr))
+
 #### save data ####
 write_excel_csv(data_all, "data/preprocessed/merged_Lime_all.csv")
+write_excel_csv(sample, "data/results/all_sample_overview.csv")
 rm(list=setdiff(ls(), c("data_all")))
 
 # when importing, mutate Exp and HMI
 #  mutate(Exp = as.factor(Exp)) %>%
 #  mutate(HMI = as.factor(HMI)) %>%
+
+
