@@ -187,7 +187,7 @@ p <- ggplot(data_12, aes(x=HMI, y=Mileage, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Mileage: \nHow many kilometers have you driven in approximately the last 12 months?") +
+       title = "Mileage: \nHow many kilometers have you driven in the last 12 months?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1., hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -234,7 +234,7 @@ p <- ggplot(data_12, aes(x=HMI, y=Knowledge, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Prior Knowledge: \nDo you already have prior knowledge in the field of automated driving?") +
+       title = "Prior Knowledge: \nDo you have prior knowledge in the field of automated driving?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1.3, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -1026,7 +1026,7 @@ d12_SI_LevelObserved_Rep_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported automation level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1043,7 +1043,6 @@ p <- ggplot(d12_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1157,7 +1156,7 @@ d12_SI_EmailsAllow_Observed_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported allowance to: \nWrite e-mails while driving in this level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1174,7 +1173,6 @@ p <- ggplot(d12_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1247,7 +1245,7 @@ d12_SI_HandsOffAllow_Observed_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported allowance to: \nDrive hands-off in this level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1264,7 +1262,6 @@ p <- ggplot(d12_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1339,7 +1336,7 @@ d12_SI_TransProblems_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of mentions per test case [%]", x="",
+  labs(y="Proportion of mentions per test case [%]", x="Test case", 
        title = "Reported problems with switching automation levels") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1354,7 +1351,6 @@ p <- ggplot(d12_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1428,7 +1424,7 @@ d12_SI_AvailImplem_Rep_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Implemented change of available levels vs. \nreported availability change") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1445,7 +1441,6 @@ p <- ggplot(d12_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1519,7 +1514,7 @@ d12_SI_AvailReasonCorrect_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Implemented reason for change of available levels vs. \nreported reason for change of available levels") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1534,7 +1529,6 @@ p <- ggplot(d12_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1608,7 +1602,7 @@ d12_SI_LevelObserved_Instr_singleTC <- data_12 %>%
 p <- ggplot(d12_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. instructed automation level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1625,7 +1619,6 @@ p <- ggplot(d12_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1704,7 +1697,7 @@ d12_ER_ExpRating_singleTC <- data_12 %>%
 p <- ggplot(d12_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="", x="",
+  labs(y="", x="Test case", 
        title = "Mean score in experimeter rating") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1725,7 +1718,6 @@ p <- ggplot(d12_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -1781,7 +1773,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -1827,7 +1819,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -1856,7 +1848,7 @@ p <- ggplot(data_23, aes(x=HMI, y=Mileage, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Mileage: \nHow many kilometers have you driven in approximately the last 12 months?") +
+       title = "Mileage: \nHow many kilometers have you driven in the last 12 months?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1., hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -1873,7 +1865,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -1903,7 +1895,7 @@ p <- ggplot(data_23, aes(x=HMI, y=Knowledge, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Prior Knowledge: \nDo you already have prior knowledge in the field of automated driving?") +
+       title = "Prior Knowledge: \nDo you have prior knowledge in the field of automated driving?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1.3, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -1920,7 +1912,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -1990,7 +1982,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2029,7 +2021,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2091,7 +2083,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2154,7 +2146,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2201,7 +2193,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2245,7 +2237,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00") #E37222
+fills <- c("#A2AD00", "#E37222")
 k <- 1
 for (i in strip_t) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2258,6 +2250,8 @@ plot_23_SD_Light <- g
 
 ggsave(filename = "data/results/figures/23_SD_Light.png", g, 
        width = 8.5, height = 5, dpi = 300, units = "in", device='png')
+
+
 # # ---------------------------- 23_post questionnaires #### -----------------------------------------------------
 # contains
 # SUS
@@ -2493,7 +2487,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2538,7 +2532,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -2693,7 +2687,7 @@ d23_SI_LevelObserved_Rep_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported automation level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2710,7 +2704,6 @@ p <- ggplot(d23_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -2778,7 +2771,7 @@ p <- ggplot(data_23, aes(x=HMI, y=EmailsAllow_Observed_score, fill=HMI)) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
-  labs(y="Number of matching answers", x="",
+  labs(y="Number of matching answers", x="", 
        title = "Observed automation level vs. reported allowance to: \nWrite e-mails while driving in this level") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=0.7, hjust=1.1) +
@@ -2824,7 +2817,7 @@ d23_SI_EmailsAllow_Observed_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported allowance to: \nWrite e-mails while driving in this level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2841,7 +2834,6 @@ p <- ggplot(d23_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -2914,7 +2906,7 @@ d23_SI_HandsOffAllow_Observed_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. reported allowance to: \nDrive hands-off in this level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2931,7 +2923,6 @@ p <- ggplot(d23_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3006,7 +2997,7 @@ d23_SI_TransProblems_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of mentions per test case [%]", x="",
+  labs(y="Proportion of mentions per test case [%]", x="Test case", 
        title = "Reported problems with switching automation levels") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3021,7 +3012,6 @@ p <- ggplot(d23_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3094,7 +3084,7 @@ d23_SI_AvailImplem_Rep_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Implemented change of available levels vs. \nreported availability change") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3111,7 +3101,6 @@ p <- ggplot(d23_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3185,7 +3174,7 @@ d23_SI_AvailReasonCorrect_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Implemented reason for change of available levels vs. \nreported reason for change of available levels") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3200,7 +3189,6 @@ p <- ggplot(d23_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3274,7 +3262,7 @@ d23_SI_LevelObserved_Instr_singleTC <- data_23 %>%
 p <- ggplot(d23_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="Proportion of matching answers per test case [%]", x="",
+  labs(y="Proportion of matching answers per test case [%]", x="Test case", 
        title = "Observed automation level vs. instructed automation level") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3291,7 +3279,6 @@ p <- ggplot(d23_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3370,7 +3357,7 @@ d23_ER_ExpRating_singleTC <- data_23 %>%
 p <- ggplot(d23_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
   geom_line(aes(group = HMI, color = HMI), size = 0.8) +
   geom_point(aes(color = HMI), size = 2.5) +
-  labs(y="", x="",
+  labs(y="", x="Test case", 
        title = "Mean score in experimeter rating") +
   facet_grid(~Exp) +
   scale_color_manual(values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3391,7 +3378,6 @@ p <- ggplot(d23_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
         legend.background = element_rect(fill = "transparent"),
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.title.x=element_blank(),
         axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.9, hjust=0.5, face="plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
@@ -3523,7 +3509,7 @@ p <- ggplot(data, aes(x=HMI, y=Mileage, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Mileage: \nHow many kilometers have you driven in approximately the last 12 months?") +
+       title = "Mileage: \nHow many kilometers have you driven in the last 12 months?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1., hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -3570,7 +3556,7 @@ p <- ggplot(data, aes(x=HMI, y=Knowledge, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Prior Knowledge: \nDo you already have prior knowledge in the field of automated driving?") +
+       title = "Prior Knowledge: \nDo you have prior knowledge in the field of automated driving?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=-1.3, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -3657,7 +3643,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#DAD7CB", "#A2AD00", "#E37222", "#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -3696,7 +3682,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#DAD7CB", "#A2AD00", "#E37222", "#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -3758,7 +3744,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#DAD7CB", "#A2AD00", "#E37222", "#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
@@ -3821,7 +3807,7 @@ p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+fills <- c("#DAD7CB", "#A2AD00", "#E37222", "#3070b3", "#98C6EA")
 k <- 1
 for (i in strip_both) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
