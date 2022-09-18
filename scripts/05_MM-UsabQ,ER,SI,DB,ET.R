@@ -83,6 +83,8 @@ setwd("~/R/Multilab_Analysis")
 #### import data & build subsets ####
 data_all <- read.csv("data/preprocessed/multilab_subj_complete.csv", encoding = "UTF-8")
 
+
+# # #### ER  --------------------------------------------------------------
 # build data sets
 data_wide <- data_all %>%
   mutate(Exp = case_when(
@@ -98,7 +100,6 @@ data_wide <- data_all %>%
   mutate(VP = factor(VP)) %>%
   dplyr::select(c(Exp, HMI, VP, 
                   ends_with("_ER"))) # adjustment needed for the other metrics
-
 names(data_wide) <- c("Exp", "HMI", "VP", "TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12")
 
 # restructure for long format
@@ -113,12 +114,113 @@ data_12 <- data_long %>%
 
 data_23 <- data_long %>%
   filter(Exp !="e1")
-################################## ________ MM 12 ________ ########################################
+
+## MM 12
 model <- afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12) # VP as grouping variable, TC as grouping variable and affecting the variability among HMIs
 model # output = anova(model, type = 3)
 summary(model) # output != output: model
 
-a <- afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = gaussian(link=log), method = "LRT")
+a <- afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
 a
 afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, method = "BP", family = "quapoisson")
-################################## ________ save ________ ########################################
+
+
+# # #### LevelObserved_Rep_score --------------------------------------------------------------
+# build data sets
+data_wide <- data_all %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, 
+                  ends_with("LevelObserved_Rep"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12"))
+
+names(data_long) <-c("Exp", "HMI", "VP", "TC","LevelObserved_Rep_score")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM 12
+model <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12) # VP as grouping variable, TC as grouping variable and affecting the variability among HMIs
+model # output = anova(model, type = 3)
+summary(model) # output != output: model
+
+a <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+a
+
+full <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = "binomial", method = "LRT")
+
+half <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = "binomial", method = "LRT")
+half
+full
+summary(half)
+
+# # #### BothAllow_Observed_score --------------------------------------------------------------
+# build data sets
+data_wide <- data_all %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, 
+                  ends_with("HandsOffAllow"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", 
+                      "TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12"))
+
+names(data_long) <-c("Exp", "HMI", "VP", "TC","task")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM 12
+model <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12) # VP as grouping variable, TC as grouping variable and affecting the variability among HMIs
+model # output = anova(model, type = 3)
+summary(model) # output != output: model
+
+a <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+a
+
+full <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = "binomial", method = "LRT")
+
+half <- afex::mixed(LevelObserved_Rep_score ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = "binomial", method = "LRT")
+half
+full
+summary(half)
+
+
+#### next steps:
+- code: extract coefficients, z, Chi and p and converging model
+- build table
+- adjust for the variables (bothAllow: als weiterer Random Faktor die Task)
+- ER different?

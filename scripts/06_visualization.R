@@ -789,13 +789,13 @@ UEQ_Novelty <- data_12 %>%
   rename(score = UEQ_Novelty) %>%
   add_column(scale = "UEQ_Novelty", .after = "VPNr")
 ## build subset ##
-UEQ <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
+UEQ_12 <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
   mutate(scale = factor(scale, levels = c("UEQ_Attractiveness", "UEQ_Perspicuity", "UEQ_Efficiency", "UEQ_Dependability", "UEQ_Stimulation", "UEQ_Novelty"), ordered = TRUE))
 
 ## lables ##
 labels_UEQ = c("Attractiveness", "Perspicuity", "Efficiency", "Dependability", "Stimulation", "Novelty")
 
-p <- ggplot(UEQ, aes(x=scale, y=score, fill=HMI)) + 
+p <- ggplot(UEQ_12, aes(x=scale, y=score, fill=HMI)) + 
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = .8, ymax = 3), 
             fill = alpha("#92C46E", 0.02)) +
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = -.8, ymax = .8), 
@@ -2450,13 +2450,13 @@ UEQ_Novelty <- data_23 %>%
   rename(score = UEQ_Novelty) %>%
   add_column(scale = "UEQ_Novelty", .after = "VPNr")
 ## build subset ##
-UEQ <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
+UEQ_23 <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
   mutate(scale = factor(scale, levels = c("UEQ_Attractiveness", "UEQ_Perspicuity", "UEQ_Efficiency", "UEQ_Dependability", "UEQ_Stimulation", "UEQ_Novelty"), ordered = TRUE))
 
 ## lables ##
 labels_UEQ = c("Attractiveness", "Perspicuity", "Efficiency", "Dependability", "Stimulation", "Novelty")
 
-p <- ggplot(UEQ, aes(x=scale, y=score, fill=HMI)) + 
+p <- ggplot(UEQ_23, aes(x=scale, y=score, fill=HMI)) + 
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = .8, ymax = 3), 
             fill = alpha("#92C46E", 0.02)) +
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = -.8, ymax = .8), 
@@ -2502,7 +2502,7 @@ ggsave(filename = "data/results/figures/23_pQ_UEQ_box.png", g,
        width = 10, height = 6, dpi = 600, units = "in", device='png')
 
 # 23_pQ_UEQ_barplot -----------------------------------------------------------
-p <- ggplot(UEQ_summ_12, aes(x=as.factor(scale), y = mean, fill=as.factor(HMI) )) + 
+p <- ggplot(UEQ_summ_23, aes(x=as.factor(scale), y = mean, fill=as.factor(HMI) )) + 
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = .8, ymax = 3), 
             fill = alpha("#92C46E", 0.3)) +
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = -.8, ymax = .8), 
@@ -2512,7 +2512,7 @@ p <- ggplot(UEQ_summ_12, aes(x=as.factor(scale), y = mean, fill=as.factor(HMI) )
   geom_bar(stat = "identity", width = 0.7) +
   geom_errorbar(width=.25, aes(ymin = mean - sd, ymax = mean + sd), colour="black", size = 0.2) +
   scale_x_discrete(labels = labels_UEQ) +
-  scale_y_continuous(limits = c(-3,3), breaks = seq(-3,3,1)) +
+  scale_y_continuous(limits = c(-3,3.19), breaks = seq(-3,3,1)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Score", x="",
