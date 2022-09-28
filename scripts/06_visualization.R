@@ -56,9 +56,9 @@ data <- data_all %>%
          ) %>%
   mutate(Exp = ifelse(Exp == 1, "Sim_GER", ifelse(Exp == 2, "TT_GER", ifelse(Exp == 3, "TT_USA", Exp)))) %>%
   mutate(Exp = factor(Exp, levels = c("Sim_GER", "TT_GER", "TT_USA"), ordered = TRUE)) %>%
-  rename(Age = Alter, Experience = Erfahrung, Mileage = KilometerJahr, Knowledge = Vorwissen) %>%
-  rename(Weather = Wetter, Light = Licht) %>%
-  rename(Effort = AnstrengendWenden, Nausea = Uebel) 
+  dplyr::rename(Age = Alter, Experience = Erfahrung, Mileage = KilometerJahr, Knowledge = Vorwissen) %>%
+  dplyr::rename(Weather = Wetter, Light = Licht) # %>%
+#  dplyr::rename(Effort = AnstrengendWenden, Nausea = Uebel) 
 
 data_12 <- data %>%
   filter(Exp != "TT_USA")
@@ -67,7 +67,7 @@ data_23 <- data %>%
 
 ## UEQ statistics  
 UEQ_summ <- summ_nachbefragung %>%
-  rename(scale = X.U.FEFF.variable) %>%
+  dplyr::rename(scale = X.U.FEFF.variable) %>%
   select(scale, Exp, HMI, mean, sd) %>%
   filter(str_detect(scale, "^UEQ")) %>%
   mutate(Exp = ifelse(Exp == 1, "Sim_GER", ifelse(Exp == 2, "TT_GER", ifelse(Exp == 3, "TT_USA", Exp)))) %>%
@@ -268,19 +268,19 @@ ggsave(filename = "data/results/figures/12_SD_Knowledge.png", g,
 ## subset subscales ##
 FAS_CC <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.CC) %>%
-  rename(score = FAS.CC) %>%
+  dplyr::rename(score = FAS.CC) %>%
   add_column(scale = "FAS_CC", .after = "VPNr")
 FAS_ACC <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.ACC) %>%
-  rename(score = FAS.ACC) %>%
+  dplyr::rename(score = FAS.ACC) %>%
   add_column(scale = "FAS_ACC", .after = "VPNr")
 FAS_LKA <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.LKA) %>%
-  rename(score = FAS.LKA) %>%
+  dplyr::rename(score = FAS.LKA) %>%
   add_column(scale = "FAS_LKA", .after = "VPNr")
 FAS_NoFAS <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.NoFAS) %>%
-  rename(score = FAS.NoFAS) %>%
+  dplyr::rename(score = FAS.NoFAS) %>%
   add_column(scale = "FAS_NoFAS", .after = "VPNr")
 
 ## build subsets ##
@@ -292,7 +292,7 @@ FAS_perc <- FAS %>%
   group_by(Exp, HMI, scale) %>%
   skim_ML() %>%
   select(Exp, HMI, scale, numeric.mean) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(mean = numeric.mean)
 
 ## lables ##
 labels_FAS = c("CC", "ACC", "LKA", "No FAS")
@@ -378,15 +378,15 @@ ggsave(filename = "data/results/figures/12_SD_FAS_perc.png", g,
 ## subset subscales ##
 Oft_CC <- data_12 %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data_12 %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data_12 %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
@@ -439,15 +439,15 @@ ggsave(filename = "data/results/figures/12_SD_Oft_box.png", g,
 ## subset subscales ##
 Oft_CC <- data_12 %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data_12 %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data_12 %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
@@ -766,27 +766,27 @@ ggsave(filename = "data/results/figures/12_pQ_Trust.png", g,
 ## subset subscales ##
 UEQ_Attractiveness <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Attractiveness) %>%
-  rename(score = UEQ_Attractiveness) %>%
+  dplyr::rename(score = UEQ_Attractiveness) %>%
   add_column(scale = "UEQ_Attractiveness", .after = "VPNr")
 UEQ_Perspicuity <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Perspicuity) %>%
-  rename(score = UEQ_Perspicuity) %>%
+  dplyr::rename(score = UEQ_Perspicuity) %>%
   add_column(scale = "UEQ_Perspicuity", .after = "VPNr")
 UEQ_Efficiency <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Efficiency) %>%
-  rename(score = UEQ_Efficiency) %>%
+  dplyr::rename(score = UEQ_Efficiency) %>%
   add_column(scale = "UEQ_Efficiency", .after = "VPNr")
 UEQ_Dependability <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Dependability) %>%
-  rename(score = UEQ_Dependability) %>%
+  dplyr::rename(score = UEQ_Dependability) %>%
   add_column(scale = "UEQ_Dependability", .after = "VPNr")
 UEQ_Stimulation <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Stimulation) %>%
-  rename(score = UEQ_Stimulation) %>%
+  dplyr::rename(score = UEQ_Stimulation) %>%
   add_column(scale = "UEQ_Stimulation", .after = "VPNr")
 UEQ_Novelty <- data_12 %>%
   select(Exp, VPNr, HMI, UEQ_Novelty) %>%
-  rename(score = UEQ_Novelty) %>%
+  dplyr::rename(score = UEQ_Novelty) %>%
   add_column(scale = "UEQ_Novelty", .after = "VPNr")
 ## build subset ##
 UEQ_12 <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
@@ -1019,8 +1019,8 @@ d12_SI_LevelObserved_Rep_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
@@ -1149,8 +1149,8 @@ d12_SI_EmailsAllow_Observed_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
@@ -1238,8 +1238,8 @@ d12_SI_HandsOffAllow_Observed_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
@@ -1329,8 +1329,8 @@ d12_SI_TransProblems_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
@@ -1417,8 +1417,8 @@ d12_SI_AvailImplem_Rep_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
@@ -1507,8 +1507,8 @@ d12_SI_AvailReasonCorrect_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
@@ -1595,8 +1595,8 @@ d12_SI_LevelObserved_Instr_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
@@ -1690,8 +1690,8 @@ d12_ER_ExpRating_singleTC <- data_12 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d12_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
@@ -1929,19 +1929,19 @@ ggsave(filename = "data/results/figures/23_SD_Knowledge.png", g,
 ## subset subscales ##
 FAS_CC <- data_23 %>%
   select(Exp, VPNr, HMI, FAS.CC) %>%
-  rename(score = FAS.CC) %>%
+  dplyr::rename(score = FAS.CC) %>%
   add_column(scale = "FAS_CC", .after = "VPNr")
 FAS_ACC <- data_23 %>%
   select(Exp, VPNr, HMI, FAS.ACC) %>%
-  rename(score = FAS.ACC) %>%
+  dplyr::rename(score = FAS.ACC) %>%
   add_column(scale = "FAS_ACC", .after = "VPNr")
 FAS_LKA <- data_23 %>%
   select(Exp, VPNr, HMI, FAS.LKA) %>%
-  rename(score = FAS.LKA) %>%
+  dplyr::rename(score = FAS.LKA) %>%
   add_column(scale = "FAS_LKA", .after = "VPNr")
 FAS_NoFAS <- data_23 %>%
   select(Exp, VPNr, HMI, FAS.NoFAS) %>%
-  rename(score = FAS.NoFAS) %>%
+  dplyr::rename(score = FAS.NoFAS) %>%
   add_column(scale = "FAS_NoFAS", .after = "VPNr")
 
 ## build subsets ##
@@ -1953,7 +1953,7 @@ FAS_perc <- FAS %>%
   group_by(Exp, HMI, scale) %>%
   skim_ML() %>%
   select(Exp, HMI, scale, numeric.mean) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(mean = numeric.mean)
 
 ## lables ##
 labels_FAS = c("CC", "ACC", "LKA", "No FAS")
@@ -2039,15 +2039,15 @@ ggsave(filename = "data/results/figures/23_SD_FAS_perc.png", g,
 ## subset subscales ##
 Oft_CC <- data_23 %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data_23 %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data_23 %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
@@ -2100,15 +2100,15 @@ ggsave(filename = "data/results/figures/23_SD_Oft_box.png", g,
 ## subset subscales ##
 Oft_CC <- data_23 %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data_23 %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data_23 %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
@@ -2427,27 +2427,27 @@ ggsave(filename = "data/results/figures/23_pQ_Trust.png", g,
 ## subset subscales ##
 UEQ_Attractiveness <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Attractiveness) %>%
-  rename(score = UEQ_Attractiveness) %>%
+  dplyr::rename(score = UEQ_Attractiveness) %>%
   add_column(scale = "UEQ_Attractiveness", .after = "VPNr")
 UEQ_Perspicuity <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Perspicuity) %>%
-  rename(score = UEQ_Perspicuity) %>%
+  dplyr::rename(score = UEQ_Perspicuity) %>%
   add_column(scale = "UEQ_Perspicuity", .after = "VPNr")
 UEQ_Efficiency <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Efficiency) %>%
-  rename(score = UEQ_Efficiency) %>%
+  dplyr::rename(score = UEQ_Efficiency) %>%
   add_column(scale = "UEQ_Efficiency", .after = "VPNr")
 UEQ_Dependability <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Dependability) %>%
-  rename(score = UEQ_Dependability) %>%
+  dplyr::rename(score = UEQ_Dependability) %>%
   add_column(scale = "UEQ_Dependability", .after = "VPNr")
 UEQ_Stimulation <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Stimulation) %>%
-  rename(score = UEQ_Stimulation) %>%
+  dplyr::rename(score = UEQ_Stimulation) %>%
   add_column(scale = "UEQ_Stimulation", .after = "VPNr")
 UEQ_Novelty <- data_23 %>%
   select(Exp, VPNr, HMI, UEQ_Novelty) %>%
-  rename(score = UEQ_Novelty) %>%
+  dplyr::rename(score = UEQ_Novelty) %>%
   add_column(scale = "UEQ_Novelty", .after = "VPNr")
 ## build subset ##
 UEQ_23 <- bind_rows(UEQ_Attractiveness, UEQ_Perspicuity, UEQ_Efficiency, UEQ_Dependability, UEQ_Stimulation, UEQ_Novelty) %>%
@@ -2680,8 +2680,8 @@ d23_SI_LevelObserved_Rep_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_LevelObserved_Rep_singleTC, aes(x = TC, y=mean*100)) +
@@ -2810,8 +2810,8 @@ d23_SI_EmailsAllow_Observed_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_EmailsAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
@@ -2899,8 +2899,8 @@ d23_SI_HandsOffAllow_Observed_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_HandsOffAllow_Observed_singleTC, aes(x = TC, y=mean*100)) +
@@ -2990,8 +2990,8 @@ d23_SI_TransProblems_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_TransProblems_singleTC, aes(x = TC, y=mean*100)) +
@@ -3077,8 +3077,8 @@ d23_SI_AvailImplem_Rep_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_AvailImplem_Rep_singleTC, aes(x = TC, y=mean*100)) +
@@ -3167,8 +3167,8 @@ d23_SI_AvailReasonCorrect_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_AvailReasonCorrect_singleTC, aes(x = TC, y=mean*100)) +
@@ -3255,8 +3255,8 @@ d23_SI_LevelObserved_Instr_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_SI_LevelObserved_Instr_singleTC, aes(x = TC, y=mean*100)) +
@@ -3350,8 +3350,8 @@ d23_ER_ExpRating_singleTC <- data_23 %>%
   group_by(Exp, HMI) %>%
   skim_ML() %>%
   select(Exp, HMI, skim_variable, numeric.mean) %>%
-  rename(TC = skim_variable) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(TC = skim_variable) %>%
+  dplyr::rename(mean = numeric.mean)
 
 ## basic plot ##
 p <- ggplot(d23_ER_ExpRating_singleTC, aes(x = TC, y=mean)) +
@@ -3590,19 +3590,19 @@ ggsave(filename = "data/results/figures/123_SD_Knowledge.png", g,
 ## subset subscales ##
 FAS_CC <- data %>%
   select(Exp, VPNr, HMI, FAS.CC) %>%
-  rename(score = FAS.CC) %>%
+  dplyr::rename(score = FAS.CC) %>%
   add_column(scale = "FAS_CC", .after = "VPNr")
 FAS_ACC <- data %>%
   select(Exp, VPNr, HMI, FAS.ACC) %>%
-  rename(score = FAS.ACC) %>%
+  dplyr::rename(score = FAS.ACC) %>%
   add_column(scale = "FAS_ACC", .after = "VPNr")
 FAS_LKA <- data %>%
   select(Exp, VPNr, HMI, FAS.LKA) %>%
-  rename(score = FAS.LKA) %>%
+  dplyr::rename(score = FAS.LKA) %>%
   add_column(scale = "FAS_LKA", .after = "VPNr")
 FAS_NoFAS <- data %>%
   select(Exp, VPNr, HMI, FAS.NoFAS) %>%
-  rename(score = FAS.NoFAS) %>%
+  dplyr::rename(score = FAS.NoFAS) %>%
   add_column(scale = "FAS_NoFAS", .after = "VPNr")
 
 ## build subsets ##
@@ -3614,7 +3614,7 @@ FAS_perc <- FAS %>%
   group_by(Exp, HMI, scale) %>%
   skim_ML() %>%
   select(Exp, HMI, scale, numeric.mean) %>%
-  rename(mean = numeric.mean)
+  dplyr::rename(mean = numeric.mean)
 
 ## lables ##
 labels_FAS = c("CC", "ACC", "LKA", "No FAS")
@@ -3700,15 +3700,15 @@ ggsave(filename = "data/results/figures/123_SD_FAS_perc.png", g,
 ## subset subscales ##
 Oft_CC <- data %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
@@ -3761,15 +3761,15 @@ ggsave(filename = "data/results/figures/123_SD_Oft_box.png", g,
 ## subset subscales ##
 Oft_CC <- data %>%
   select(Exp, VPNr, HMI, OftCC) %>%
-  rename(score = OftCC) %>%
+  dplyr::rename(score = OftCC) %>%
   add_column(scale = "Oft_CC", .after = "VPNr")
 Oft_ACC <- data %>%
   select(Exp, VPNr, HMI, OftACC) %>%
-  rename(score = OftACC) %>%
+  dplyr::rename(score = OftACC) %>%
   add_column(scale = "Oft_ACC", .after = "VPNr")
 Oft_LKA <- data %>%
   select(Exp, VPNr, HMI, OftLKA) %>%
-  rename(score = OftLKA) %>%
+  dplyr::rename(score = OftLKA) %>%
   add_column(scale = "Oft_LKA", .after = "VPNr")
 
 ## build subset ##
