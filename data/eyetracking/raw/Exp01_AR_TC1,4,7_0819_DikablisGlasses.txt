@@ -1,0 +1,10 @@
+Subject	TC1__Duration_[s]	TC1_06street_AOI_Attention_Ratio_[%]	TC1_06ic_AOI_Attention_Ratio_[%]	TC1_06Surt_AOI_Attention_Ratio_[%]	TC1_06wheel_AOI_Attention_Ratio_[%]	TC1_53Surt_AOI_Attention_Ratio_[%]	TC1_53street_AOI_Attention_Ratio_[%]	TC1_53ic_AOI_Attention_Ratio_[%]	TC1_53wheel_AOI_Attention_Ratio_[%]	TC4__Duration_[s]	TC4_06street_AOI_Attention_Ratio_[%]	TC4_06ic_AOI_Attention_Ratio_[%]	TC4_06Surt_AOI_Attention_Ratio_[%]	TC4_06wheel_AOI_Attention_Ratio_[%]	TC4_53Surt_AOI_Attention_Ratio_[%]	TC4_53street_AOI_Attention_Ratio_[%]	TC4_53ic_AOI_Attention_Ratio_[%]	TC4_53wheel_AOI_Attention_Ratio_[%]	TC7__Duration_[s]	TC7_06street_AOI_Attention_Ratio_[%]	TC7_06ic_AOI_Attention_Ratio_[%]	TC7_06Surt_AOI_Attention_Ratio_[%]	TC7_06wheel_AOI_Attention_Ratio_[%]	TC7_53Surt_AOI_Attention_Ratio_[%]	TC7_53street_AOI_Attention_Ratio_[%]	TC7_53ic_AOI_Attention_Ratio_[%]	TC7_53wheel_AOI_Attention_Ratio_[%]
+06
+1. Recording: 19.08.2020 11:01:23	71,46	71,226	22,74	0,97	0,735					72,487	2,347	0,563	91,185						71,814	70,619	12,265						
+53
+1. Recording: 19.08.2020 08:58:44	65,095						48,889	21,761		72,064					58,871	6,651	22,126		72,191						25,086	13,84	
+Average	68,2775	71,226	22,74	0,97	0,735	0	48,889	21,761	0	72,2755	2,347	0,563	91,185	0	58,871	6,651	22,126	0	72,0025	70,619	12,265	0	0	0	25,086	13,84	0
+Standard Deviation	4,50073466	0	0	0	0	0	0	0	0	0,29910617	0	0	0	0	0	0	0	0	0,26657926	0	0	0	0	0	0	0	0
+Maximum	71,46	71,226	22,74	0,97	0,735	0	48,889	21,761	0	72,487	2,347	0,563	91,185	0	58,871	6,651	22,126	0	72,191	70,619	12,265	0	0	0	25,086	13,84	0
+Variance	20,2566125	0	0	0	0	0	0	0	0	0,0894645	0	0	0	0	0	0	0	0	0,0710645	0	0	0	0	0	0	0	0
+Median	68,2775	71,226	22,74	0,97	0,735	0	48,889	21,761	0	72,2755	2,347	0,563	91,185	0	58,871	6,651	22,126	0	72,0025	70,619	12,265	0	0	0	25,086	13,84	0

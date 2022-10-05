@@ -57,8 +57,8 @@ data <- data_all %>%
   mutate(Exp = ifelse(Exp == 1, "Sim_GER", ifelse(Exp == 2, "TT_GER", ifelse(Exp == 3, "TT_USA", Exp)))) %>%
   mutate(Exp = factor(Exp, levels = c("Sim_GER", "TT_GER", "TT_USA"), ordered = TRUE)) %>%
   dplyr::rename(Age = Alter, Experience = Erfahrung, Mileage = KilometerJahr, Knowledge = Vorwissen) %>%
-  dplyr::rename(Weather = Wetter, Light = Licht) # %>%
-#  dplyr::rename(Effort = AnstrengendWenden, Nausea = Uebel) 
+  dplyr::rename(Weather = Wetter, Light = Licht) %>%
+  dplyr::rename(Effort = AnstrengendWenden, Nausea = Uebel) 
 
 data_12 <- data %>%
   filter(Exp != "TT_USA")

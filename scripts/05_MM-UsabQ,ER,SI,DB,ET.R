@@ -485,7 +485,8 @@ data_23 <- data_long %>%
   filter(Exp !="e1")
 
 ## MM_12
-model_12 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_12, family = binomial, method = "PB")
+# model_12 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_12, family = binomial, method = "PB")
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_12, family = binomial, method = "LRT")
 summ_model_12 <- summary(model_12)
 
 call <- toString(model_12[["call"]])
@@ -495,7 +496,8 @@ tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1,
 names(tab_model_12_aov) <- c_model_aov
 
 ## MM_23
-model_23 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_23, family = "binomial", method = "PB")
+# model_23 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_23, family = binomial, method = "PB")
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|VP), data_23, family = binomial, method = "LRT")
 summ_model_23 <- summary(model_23)
 
 call <- toString(model_23[["call"]])
