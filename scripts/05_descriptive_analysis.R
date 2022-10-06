@@ -491,7 +491,7 @@ ML_1HCn <- as.data.frame(sapply(ML_1HC, notemptycount_ML))
 
 ML_freq_1HC <- data.frame(ML_1HCn, ML_1HC0, ML_1HC1, ML_1HC2, ML_1HC3, ML_1HC4, ML_1HC5) %>%
   setNames(., c("n", "0", "1", "2", "3", "4", "5")) %>%
-  add_column(Exp = 1, HMI = "1HC", variable = ML_variables, .before = "n")
+  add_column(Exp = 1, HMI = "HC", variable = ML_variables, .before = "n")
 
 ## 1LC
 ML_1LC <- data_all %>%
