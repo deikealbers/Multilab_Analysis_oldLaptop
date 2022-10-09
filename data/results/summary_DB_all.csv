@@ -1,0 +1,247 @@
+﻿"variable","Exp","HMI","n","n_notNA","mean","sd","median","min","max","frequencies"
+"Deactivation",1,"HC",26,26,0,0,0,0,0,"0: 26, 1: 0"
+"Deactivation",1,"LC",26,26,0.08,0.27,0,0,1,"0: 24, 1: 2"
+"Deactivation",2,"HC",33,33,0.03,0.17,0,0,1,"0: 32, 1: 1"
+"Deactivation",2,"LC",28,23,0.09,0.29,0,0,1,"0: 21, 1: 2"
+"Deactivation",3,"HC",21,21,0.05,0.22,0,0,1,"0: 20, 1: 1"
+"Deactivation",3,"LC",21,19,0.05,0.23,0,0,1,"0: 18, 1: 1"
+"Hoff_n_warnings",1,"HC",26,26,0,0,0,0,0,"0: 26, 1: 0, 9: 0, 3: 0"
+"Hoff_n_warnings",1,"LC",26,26,0.08,0.27,0,0,1,"0: 24, 1: 2, 9: 0, 3: 0"
+"Hoff_n_warnings",2,"HC",33,33,0.67,1.71,0,0,9,"0: 24, 1: 5, 3: 2, 9: 1"
+"Hoff_n_warnings",2,"LC",28,26,0.85,1.99,0,0,9,"0: 18, 1: 4, 2: 2, 9: 1"
+"Hoff_n_warnings",3,"HC",21,21,0.38,0.67,0,0,2,"0: 15, 1: 4, 2: 2, 9: 0"
+"Hoff_n_warnings",3,"LC",21,19,0.95,1.72,0,0,6,"0: 13, 2: 2, 1: 1, 3: 1"
+"Hoff_n_warnings_s1",1,"HC",26,26,0,0,0,0,0,"0: 26, 1: 0, 8: 0, 3: 0"
+"Hoff_n_warnings_s1",1,"LC",26,26,0.04,0.2,0,0,1,"0: 25, 1: 1, 8: 0, 3: 0"
+"Hoff_n_warnings_s1",2,"HC",33,33,0.61,1.54,0,0,8,"0: 24, 1: 6, 3: 2, 8: 1"
+"Hoff_n_warnings_s1",2,"LC",28,26,0.58,1.72,0,0,8,"0: 21, 1: 3, 8: 1, 4: 1"
+"Hoff_n_warnings_s1",3,"HC",21,21,0.33,0.58,0,0,2,"0: 15, 1: 5, 2: 1, 8: 0"
+"Hoff_n_warnings_s1",3,"LC",21,19,0.58,0.96,0,0,3,"0: 13, 2: 3, 1: 2, 3: 1"
+"Hoff_n_warnings_s2",1,"HC",26,26,0,0,0,0,0,"0: 26, 1: 0, 2: 0"
+"Hoff_n_warnings_s2",1,"LC",26,26,0.04,0.2,0,0,1,"0: 25, 1: 1, 2: 0"
+"Hoff_n_warnings_s2",2,"HC",33,33,0.06,0.24,0,0,1,"0: 31, 1: 2, 2: 0"
+"Hoff_n_warnings_s2",2,"LC",28,26,0.08,0.27,0,0,1,"0: 24, 1: 2, 2: 0"
+"Hoff_n_warnings_s2",3,"HC",21,21,0.05,0.22,0,0,1,"0: 20, 1: 1, 2: 0"
+"Hoff_n_warnings_s2",3,"LC",21,19,0.21,0.63,0,0,2,"0: 17, 2: 2, 1: 0"
+"Hoff_n_warnings_s3",1,"HC",26,26,0,0,0,0,0,"0: 26, 1: 0, 2: 0"
+"Hoff_n_warnings_s3",1,"LC",26,26,0,0,0,0,0,"0: 26, 1: 0, 2: 0"
+"Hoff_n_warnings_s3",2,"HC",33,33,0,0,0,0,0,"0: 33, 1: 0, 2: 0"
+"Hoff_n_warnings_s3",2,"LC",28,26,0.19,0.49,0,0,2,"0: 22, 1: 3, 2: 1"
+"Hoff_n_warnings_s3",3,"HC",21,21,0,0,0,0,0,"0: 21, 1: 0, 2: 0"
+"Hoff_n_warnings_s3",3,"LC",21,19,0.16,0.5,0,0,2,"0: 17, 1: 1, 2: 1"
+"Hoff_WarningDuration_mean",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_mean",1,"LC",26,2,4.58,4.38,4.58,1.48,7.68,NA
+"Hoff_WarningDuration_mean",2,"HC",33,9,3.36,1.59,3.27,1.7,7.1,NA
+"Hoff_WarningDuration_mean",2,"LC",28,8,8.01,6.99,4.28,1.5,18.8,NA
+"Hoff_WarningDuration_mean",3,"HC",21,6,3.86,2.16,3,1.9,7.55,NA
+"Hoff_WarningDuration_mean",3,"LC",21,6,6.21,3.9,5.54,2,11.5,NA
+"Hoff_WarningDuration_1",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_1",1,"LC",26,2,4.58,4.38,4.58,1.48,7.68,NA
+"Hoff_WarningDuration_1",2,"HC",33,9,4.01,2.85,3.1,1.7,10.5,NA
+"Hoff_WarningDuration_1",2,"LC",28,8,10.71,7.73,12.15,1.5,18.8,NA
+"Hoff_WarningDuration_1",3,"HC",21,6,4.2,2.79,3,1.9,9.4,NA
+"Hoff_WarningDuration_1",3,"LC",21,6,6.15,6.45,3.65,2,19,NA
+"Hoff_WarningDuration_2",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_2",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_2",2,"HC",33,4,2.67,1.6,3.35,0.3,3.7,NA
+"Hoff_WarningDuration_2",2,"LC",28,4,6.93,7.37,5.2,0.3,17,NA
+"Hoff_WarningDuration_2",3,"HC",21,2,3.95,2.47,3.95,2.2,5.7,NA
+"Hoff_WarningDuration_2",3,"LC",21,5,6.72,3.33,6.8,2.8,10,NA
+"Hoff_WarningDuration_3",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_3",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_3",2,"HC",33,3,3.17,0.32,3.3,2.8,3.4,NA
+"Hoff_WarningDuration_3",2,"LC",28,2,2.7,0.42,2.7,2.4,3,NA
+"Hoff_WarningDuration_3",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_3",3,"LC",21,3,7.27,3.7,9.2,3,9.6,NA
+"Hoff_WarningDuration_4",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_4",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_4",2,"HC",33,1,2.8,NA,2.8,2.8,2.8,NA
+"Hoff_WarningDuration_4",2,"LC",28,2,2.2,0.14,2.2,2.1,2.3,NA
+"Hoff_WarningDuration_4",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_4",3,"LC",21,2,9.65,10.96,9.65,1.9,17.4,NA
+"Hoff_WarningDuration_5",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_5",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_5",2,"HC",33,1,2.8,NA,2.8,2.8,2.8,NA
+"Hoff_WarningDuration_5",2,"LC",28,2,2.95,0.49,2.95,2.6,3.3,NA
+"Hoff_WarningDuration_5",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_5",3,"LC",21,1,1.9,NA,1.9,1.9,1.9,NA
+"Hoff_WarningDuration_6",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_6",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_6",2,"HC",33,1,5.2,NA,5.2,5.2,5.2,NA
+"Hoff_WarningDuration_6",2,"LC",28,1,4.4,NA,4.4,4.4,4.4,NA
+"Hoff_WarningDuration_6",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_6",3,"LC",21,1,16.7,NA,16.7,16.7,16.7,NA
+"Hoff_WarningDuration_7",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_7",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_7",2,"HC",33,1,9.7,NA,9.7,9.7,9.7,NA
+"Hoff_WarningDuration_7",2,"LC",28,1,2.5,NA,2.5,2.5,2.5,NA
+"Hoff_WarningDuration_7",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_7",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_8",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_8",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_8",2,"HC",33,1,3,NA,3,3,3,NA
+"Hoff_WarningDuration_8",2,"LC",28,1,2.4,NA,2.4,2.4,2.4,NA
+"Hoff_WarningDuration_8",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_8",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_9",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_9",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_9",2,"HC",33,1,2.6,NA,2.6,2.6,2.6,NA
+"Hoff_WarningDuration_9",2,"LC",28,1,2.6,NA,2.6,2.6,2.6,NA
+"Hoff_WarningDuration_9",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"Hoff_WarningDuration_9",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_Action_1",1,"HC",26,26,1.88,0.82,2,1,3,"1: 10, 2: 9, 3: 7"
+"TC10_Action_1",1,"LC",26,26,2.08,0.93,2,1,3,"3: 12, 1: 10, 2: 4"
+"TC10_Action_1",2,"HC",33,32,2.25,0.88,3,1,3,"3: 17, 1: 9, 2: 6"
+"TC10_Action_1",2,"LC",28,24,2.38,0.92,3,1,3,"3: 16, 1: 7, 2: 1"
+"TC10_Action_1",3,"HC",21,21,2.57,0.81,3,1,3,"3: 16, 1: 4, 2: 1"
+"TC10_Action_1",3,"LC",21,15,2.6,0.74,3,1,3,"3: 11, 1: 2, 2: 2"
+"TC10_Action_2",1,"HC",26,9,1.78,0.44,2,1,2,"2: 7, 1: 2, 3: 0, 4: 0"
+"TC10_Action_2",1,"LC",26,5,1.8,0.84,2,1,3,"1: 2, 2: 2, 3: 1, 4: 0"
+"TC10_Action_2",2,"HC",33,10,2.2,0.63,2,1,3,"2: 6, 3: 3, 1: 1, 4: 0"
+"TC10_Action_2",2,"LC",28,6,2.5,0.84,3,1,3,"3: 4, 1: 1, 2: 1, 4: 0"
+"TC10_Action_2",3,"HC",21,4,2,0.82,2,1,3,"2: 2, 1: 1, 3: 1, 4: 0"
+"TC10_Action_2",3,"LC",21,4,3.25,0.5,3,3,4,"3: 3, 4: 1, 1: 0, 2: 0"
+"TC10_Action_3",1,"HC",26,7,1.86,0.69,2,1,3,"2: 4, 1: 2, 3: 1, 4: 0"
+"TC10_Action_3",1,"LC",26,2,2.5,0.71,2.5,2,3,"2: 1, 3: 1, 1: 0, 4: 0"
+"TC10_Action_3",2,"HC",33,7,1.71,0.76,2,1,3,"1: 3, 2: 3, 3: 1, 4: 0"
+"TC10_Action_3",2,"LC",28,3,2.33,1.15,3,1,3,"3: 2, 1: 1, 2: 0, 4: 0"
+"TC10_Action_3",3,"HC",21,1,3,NA,3,3,3,"3: 1, 1: 0, 2: 0, 4: 0"
+"TC10_Action_3",3,"LC",21,2,3.5,0.71,3.5,3,4,"3: 1, 4: 1, 1: 0, 2: 0"
+"TC10_Action_4",1,"HC",26,4,1.5,0.58,1.5,1,2,"1: 2, 2: 2, 3: 0"
+"TC10_Action_4",1,"LC",26,2,1,0,1,1,1,"1: 2, 2: 0, 3: 0"
+"TC10_Action_4",2,"HC",33,3,1,0,1,1,1,"1: 3, 2: 0, 3: 0"
+"TC10_Action_4",2,"LC",28,1,3,NA,3,3,3,"3: 1, 1: 0, 2: 0"
+"TC10_Action_4",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC10_Action_4",3,"LC",21,1,3,NA,3,3,3,"3: 1, 1: 0, 2: 0"
+"TC10_Action_5",1,"HC",26,2,2.5,0.71,2.5,2,3,"2: 1, 3: 1, 1: 0"
+"TC10_Action_5",1,"LC",26,1,1,NA,1,1,1,"1: 1, 2: 0, 3: 0"
+"TC10_Action_5",2,"HC",33,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC10_Action_5",2,"LC",28,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC10_Action_5",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC10_Action_5",3,"LC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC10_Action_6",1,"HC",26,1,2,NA,2,2,2,"2: 1"
+"TC10_Action_6",1,"LC",26,0,NA,NA,NA,Inf,-Inf,"2: 0"
+"TC10_Action_6",2,"HC",33,0,NA,NA,NA,Inf,-Inf,"2: 0"
+"TC10_Action_6",2,"LC",28,0,NA,NA,NA,Inf,-Inf,"2: 0"
+"TC10_Action_6",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"2: 0"
+"TC10_Action_6",3,"LC",21,0,NA,NA,NA,Inf,-Inf,"2: 0"
+"TC10_Action_7",1,"HC",26,1,1,NA,1,1,1,"1: 1"
+"TC10_Action_7",1,"LC",26,0,NA,NA,NA,Inf,-Inf,"1: 0"
+"TC10_Action_7",2,"HC",33,0,NA,NA,NA,Inf,-Inf,"1: 0"
+"TC10_Action_7",2,"LC",28,0,NA,NA,NA,Inf,-Inf,"1: 0"
+"TC10_Action_7",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"1: 0"
+"TC10_Action_7",3,"LC",21,0,NA,NA,NA,Inf,-Inf,"1: 0"
+"TC12_Action_1",1,"HC",26,26,1.73,0.96,1,1,3,"1: 16, 3: 9, 2: 1"
+"TC12_Action_1",1,"LC",26,26,2.15,0.97,3,1,3,"3: 14, 1: 10, 2: 2"
+"TC12_Action_1",2,"HC",33,33,2.52,0.87,3,1,3,"3: 25, 1: 8, 2: 0"
+"TC12_Action_1",2,"LC",28,23,2.3,0.93,3,1,3,"3: 14, 1: 7, 2: 2"
+"TC12_Action_1",3,"HC",21,20,2.8,0.62,3,1,3,"3: 18, 1: 2, 2: 0"
+"TC12_Action_1",3,"LC",21,16,2.5,0.89,3,1,3,"3: 12, 1: 4, 2: 0"
+"TC12_Action_2",1,"HC",26,4,2.5,1,3,1,3,"3: 3, 1: 1, 2: 0"
+"TC12_Action_2",1,"LC",26,4,2.25,0.96,2.5,1,3,"3: 2, 1: 1, 2: 1"
+"TC12_Action_2",2,"HC",33,3,2.33,1.15,3,1,3,"3: 2, 1: 1, 2: 0"
+"TC12_Action_2",2,"LC",28,5,3,0,3,3,3,"3: 5, 1: 0, 2: 0"
+"TC12_Action_2",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 2: 0, 3: 0"
+"TC12_Action_2",3,"LC",21,2,3,0,3,3,3,"3: 2, 1: 0, 2: 0"
+"TC12_Action_3",1,"HC",26,0,NA,NA,NA,Inf,-Inf,"1: 0, 3: 0"
+"TC12_Action_3",1,"LC",26,2,2,1.41,2,1,3,"1: 1, 3: 1"
+"TC12_Action_3",2,"HC",33,1,1,NA,1,1,1,"1: 1, 3: 0"
+"TC12_Action_3",2,"LC",28,1,3,NA,3,3,3,"3: 1, 1: 0"
+"TC12_Action_3",3,"HC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 3: 0"
+"TC12_Action_3",3,"LC",21,0,NA,NA,NA,Inf,-Inf,"1: 0, 3: 0"
+"TC12_Action_4",1,"HC",26,0,NA,NA,NA,Inf,-Inf,": "
+"TC12_Action_4",1,"LC",26,0,NA,NA,NA,Inf,-Inf,": "
+"TC12_Action_4",2,"HC",33,0,NA,NA,NA,Inf,-Inf,": "
+"TC12_Action_4",2,"LC",28,0,NA,NA,NA,Inf,-Inf,": "
+"TC12_Action_4",3,"HC",21,0,NA,NA,NA,Inf,-Inf,": "
+"TC12_Action_4",3,"LC",21,0,NA,NA,NA,Inf,-Inf,": "
+"TC10_TimeToFirstAction",1,"HC",26,26,13.23,6.39,11.53,4.42,25.5,NA
+"TC10_TimeToFirstAction",1,"LC",26,26,15.49,8.42,14.54,3.03,26.9,NA
+"TC10_TimeToFirstAction",2,"HC",33,32,10.97,5.46,10.1,3.5,25.1,NA
+"TC10_TimeToFirstAction",2,"LC",28,24,19.42,11.1,21.35,4.6,42.9,NA
+"TC10_TimeToFirstAction",3,"HC",21,21,13.33,7.98,9.8,4.7,27.8,NA
+"TC10_TimeToFirstAction",3,"LC",21,15,22.2,7.38,24.8,6.4,35.1,NA
+"TC12_TimeToFirstAction",1,"HC",26,26,4.76,2.35,3.95,1.35,9.08,NA
+"TC12_TimeToFirstAction",1,"LC",26,26,5.97,2.93,6.06,2.47,12.1,NA
+"TC12_TimeToFirstAction",2,"HC",33,33,3.31,1.96,2.8,1.1,10,NA
+"TC12_TimeToFirstAction",2,"LC",28,23,8.78,5.11,7.3,1.8,19.1,NA
+"TC12_TimeToFirstAction",3,"HC",21,20,4.44,4.07,2.75,1.4,18.1,NA
+"TC12_TimeToFirstAction",3,"LC",21,16,8.32,3.36,7.55,2.6,14.1,NA
+"TC10_TimeToL0",1,"HC",26,26,14.55,5.65,14.9,5.73,25.57,NA
+"TC10_TimeToL0",1,"LC",26,26,15.94,8.27,14.6,3.08,26.95,NA
+"TC10_TimeToL0",2,"HC",33,32,12.17,5.56,11.45,3.7,25.3,NA
+"TC10_TimeToL0",2,"LC",28,24,19.76,11.03,21.6,4.9,43.1,NA
+"TC10_TimeToL0",3,"HC",21,21,13.91,7.85,10.8,4.9,27.9,NA
+"TC10_TimeToL0",3,"LC",21,15,22.97,7.04,25.4,6.6,35.4,NA
+"TC12_TimeToL0",1,"HC",26,26,4.9,2.5,4.02,1.4,9.83,NA
+"TC12_TimeToL0",1,"LC",26,26,6.14,2.98,6.12,2.53,12.15,NA
+"TC12_TimeToL0",2,"HC",33,33,3.49,1.94,2.9,1.4,10.1,NA
+"TC12_TimeToL0",2,"LC",28,23,9.07,5.05,7.9,2,19.3,NA
+"TC12_TimeToL0",3,"HC",21,20,4.66,4.07,2.95,1.7,18.4,NA
+"TC12_TimeToL0",3,"LC",21,16,8.53,3.38,7.65,2.7,14.3,NA
+"TC10_TimeToAction_1",1,"HC",26,26,13.23,6.39,11.53,4.42,25.5,NA
+"TC10_TimeToAction_1",1,"LC",26,26,15.49,8.42,14.54,3.03,26.9,NA
+"TC10_TimeToAction_1",2,"HC",33,32,10.97,5.46,10.1,3.5,25.1,NA
+"TC10_TimeToAction_1",2,"LC",28,24,19.42,11.1,21.35,4.6,42.9,NA
+"TC10_TimeToAction_1",3,"HC",21,21,13.33,7.98,9.8,4.7,27.8,NA
+"TC10_TimeToAction_1",3,"LC",21,15,22.2,7.38,24.8,6.4,35.1,NA
+"TC10_TimeToAction_2",1,"HC",26,9,9.89,3.88,9.03,4.92,17.7,NA
+"TC10_TimeToAction_2",1,"LC",26,5,11.67,7.71,10.08,4.93,24.55,NA
+"TC10_TimeToAction_2",2,"HC",33,10,8.45,2.22,8.55,4.9,12.3,NA
+"TC10_TimeToAction_2",2,"LC",28,6,26.97,15.68,28.4,6.5,48,NA
+"TC10_TimeToAction_2",3,"HC",21,4,13.3,9.33,9.4,7.2,27.2,NA
+"TC10_TimeToAction_2",3,"LC",21,4,22.47,12.04,23.25,7.1,36.3,NA
+"TC10_TimeToAction_3",1,"HC",26,7,11.51,4.39,10.72,6.22,18.92,NA
+"TC10_TimeToAction_3",1,"LC",26,2,10.34,3.26,10.34,8.03,12.65,NA
+"TC10_TimeToAction_3",2,"HC",33,7,11.44,4.82,9.9,6.8,21.1,NA
+"TC10_TimeToAction_3",2,"LC",28,3,28.8,13.65,32.8,13.6,40,NA
+"TC10_TimeToAction_3",3,"HC",21,1,14.2,NA,14.2,14.2,14.2,NA
+"TC10_TimeToAction_3",3,"LC",21,2,34.15,12.66,34.15,25.2,43.1,NA
+"TC10_TimeToAction_4",1,"HC",26,4,12.75,6.09,12.29,6.87,19.53,NA
+"TC10_TimeToAction_4",1,"LC",26,2,11.13,3.03,11.13,8.98,13.27,NA
+"TC10_TimeToAction_4",2,"HC",33,3,12.93,3.96,12.7,9.1,17,NA
+"TC10_TimeToAction_4",2,"LC",28,1,14.5,NA,14.5,14.5,14.5,NA
+"TC10_TimeToAction_4",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_4",3,"LC",21,1,44,NA,44,44,44,NA
+"TC10_TimeToAction_5",1,"HC",26,2,9.43,0.52,9.43,9.07,9.8,NA
+"TC10_TimeToAction_5",1,"LC",26,1,10.53,NA,10.53,10.53,10.53,NA
+"TC10_TimeToAction_5",2,"HC",33,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_5",2,"LC",28,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_5",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_5",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_6",1,"HC",26,1,9.35,NA,9.35,9.35,9.35,NA
+"TC10_TimeToAction_6",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_6",2,"HC",33,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_6",2,"LC",28,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_6",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_6",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_7",1,"HC",26,1,9.88,NA,9.88,9.88,9.88,NA
+"TC10_TimeToAction_7",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_7",2,"HC",33,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_7",2,"LC",28,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_7",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC10_TimeToAction_7",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_1",1,"HC",26,26,4.76,2.35,3.95,1.35,9.08,NA
+"TC12_TimeToAction_1",1,"LC",26,26,5.97,2.93,6.06,2.47,12.1,NA
+"TC12_TimeToAction_1",2,"HC",33,33,3.31,1.96,2.8,1.1,10,NA
+"TC12_TimeToAction_1",2,"LC",28,23,8.78,5.11,7.3,1.8,19.1,NA
+"TC12_TimeToAction_1",3,"HC",21,20,4.44,4.07,2.75,1.4,18.1,NA
+"TC12_TimeToAction_1",3,"LC",21,16,8.32,3.36,7.55,2.6,14.1,NA
+"TC12_TimeToAction_2",1,"HC",26,4,7.9,1.88,8.16,5.48,9.8,NA
+"TC12_TimeToAction_2",1,"LC",26,4,5.81,1.94,5.83,3.52,8.05,NA
+"TC12_TimeToAction_2",2,"HC",33,3,3.43,2.05,2.9,1.7,5.7,NA
+"TC12_TimeToAction_2",2,"LC",28,5,13.96,9.92,11,3.6,28.6,NA
+"TC12_TimeToAction_2",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_2",3,"LC",21,2,12.25,6.43,12.25,7.7,16.8,NA
+"TC12_TimeToAction_3",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_3",1,"LC",26,2,6.97,1.27,6.97,6.07,7.87,NA
+"TC12_TimeToAction_3",2,"HC",33,1,4,NA,4,4,4,NA
+"TC12_TimeToAction_3",2,"LC",28,1,13.2,NA,13.2,13.2,13.2,NA
+"TC12_TimeToAction_3",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_3",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",1,"HC",26,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",1,"LC",26,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",2,"HC",33,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",2,"LC",28,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",3,"HC",21,0,NA,NA,NA,Inf,-Inf,NA
+"TC12_TimeToAction_4",3,"LC",21,0,NA,NA,NA,Inf,-Inf,NA
