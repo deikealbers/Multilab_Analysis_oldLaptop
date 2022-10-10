@@ -151,6 +151,7 @@ p <- ggplot(L2Hoff, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.25, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_L2Hoff) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0,10,2)) +
   facet_grid(HMI ~ Exp) +
@@ -185,12 +186,6 @@ plot_12_DB_L2Hoff <- g
 
 ggsave(filename = "data/results/figures/12_DB_L2Hoff.png", g, 
        width = 11, height = 6, dpi = 600, units = "in", device='png')
-
-
-
-
-
-
 
 # #### remove not needed data ---------------------------------------------
 rm(list=setdiff(ls(), c("data_all_Deact", "data_12_Deact", "data_23_Deact",
@@ -237,6 +232,7 @@ p <- ggplot(TO_TimeToL0, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_TimeToL0) +
   scale_y_continuous(limits = c(0,27), breaks = seq(0,27,5)) +
   facet_grid(HMI ~ Exp) +
@@ -305,6 +301,7 @@ p <- ggplot(TO_TimeToFirstAction, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_TimeToFirstAction) +
   scale_y_continuous(limits = c(0,27), breaks = seq(0,27,5)) +
   facet_grid(HMI ~ Exp) +
@@ -443,6 +440,7 @@ p <- ggplot(L2Hoff, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.25, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_L2Hoff) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0,10,2)) +
   facet_grid(HMI ~ Exp) +
@@ -528,6 +526,7 @@ p <- ggplot(TO_TimeToL0, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_TimeToL0) +
   scale_y_continuous(limits = c(0,27), breaks = seq(0,27,5)) +
   facet_grid(HMI ~ Exp) +
@@ -596,6 +595,7 @@ p <- ggplot(TO_TimeToFirstAction, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_TimeToFirstAction) +
   scale_y_continuous(limits = c(0,27), breaks = seq(0,27,5)) +
   facet_grid(HMI ~ Exp) +

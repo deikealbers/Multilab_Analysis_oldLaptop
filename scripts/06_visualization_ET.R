@@ -204,7 +204,6 @@ AR_L3_surt <- data_12_AR %>%
   dplyr::rename(score = TC04_AR_surt) %>%
   add_column(scale = "L3_surt", .after = "VPNr")
 
-
 ## build subset ##
 AR_surt <- bind_rows(AR_L0_surt, AR_L2_surt, AR_L3_surt) %>%
   mutate(scale = factor(scale, levels = c("L0_surt", "L2_surt", "L3_surt"), ordered = TRUE))
@@ -226,6 +225,7 @@ p <- ggplot(AR_surt, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_AR_surt) +
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,20)) +
   facet_grid(HMI ~ Exp) +
@@ -309,6 +309,7 @@ p <- ggplot(TO_all_n_gazes_till_EB_or_TO, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_all_n_gazes_till_EB_or_TO) +
   scale_y_continuous(limits = c(0,13), breaks = seq(0,12,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1161,6 +1162,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.15, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_nth_gaze_to_ic) +
   scale_y_continuous(limits = c(0,5), breaks = seq(0,5,2)) +
   facet_grid(HMI ~ Exp) +
@@ -1196,7 +1198,6 @@ plot_12_ET_TO_ic_nth_gaze_to_ic_dot <- g
 ggsave(filename = "data/results/figures/12_ET_TO_ic_nth_gaze_to_ic_dot.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 12_ET_TO_ic_nth_gaze_to_ic_box #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_nth_gaze_to_ic <- data_12_TO %>%
@@ -1224,6 +1225,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_nth_gaze_to_ic) +
   scale_y_continuous(limits = c(0,5), breaks = seq(0,5,2)) +
   facet_grid(HMI ~ Exp) +
@@ -1259,7 +1261,6 @@ plot_12_ET_TO_ic_nth_gaze_to_ic_box <- g
 ggsave(filename = "data/results/figures/12_ET_TO_ic_nth_gaze_to_ic_box.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 12_ET_TO_ic_glance_allocation_time #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_glance_allocation_time <- data_12_TO %>%
@@ -1291,6 +1292,7 @@ p <- ggplot(TO_ic_glance_allocation_time, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_ic_glance_allocation_time) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1326,7 +1328,6 @@ plot_12_ET_TO_ic_glance_allocation_time <- g
 ggsave(filename = "data/results/figures/12_ET_TO_ic_glance_allocation_time.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 12_ET_TO_ic_n_glances_after_start_dot #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_n_glances_after_start <- data_12_TO %>%
@@ -1355,6 +1356,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.2, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_n_glances_after_start) +
   scale_y_continuous(limits = c(0,7), breaks = seq(0,7,2)) +
   facet_grid(HMI ~ Exp) +
@@ -1418,6 +1420,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_n_glances_after_start) +
   scale_y_continuous(limits = c(0,8), breaks = seq(0,8,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1453,7 +1456,6 @@ plot_12_ET_TO_ic_n_glances_after_start_box <- g
 ggsave(filename = "data/results/figures/12_ET_TO_ic_n_glances_after_start_box.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 12_ET_TO_ic_total_duration #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_total_duration <- data_12_TO %>%
@@ -1485,6 +1487,7 @@ p <- ggplot(TO_ic_total_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_total_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1551,6 +1554,7 @@ p <- ggplot(TO_ic_mean_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_mean_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1618,6 +1622,7 @@ p <- ggplot(TO_ic_max_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_max_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1653,7 +1658,6 @@ plot_12_ET_TO_ic_max_duration <- g
 ggsave(filename = "data/results/figures/12_ET_TO_ic_max_duration.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 12_ET_TO_ic_1st_glance_duration_without_start #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_1st_glance_duration_without_start <- data_12_TO %>%
@@ -1685,6 +1689,7 @@ p <- ggplot(TO_ic_1st_glance_duration_without_start, aes(x=scale, y=score, fill=
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_1st_glance_duration_without_start) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -1876,7 +1881,6 @@ AR_L3_surt <- data_23_AR %>%
   dplyr::rename(score = TC04_AR_surt) %>%
   add_column(scale = "L3_surt", .after = "VPNr")
 
-
 ## build subset ##
 AR_surt <- bind_rows(AR_L0_surt, AR_L2_surt, AR_L3_surt) %>%
   mutate(scale = factor(scale, levels = c("L0_surt", "L2_surt", "L3_surt"), ordered = TRUE))
@@ -1898,6 +1902,7 @@ p <- ggplot(AR_surt, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_AR_surt) +
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,20)) +
   facet_grid(HMI ~ Exp) +
@@ -1990,6 +1995,7 @@ p <- ggplot(TO_all_n_gazes_till_EB_or_TO, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
   scale_x_discrete(labels = labels_TO_all_n_gazes_till_EB_or_TO) +
   scale_y_continuous(limits = c(0,13), breaks = seq(0,12,5)) +
   facet_grid(HMI ~ Exp) +
@@ -2860,6 +2866,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.15, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_nth_gaze_to_ic) +
   scale_y_continuous(limits = c(0,5), breaks = seq(0,5,2)) +
   facet_grid(HMI ~ Exp) +
@@ -2895,7 +2902,6 @@ plot_23_ET_TO_ic_nth_gaze_to_ic_dot <- g
 ggsave(filename = "data/results/figures/23_ET_TO_ic_nth_gaze_to_ic_dot.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 23_ET_TO_ic_nth_gaze_to_ic_box #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_nth_gaze_to_ic <- data_23_TO %>%
@@ -2923,6 +2929,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_nth_gaze_to_ic) +
   scale_y_continuous(limits = c(0,5), breaks = seq(0,5,2)) +
   facet_grid(HMI ~ Exp) +
@@ -2958,7 +2965,6 @@ plot_23_ET_TO_ic_nth_gaze_to_ic_box <- g
 ggsave(filename = "data/results/figures/23_ET_TO_ic_nth_gaze_to_ic_box.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 23_ET_TO_ic_glance_allocation_time #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_glance_allocation_time <- data_23_TO %>%
@@ -2990,6 +2996,7 @@ p <- ggplot(TO_ic_glance_allocation_time, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_glance_allocation_time) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -3054,6 +3061,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.2, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_n_glances_after_start) +
   scale_y_continuous(limits = c(0,7), breaks = seq(0,7,2)) +
   facet_grid(HMI ~ Exp) +
@@ -3089,7 +3097,6 @@ plot_23_ET_TO_ic_n_glances_after_start_dot <- g
 ggsave(filename = "data/results/figures/23_ET_TO_ic_n_glances_after_start_dot.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 23_ET_TO_ic_n_glances_after_start_box #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_n_glances_after_start <- data_23_TO %>%
@@ -3117,6 +3124,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_n_glances_after_start) +
   scale_y_continuous(limits = c(0,8), breaks = seq(0,8,5)) +
   facet_grid(HMI ~ Exp) +
@@ -3152,7 +3160,6 @@ plot_23_ET_TO_ic_n_glances_after_start_box <- g
 ggsave(filename = "data/results/figures/23_ET_TO_ic_n_glances_after_start_box.png", g, 
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
-
 # 23_ET_TO_ic_total_duration #### -----------------------------------------------------
 ## subset subscales ##
 TO_TC10_ic_total_duration <- data_23_TO %>%
@@ -3184,6 +3191,7 @@ p <- ggplot(TO_ic_total_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_total_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -3250,6 +3258,7 @@ p <- ggplot(TO_ic_mean_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_mean_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -3317,6 +3326,7 @@ p <- ggplot(TO_ic_max_duration, aes(x=scale, y=score, fill=HMI)) +
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_max_duration) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +
@@ -3384,6 +3394,7 @@ p <- ggplot(TO_ic_1st_glance_duration_without_start, aes(x=scale, y=score, fill=
   stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
   scale_x_discrete(labels = labels_TO_ic_1st_glance_duration_without_start) +
   scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
   facet_grid(HMI ~ Exp) +

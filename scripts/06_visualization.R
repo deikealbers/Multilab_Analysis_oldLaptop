@@ -81,7 +81,7 @@ UEQ_summ_23 <- UEQ_summ %>%
 # # -------------------------------------------------------- 12 visualization #### -------------------------------------------------
 # # ---------------------------- 12_SD #### -----------------------------------------------------
 # Age
-# Experience
+# Frequency
 # Mileage
 # Knowledge
 # starts_with("FAS.")
@@ -93,6 +93,7 @@ UEQ_summ_23 <- UEQ_summ %>%
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=Age, fill=HMI)) + 
   scale_y_continuous(limits = c(15,75), breaks = seq(20,70,10)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() + 
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -126,7 +127,7 @@ plot_12_SD_Age <- g
 ggsave(filename = "data/results/figures/12_SD_Age.png", g, 
        width = 6, height = 6, dpi = 300, units = "in", device='png')
 
-# 12_SD_Experience  ----------------------------------------------------- 
+# 12_SD_Frequency  ----------------------------------------------------- 
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=Experience, fill=HMI)) + 
   scale_y_continuous(limits = c(0,4), breaks = seq(0,4, 1), 
@@ -141,7 +142,7 @@ p <- ggplot(data_12, aes(x=HMI, y=Experience, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Experience: \n	How often do you drive a car?") +
+       title = "Frequency: \n	How often do you drive a car?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=2.1, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -167,9 +168,9 @@ for (i in strip_t) {
 }
 grid.draw(g)
 
-plot_12_SD_Experience <- g
+plot_12_SD_Frequency <- g
 
-ggsave(filename = "data/results/figures/12_SD_Experience.png", g, 
+ggsave(filename = "data/results/figures/12_SD_Frequency.png", g, 
        width = 6.5, height = 5, dpi = 300, units = "in", device='png')
 
 # 12_SD_Mileage  ----------------------------------------------------- 
@@ -269,11 +270,11 @@ ggsave(filename = "data/results/figures/12_SD_Knowledge.png", g,
 FAS_CC <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.CC) %>%
   dplyr::rename(score = FAS.CC) %>%
-  add_column(scale = "FAS_CC", .after = "VPNr")
+  add_column(scale = "FAS_CC", .after = "VPNr") 
 FAS_ACC <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.ACC) %>%
   dplyr::rename(score = FAS.ACC) %>%
-  add_column(scale = "FAS_ACC", .after = "VPNr")
+  add_column(scale = "FAS_ACC", .after = "VPNr") 
 FAS_LKA <- data_12 %>%
   select(Exp, VPNr, HMI, FAS.LKA) %>%
   dplyr::rename(score = FAS.LKA) %>%
@@ -407,6 +408,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -415,7 +418,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
@@ -470,6 +473,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -478,7 +483,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
@@ -601,7 +606,8 @@ ggsave(filename = "data/results/figures/12_SD_Light.png", g,
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=SUS_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,50)) +
-  geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  geom_violin(fill= "transparent") +
+  # geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                 stackratio=1.3, dotsize=0.55, binwidth = 3.5) +
   facet_wrap(~Exp) + 
@@ -618,6 +624,7 @@ p <- ggplot(data_12, aes(x=HMI, y=SUS_score, fill=HMI)) +
         plot.background = element_rect(fill = "transparent", colour = NA),
         axis.text.y=element_text(color = "black", size=9, face = "plain"),
         legend.position = "none")
+p
 ## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
 g <- ggplot_gtable(ggplot_build(p))
 strip_t <- which(grepl('strip-t', g$layout$name))
@@ -635,11 +642,12 @@ plot_12_pQ_SUS <- g
 ggsave(filename = "data/results/figures/12_pQ_SUS.png", g, 
        width = 6, height = 6, dpi = 300, units = "in", device='png')
 
-# 12_pQ_UMUX 12  ----------------------------------------------------- 
+# 12_pQ_UMUX  ----------------------------------------------------- 
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=UMUX_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,50)) +
-  geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  # geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  geom_violin(fill= "transparent") +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.55, binwidth = 3.5) +
   facet_wrap(~Exp) + 
@@ -978,6 +986,7 @@ ggsave(filename = "data/results/figures/12_pQ_Effort.png", g,
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=LevelObserved_Rep_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1068,6 +1077,7 @@ ggsave(filename = "data/results/figures/12_SI_LevelObserved_Rep_singleTC.png", g
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=BothAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,24), breaks = seq(0,24, 4)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1107,6 +1117,7 @@ ggsave(filename = "data/results/figures/12_SI_BothAllow_Observed.png", g,
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=EmailsAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1196,6 +1207,7 @@ ggsave(filename = "data/results/figures/12_SI_EmailsAllow_Observed_singleTC.png"
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=HandsOffAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1287,6 +1299,7 @@ ggsave(filename = "data/results/figures/12_SI_HandsOffAllow_Observed_singleTC.pn
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=TransProblems_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,6), breaks = seq(0,6, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1375,6 +1388,7 @@ ggsave(filename = "data/results/figures/12_SI_TransProblems_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=AvailImplem_Rep_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1465,6 +1479,7 @@ ggsave(filename = "data/results/figures/12_SI_AvailImplem_Rep_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=AvailReasonCorrect_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,3), breaks = seq(0,3, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1554,6 +1569,7 @@ ggsave(filename = "data/results/figures/12_SI_AvailReasonCorrect_singleTC.png", 
 ## basic plot ##
 p <- ggplot(data_12, aes(x=HMI, y=LevelObserved_Instr_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1649,6 +1665,7 @@ p <- ggplot(data_12, aes(x=HMI, y=ER_overall, fill=HMI)) +
                                                                        "3 - \nminor errors",
                                                                        "4 - \nmajor errors",
                                                                        "5 - \nhelp of \nexperimenter")) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1742,7 +1759,7 @@ ggsave(filename = "data/results/figures/12_ER_singleTC.png", g,
 # # -------------------------------------------------------- 23 visualization #### -------------------------------------------------
 # # ---------------------------- 23_SD #### -----------------------------------------------------
 # Age
-# Experience
+# Frequency
 # Mileage
 # Knowledge
 # starts_with("FAS.")
@@ -1754,6 +1771,7 @@ ggsave(filename = "data/results/figures/12_ER_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=Age, fill=HMI)) + 
   scale_y_continuous(limits = c(15,75), breaks = seq(20,70,10)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() + 
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -1787,7 +1805,7 @@ plot_23_SD_Age <- g
 ggsave(filename = "data/results/figures/23_SD_Age.png", g, 
        width = 6, height = 6, dpi = 300, units = "in", device='png')
 
-# 23_SD_Experience  ----------------------------------------------------- 
+# 23_SD_Frequency  ----------------------------------------------------- 
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=Experience, fill=HMI)) + 
   scale_y_continuous(limits = c(0,4), breaks = seq(0,4, 1), 
@@ -1802,7 +1820,7 @@ p <- ggplot(data_23, aes(x=HMI, y=Experience, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Experience: \n	How often do you drive a car?") +
+       title = "Frequency: \n	How often do you drive a car?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=2.3, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -1828,9 +1846,9 @@ for (i in strip_t) {
 }
 grid.draw(g)
 
-plot_23_SD_Experience <- g
+plot_23_SD_Frequency <- g
 
-ggsave(filename = "data/results/figures/23_SD_Experience.png", g, 
+ggsave(filename = "data/results/figures/23_SD_Frequency.png", g, 
        width = 6.5, height = 5, dpi = 300, units = "in", device='png')
 
 # 23_SD_Mileage  ----------------------------------------------------- 
@@ -2068,6 +2086,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -2076,7 +2096,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
@@ -2131,6 +2151,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -2139,7 +2161,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
@@ -2264,7 +2286,8 @@ ggsave(filename = "data/results/figures/23_SD_Light.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=SUS_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,50)) +
-  geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  geom_violin(fill= "transparent") +
+  # geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.55, binwidth = 3.5) +
   facet_wrap(~Exp) + 
@@ -2298,11 +2321,12 @@ plot_23_pQ_SUS <- g
 ggsave(filename = "data/results/figures/23_pQ_SUS.png", g, 
        width = 6, height = 6, dpi = 300, units = "in", device='png')
 
-# 23_pQ_UMUX 12  ----------------------------------------------------- 
+# 23_pQ_UMUX  ----------------------------------------------------- 
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=UMUX_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,100), breaks = seq(0,100,50)) +
-  geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  # geom_boxplot(width = 0.4, notch = TRUE, notchwidth = 0.6, fill = "transparent", outlier.color = "transparent") +
+  geom_violin(fill= "transparent") +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.55, binwidth = 3.5) +
   facet_wrap(~Exp) + 
@@ -2639,6 +2663,7 @@ ggsave(filename = "data/results/figures/23_pQ_Effort.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=LevelObserved_Rep_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2729,6 +2754,7 @@ ggsave(filename = "data/results/figures/23_SI_LevelObserved_Rep_singleTC.png", g
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=BothAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,24), breaks = seq(0,24, 4)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2768,6 +2794,7 @@ ggsave(filename = "data/results/figures/23_SI_BothAllow_Observed.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=EmailsAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2857,6 +2884,7 @@ ggsave(filename = "data/results/figures/23_SI_EmailsAllow_Observed_singleTC.png"
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=HandsOffAllow_Observed_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -2948,6 +2976,7 @@ ggsave(filename = "data/results/figures/23_SI_HandsOffAllow_Observed_singleTC.pn
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=TransProblems_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,6), breaks = seq(0,6, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3036,6 +3065,7 @@ ggsave(filename = "data/results/figures/23_SI_TransProblems_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=AvailImplem_Rep_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3125,6 +3155,7 @@ ggsave(filename = "data/results/figures/23_SI_AvailImplem_Rep_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=AvailReasonCorrect_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,3), breaks = seq(0,3, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3214,6 +3245,7 @@ ggsave(filename = "data/results/figures/23_SI_AvailReasonCorrect_singleTC.png", 
 ## basic plot ##
 p <- ggplot(data_23, aes(x=HMI, y=LevelObserved_Instr_score, fill=HMI)) + 
   scale_y_continuous(limits = c(0,12), breaks = seq(0,12, 1)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3309,6 +3341,7 @@ p <- ggplot(data_23, aes(x=HMI, y=ER_overall, fill=HMI)) +
                                                                        "3 - \nminor errors",
                                                                        "4 - \nmajor errors",
                                                                        "5 - \nhelp of \nexperimenter")) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3403,7 +3436,7 @@ ggsave(filename = "data/results/figures/23_ER_singleTC.png", g,
 # # -------------------------------------------------------- 123 visualization #### -------------------------------------------------
 # # ---------------------------- 123_SD #### -----------------------------------------------------
 # Age
-# Experience
+# Frequency
 # Mileage
 # Knowledge
 # starts_with("FAS.")
@@ -3415,6 +3448,7 @@ ggsave(filename = "data/results/figures/23_ER_singleTC.png", g,
 ## basic plot ##
 p <- ggplot(data, aes(x=HMI, y=Age, fill=HMI)) + 
   scale_y_continuous(limits = c(15,75), breaks = seq(20,70,10)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
   geom_boxplot() + 
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
@@ -3448,7 +3482,7 @@ plot_123_SD_Age <- g
 ggsave(filename = "data/results/figures/123_SD_Age.png", g, 
        width = 9, height = 6, dpi = 300, units = "in", device='png')
 
-# 123_SD_Experience  ----------------------------------------------------- 
+# 123_SD_Frequency  ----------------------------------------------------- 
 ## basic plot ##
 p <- ggplot(data, aes(x=HMI, y=Experience, fill=HMI)) + 
   scale_y_continuous(limits = c(0,4), breaks = seq(0,4, 1), 
@@ -3463,7 +3497,7 @@ p <- ggplot(data, aes(x=HMI, y=Experience, fill=HMI)) +
   facet_wrap(~Exp) + 
   scale_fill_manual("HMI", values = c("HC" = "#3070b3", "LC" = "#98C6EA")) +
   labs(y="", x="",
-       title = "Experience: \n	How often do you drive a car?") +
+       title = "Frequency: \n	How often do you drive a car?") +
   stat_summary(fun = mean, geom="point",colour="black", size=2) +
   stat_summary(fun.data = fun_mean, geom="text", vjust=2.3, hjust=0.5) +
   stat_summary(fun = median, geom="point",colour="black", size = 4, shape = 4) +
@@ -3489,9 +3523,9 @@ for (i in strip_t) {
 }
 grid.draw(g)
 
-plot_123_SD_Experience <- g
+plot_123_SD_Frequency <- g
 
-ggsave(filename = "data/results/figures/123_SD_Experience.png", g, 
+ggsave(filename = "data/results/figures/123_SD_Frequency.png", g, 
        width = 9.75, height = 5, dpi = 300, units = "in", device='png')
 
 # 123_SD_Mileage  ----------------------------------------------------- 
@@ -3729,6 +3763,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3737,7 +3773,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
@@ -3792,6 +3828,8 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="", x="",
        title = "How often do you use the system ...") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=0, hjust=1.3) +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3800,7 +3838,7 @@ p <- ggplot(Oft, aes(x=scale, y=score, fill=HMI)) +
         legend.position = "none", 
         plot.background = element_rect(fill = "transparent",
                                        colour = NA_character_),
-        axis.text.x=element_text(color = "black", size=9, angle=30, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
         axis.text.y=element_text(color = "black", size=9, face = "plain"))
 p
 
