@@ -83,8 +83,34 @@ setwd("~/R/Multilab_Analysis")
   #   geom_histogram(bins = 100)
 
 #### import data ####
+## SI + ER
 data_all <- read.csv("data/preprocessed/multilab_subj_complete.csv", encoding = "UTF-8")
 
+## ET
+data_all_TO <- read.csv("data/eyetracking/data_all_TO.csv", encoding = "UTF-8") %>%
+  dplyr::rename(Exp = X.U.FEFF.Exp) %>%
+  mutate(Exp = ifelse(Exp == 1, "e1", ifelse(Exp == 2, "e2", ifelse(Exp == 3, "e3", Exp)))) %>%
+  mutate(Exp = factor(Exp, levels = c("e1", "e2", "e3"), ordered = TRUE))
+
+data_all_AR <- read.csv("data/eyetracking/data_all_AR.csv", encoding = "UTF-8") %>%
+  dplyr::rename(Exp = X.U.FEFF.Exp) %>%
+  mutate(Exp = ifelse(Exp == 1, "e1", ifelse(Exp == 2, "e2", ifelse(Exp == 3, "e3", Exp)))) %>%
+  mutate(Exp = factor(Exp, levels = c("e1", "e2", "e3"), ordered = TRUE)) %>%
+  mutate(L0_surt = 100 - TC01_AR_surt, .before = "TC01_duration") %>%
+  mutate(L2_surt = 100 - TC07_AR_surt, .before = "TC01_duration") %>%
+  mutate(L3_surt = TC04_AR_surt, .before = "TC01_duration")
+
+## DB
+data_all_DB <- read.csv("data/drivingdata/data_all_TO_corrected.csv", encoding = "UTF-8") %>%
+  dplyr::rename(Exp = X.U.FEFF.Exp) %>%
+  mutate(Exp = ifelse(Exp == 1, "e1", ifelse(Exp == 2, "e2", ifelse(Exp == 3, "e3", Exp)))) %>%
+  mutate(Exp = factor(Exp, levels = c("e1", "e2", "e3"), ordered = TRUE)) %>%
+  mutate(TC10_TimeToL0_max25 = ifelse(TC10_TimeToL0 > 25, 25, TC10_TimeToL0), .before = "TC10_TimeToL0") %>%
+  mutate(TC12_TimeToL0_max25 = ifelse(TC12_TimeToL0 > 25, 25, TC12_TimeToL0), .before = "TC12_TimeToL0") %>%
+  mutate(TC10_TimeToFirstAction_max25 = ifelse(TC10_TimeToFirstAction > 25, 25, TC10_TimeToFirstAction), .before = "TC10_TimeToFirstAction") %>%
+  mutate(TC12_TimeToFirstAction_max25 = ifelse(TC12_TimeToFirstAction > 25, 25, TC12_TimeToFirstAction), .before = "TC12_TimeToFirstAction")
+
+## results tables
 c_model_model <- c("est_intercept", "est_Exp", "est_HMI", "est_Exp:HMI",
                            "stdErr_intercept", "stdErr_Exp", "stdErr_HMI", "stdErr_Exp:HMI",
                            "z_intercept", "z_Exp", "z_HMI", "z_Exp:HMI",
@@ -95,7 +121,8 @@ c_model_aov <- c("Df_Exp", "Df_HMI", "Df_Exp:HMI",
                  "Df_ChiSq_Exp", "Df_ChiSq_HMI", "Df_ChiSq_Exp:HMI",
                  "p_ChiSq_Exp", "p_ChiSq_HMI", "p_ChiSq_Exp:HMI")
 
-# # #### LevelObserved_Rep_score --------------------------------------------------------------
+# # ---------------------------- SI --- short interviews  -----------------------------------------------
+# # LevelObserved_Rep_score --------------------------------------------------------------
 # build data sets
 AV <- "LevelObserved_Rep"
 
@@ -154,11 +181,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- tab_MM_12
 MM_results_table_23 <- tab_MM_23
 
-
-
-
-
-# # #### EmailsAllow_Observed_score --------------------------------------------------------------
+# # EmailsAllow_Observed_score --------------------------------------------------------------
 # build data sets
 AV <- "EmailsAllow_Observed"
 
@@ -217,7 +240,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
-# # #### HandsOffAllow_Observed_score --------------------------------------------------------------
+# # HandsOffAllow_Observed_score --------------------------------------------------------------
 # build data sets
 AV <- "HandsOffAllow_Observed"
 
@@ -276,7 +299,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
-# # #### LevelObserved_Instr_score --------------------------------------------------------------
+# # LevelObserved_Instr_score --------------------------------------------------------------
 # build data sets
 AV <- "LevelObserved_Instr"
 
@@ -335,7 +358,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
-# # #### AvailImplem_Rep_score --------------------------------------------------------------
+# # AvailImplem_Rep_score --------------------------------------------------------------
 # build data sets
 AV <- "AvailImplem_Rep"
 
@@ -394,7 +417,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
-# # #### AvailReasonCorrect_score --------------------------------------------------------------
+# # AvailReasonCorrect_score --- does not converge with (1|TC) --------------------------------------------------------------
 # build data sets
 AV <- "AvailReasonCorrect"
 
@@ -453,7 +476,7 @@ tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
-# # #### TransProblems_score --------------------------------------------------------------
+# # TransProblems_score --- does not converge with (1|TC) --------------------------------------------------------------
 # build data sets
 AV <- "TransProblems"
 
@@ -510,13 +533,331 @@ names(tab_model_23_aov) <- c_model_aov
 tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
 tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
 
-tab_results_PB <- bind_rows(tab_MM_12, tab_MM_23)
-write_excel_csv(tab_results_PB, "data/results/MM_PB.csv")
 
 ## build results table (first test different)
 MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
 MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
+# ## save PB_results
+# tab_results_PB <- bind_rows(tab_MM_12, tab_MM_23)
+# write_excel_csv(tab_results_PB, "data/results/MM_PB.csv")
+
+
+# # ---------------------------- ER --- Experimenter rating --------------------------------------------------------------
+
+# # # #### ER  --------------------------------------------------------------
+# build data sets
+AV <- "ER_score"
+
+data_wide <- data_all %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP,
+                  ends_with("_ER"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"),
+                   measured = c("TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12"))
+
+names(data_long) <-c("Exp", "HMI", "VP", "TC","AV")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM_12
+# poisson-log: 
+# model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = poisson(link=log), method = "LRT")
+# gaussian-identity:
+# model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=log), method = "LRT")
+summ_model_12 <- summary(model_12)
+
+call <- toString(model_12[["call"]])
+tab_model_12_model <- data.frame(matrix(unlist(summ_model_12[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_model) <- c_model_model
+tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_aov) <- c_model_aov
+
+## MM_23
+# # poisson-log: 
+# model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = poisson(link=log), method = "LRT")
+# # gaussian-identity:
+# model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=identity), method = "LRT")
+
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=log), method = "LRT")
+summ_model_23 <- summary(model_23)
+
+call <- toString(model_23[["call"]])
+tab_model_23_model <- data.frame(matrix(unlist(summ_model_23[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_model) <- c_model_model
+tab_model_23_aov <- data.frame(matrix(unlist(model_23[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_aov) <- c_model_aov
+
+# build table clm+aov
+tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
+tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
+
+## build results table (first test different)
+MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
+MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
+
+# # ---------------------------- ET --- Eye-Tracking --------------------------------------------------------------
+# # AttentionRatio_surt --------------------------------------------------------------
+# build data sets
+AV <- "AttentionRatio_surt"
+
+data_wide <- data_all_AR %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, L0_surt, L2_surt, L3_surt)) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "L0", "L2", "L3")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("L0", "L2", "L3"))
+names(data_long) <-c("Exp", "HMI", "VP", "TC","AV")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM_12
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+summ_model_12 <- summary(model_12)
+summ_model_12
+
+call <- toString(model_12[["call"]])
+tab_model_12_model <- data.frame(matrix(unlist(summ_model_12[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_model) <- c_model_model
+tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_aov) <- c_model_aov
+
+## MM_23
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=identity), method = "LRT")
+summ_model_23 <- summary(model_23)
+
+call <- toString(model_23[["call"]])
+tab_model_23_model <- data.frame(matrix(unlist(summ_model_23[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_model) <- c_model_model
+tab_model_23_aov <- data.frame(matrix(unlist(model_23[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_aov) <- c_model_aov
+
+# build table clm+aov
+tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
+tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
+
+## build results table (first test different)
+MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
+MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
+
+
+# # GlanceAllocationTime_ic --------------------------------------------------------------
+# build data sets
+AV <- "GlanceAllocationTime_ic"
+
+data_wide <- data_all_TO %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, 
+                  ends_with("_ic_glance_allocation_time"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "TC10", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("TC10", "TC12"))
+names(data_long) <-c("Exp", "HMI", "VP", "TC","AV")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM_12
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+summ_model_12 <- summary(model_12)
+summ_model_12
+
+call <- toString(model_12[["call"]])
+tab_model_12_model <- data.frame(matrix(unlist(summ_model_12[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_model) <- c_model_model
+tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_aov) <- c_model_aov
+
+## MM_23
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=identity), method = "LRT")
+summ_model_23 <- summary(model_23)
+
+call <- toString(model_23[["call"]])
+tab_model_23_model <- data.frame(matrix(unlist(summ_model_23[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_model) <- c_model_model
+tab_model_23_aov <- data.frame(matrix(unlist(model_23[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_aov) <- c_model_aov
+
+# build table clm+aov
+tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
+tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
+
+## build results table (first test different)
+MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
+MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
+
+# # 1st_glance_duration_ic --------------------------------------------------------------
+# build data sets
+AV <- "FirstGlanceDuration_ic"
+
+data_wide <- data_all_TO %>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, 
+                  ends_with("_ic_1st_glance_duration_without_start"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "TC10", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("TC10", "TC12"))
+names(data_long) <-c("Exp", "HMI", "VP", "TC","AV")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM_12
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+summ_model_12 <- summary(model_12)
+summ_model_12
+
+call <- toString(model_12[["call"]])
+tab_model_12_model <- data.frame(matrix(unlist(summ_model_12[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_model) <- c_model_model
+tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_aov) <- c_model_aov
+
+## MM_23
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=identity), method = "LRT")
+summ_model_23 <- summary(model_23)
+
+call <- toString(model_23[["call"]])
+tab_model_23_model <- data.frame(matrix(unlist(summ_model_23[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_model) <- c_model_model
+tab_model_23_aov <- data.frame(matrix(unlist(model_23[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_aov) <- c_model_aov
+
+# build table clm+aov
+tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
+tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
+
+## build results table (first test different)
+MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
+MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
+
+# # ---------------------------- DB --- Driving Behavior --------------------------------------------------------------
+# # TimeToL0_max25 --------------------------------------------------------------
+# build data sets
+AV <- "TimeToL0_max25"
+
+data_wide <- data_all_DB%>%
+  mutate(Exp = case_when(
+    Exp == 1 ~ "e1",
+    Exp == 2 ~ "e2",
+    Exp == 3 ~ "e3",
+    TRUE ~ as.character(Exp))) %>%
+  mutate(Exp_name = Exp) %>%
+  mutate(VPNr = as.character(VPNr)) %>%
+  unite("VP", Exp_name,VPNr) %>%
+  mutate(Exp = factor(Exp)) %>%
+  mutate(HMI = factor(HMI)) %>%
+  mutate(VP = factor(VP)) %>%
+  dplyr::select(c(Exp, HMI, VP, 
+                  ends_with("_TimeToL0_max25"))) # adjustment needed for the other metrics
+names(data_wide) <- c("Exp", "HMI", "VP", "TC10", "TC12")
+
+# restructure for long format
+data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
+                measured = c("TC10", "TC12"))
+names(data_long) <-c("Exp", "HMI", "VP", "TC","AV")
+
+# create subsets
+data_12 <- data_long %>%
+  filter(Exp != "e3")
+data_23 <- data_long %>%
+  filter(Exp !="e1")
+
+## MM_12
+model_12 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
+summ_model_12 <- summary(model_12)
+summ_model_12
+
+call <- toString(model_12[["call"]])
+tab_model_12_model <- data.frame(matrix(unlist(summ_model_12[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_model) <- c_model_model
+tab_model_12_aov <- data.frame(matrix(unlist(model_12[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_12_aov) <- c_model_aov
+
+## MM_23
+model_23 <- afex::mixed(AV ~ Exp*HMI + (1|TC) + (1|VP), data_23, family = gaussian(link=identity), method = "LRT")
+summ_model_23 <- summary(model_23)
+summ_model_23
+
+call <- toString(model_23[["call"]])
+tab_model_23_model <- data.frame(matrix(unlist(summ_model_23[["coefficients"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_model) <- c_model_model
+tab_model_23_aov <- data.frame(matrix(unlist(model_23[["anova_table"]]), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_model_23_aov) <- c_model_aov
+
+# build table clm+aov
+tab_MM_12 <- cbind(AV, call, tab_model_12_model, tab_model_12_aov)
+tab_MM_23 <- cbind(AV, call, tab_model_23_model, tab_model_23_aov)
+
+## build results table (first test different)
+MM_results_table_12 <- bind_rows(MM_results_table_12, tab_MM_12)
+MM_results_table_23 <- bind_rows(MM_results_table_23, tab_MM_23)
 
 ################################## ________ save ________ ########################################
 ## adjust data sets
@@ -532,47 +873,6 @@ MM_results_table <- bind_rows(MM_results_table_12, MM_results_table_23)
 write_excel_csv(MM_results_table, "data/results/MM.csv")
 rm(list=setdiff(ls(), c("MM_results_table", "data_all")))
 
-# # # #### ER  --------------------------------------------------------------
-# # build data sets
-# data_wide <- data_all %>%
-#   mutate(Exp = case_when(
-#     Exp == 1 ~ "e1",
-#     Exp == 2 ~ "e2",
-#     Exp == 3 ~ "e3",
-#     TRUE ~ as.character(Exp))) %>%
-#   mutate(Exp_name = Exp) %>%
-#   mutate(VPNr = as.character(VPNr)) %>%
-#   unite("VP", Exp_name,VPNr) %>%
-#   mutate(Exp = factor(Exp)) %>%
-#   mutate(HMI = factor(HMI)) %>%
-#   mutate(VP = factor(VP)) %>%
-#   dplyr::select(c(Exp, HMI, VP, 
-#                   ends_with("_ER"))) # adjustment needed for the other metrics
-# names(data_wide) <- c("Exp", "HMI", "VP", "TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12")
-# 
-# # restructure for long format
-# data_long<-melt(data_wide, id = c("Exp", "HMI", "VP"), 
-#                    measured = c("TC01", "TC02", "TC03", "TC04", "TC05", "TC06" , "TC07", "TC08", "TC09", "TC10", "TC11", "TC12"))
-# 
-# names(data_long) <-c("Exp", "HMI", "VP", "TC","ER_score")
-# 
-# # create subsets
-# data_12 <- data_long %>%
-#   filter(Exp != "e3")
-# 
-# data_23 <- data_long %>%
-#   filter(Exp !="e1")
-# 
-# ## MM 12
-# model <- afex::mixed(ER_score ~ Exp*HMI + (1|TC) + (1|VP), data_12) # VP as grouping variable, TC as grouping variable and affecting the variability among HMIs
-# model # output = anova(model, type = 3)
-# b <- summary(model) # output != output: model
-# 
-# a <- afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, family = gaussian(link=identity), method = "LRT")
-# a
-# afex::mixed(ER_score ~ Exp*HMI + (HMI|TC) + (1|VP), data_12, method = "BP", family = "quapoisson")
-# 
-# 
 
 # -------------------------------- #### BothAllow_Observed_score ---- combined tasks: singular fit --------------------------------------------------------------
 # # build data set --- HandsOff

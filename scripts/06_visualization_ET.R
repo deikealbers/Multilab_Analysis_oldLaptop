@@ -25,7 +25,7 @@ fun_median <- function(x){ return(data.frame(y=median(x),label=round(median(x,na
 # Read in files
 ## data Take-over scenarios TC10, TC12
 data_all_TO <- read.csv("data/eyetracking/data_all_TO.csv", encoding = "UTF-8") %>%
-  rename(Exp = X.U.FEFF.Exp) %>%
+  dplyr::rename(Exp = X.U.FEFF.Exp) %>%
   mutate(Exp = ifelse(Exp == 1, "Sim_GER", ifelse(Exp == 2, "TT_GER", ifelse(Exp == 3, "TT_USA", Exp)))) %>%
   mutate(Exp = factor(Exp, levels = c("Sim_GER", "TT_GER", "TT_USA"), ordered = TRUE))
 
@@ -36,7 +36,7 @@ data_23_TO <- data_all_TO %>%
 
 ## data Attention Ratios TC01, TC04, TC07
 data_all_AR <- read.csv("data/eyetracking/data_all_AR.csv", encoding = "UTF-8") %>%
-  rename(Exp = X.U.FEFF.Exp) %>%
+  dplyr::rename(Exp = X.U.FEFF.Exp) %>%
   mutate(Exp = ifelse(Exp == 1, "Sim_GER", ifelse(Exp == 2, "TT_GER", ifelse(Exp == 3, "TT_USA", Exp)))) %>%
   mutate(Exp = factor(Exp, levels = c("Sim_GER", "TT_GER", "TT_USA"), ordered = TRUE))
 
