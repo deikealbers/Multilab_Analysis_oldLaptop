@@ -133,9 +133,9 @@ AR_all <- bind_rows(AR_L0_ic, AR_L0_street, AR_L0_surt, AR_L0_wheel,
 #               "L2_ic", "L2_street", "L2_surt", "L2_wheel",
 #               "L3_ic", "L3_street", "L3_surt", "L3_wheel")
 
-labels_AR_all = c("ic", "street", "surt", "wheel", 
-                  "ic", "street", "surt", "wheel",
-                  "ic", "street", "surt", "wheel")
+labels_AR_all = c("IC", "Street", "SuRT", "Wheel", 
+                  "IC", "Street", "SuRT", "Wheel",
+                  "IC", "Street", "SuRT", "Wheel")
 
 p <- ggplot(AR_all, aes(x=scale, y=score, fill=HMI)) + 
   # geom_rect(aes(xmin = 0.55, xmax = 4.45, ymin = -Inf, ymax = Inf), 
@@ -397,8 +397,8 @@ TO_all_glance_at_start_perc <- TO_all_glance_at_start %>%
   dplyr::rename(mean = numeric.mean)
 
 ## lables ##
-labels_TO_all_glance_at_start = c("ic", "street", "surt", "wheel", 
-                                  "ic", "street", "surt", "wheel")
+labels_TO_all_glance_at_start = c("IC", "Street", "SuRT", "Wheel", 
+                                  "IC", "Street", "SuRT", "Wheel")
 
 ## n ##
 p <- ggplot(TO_all_glance_at_start, aes(x=scale, y = score, fill=HMI)) + 
@@ -547,8 +547,8 @@ TO_all_n_glances_after_start <- bind_rows(TO_TC10_ic_n_glances_after_start, TO_T
 # labels_TO_all_n_glances_after_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_n_glances_after_start = c("ic", "street", "surt", "wheel", 
-                                        "ic", "street", "surt", "wheel")
+labels_TO_all_n_glances_after_start = c("IC", "Street", "SuRT", "Wheel", 
+                                        "IC", "Street", "SuRT", "Wheel")
 
 p <- ggplot(TO_all_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) + 
   geom_rect(aes(xmin = 0.5, xmax = 4.5, ymin = 0, ymax = 8),
@@ -648,8 +648,8 @@ TO_all_n_glances_after_start <- bind_rows(TO_TC10_ic_n_glances_after_start, TO_T
 # labels_TO_all_n_glances_after_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_n_glances_after_start = c("ic", "street", "surt", "wheel", 
-                                            "ic", "street", "surt", "wheel")
+labels_TO_all_n_glances_after_start = c("IC", "Street", "SuRT", "Wheel", 
+                                            "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) + 
@@ -749,8 +749,8 @@ TO_all_total_duration <- bind_rows(TO_TC10_ic_total_duration, TO_TC10_street_tot
 # labels_TO_all_total_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_total_duration = c("ic", "street", "surt", "wheel", 
-                                     "ic", "street", "surt", "wheel")
+labels_TO_all_total_duration = c("IC", "Street", "SuRT", "Wheel", 
+                                     "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_total_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -855,8 +855,8 @@ TO_all_mean_duration <- bind_rows(TO_TC10_ic_mean_duration, TO_TC10_street_mean_
 # labels_TO_all_mean_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_mean_duration = c("ic", "street", "surt", "wheel", 
-                                    "ic", "street", "surt", "wheel")
+labels_TO_all_mean_duration = c("IC", "Street", "SuRT", "Wheel", 
+                                    "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_mean_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -961,8 +961,8 @@ TO_all_max_duration <- bind_rows(TO_TC10_ic_max_duration, TO_TC10_street_max_dur
 # labels_TO_all_max_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_max_duration = c("ic", "street", "surt", "wheel", 
-                                   "ic", "street", "surt", "wheel")
+labels_TO_all_max_duration = c("IC", "Street", "SuRT", "Wheel", 
+                                   "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_max_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -1067,8 +1067,8 @@ TO_all_1st_glance_duration_without_start <- bind_rows(TO_TC10_ic_1st_glance_dura
 # labels_TO_all_1st_glance_duration_without_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_1st_glance_duration_without_start = c("ic", "street", "surt", "wheel", 
-                                                        "ic", "street", "surt", "wheel")
+labels_TO_all_1st_glance_duration_without_start = c("IC", "Street", "SuRT", "Wheel", 
+                                                        "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_1st_glance_duration_without_start, aes(x=scale, y=score, fill=HMI)) + 
@@ -1168,7 +1168,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number", x="",
-       title = "First glance to ic after [...] glances to other AOIs\nafter start of request to intervene") +
+       title = "First glance to IC after [...] glances to other AOIs\nstarting with the request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1231,7 +1231,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number", x="",
-       title = "First glance to ic after [...] glances to other AOIs\nafter start of request to intervene") +
+       title = "First glance to IC after [...] glances to other AOIs\nafter start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1298,7 +1298,7 @@ p <- ggplot(TO_ic_glance_allocation_time, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Time [s]", x="",
-       title = "Glance allocation time to ic after start of request to intervene") +
+       title = "Glance allocation time to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1362,7 +1362,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number of glances", x="",
-       title = "Number of glances to ic after start of request to intervene") +
+       title = "Number of glances to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1426,7 +1426,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number of glances", x="",
-       title = "Number of glances to ic after start of request to intervene") +
+       title = "Number of glances to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1493,7 +1493,7 @@ p <- ggplot(TO_ic_total_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Total duration: Eyes on ic after start of request to intervene") +
+       title = "Total duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1560,7 +1560,7 @@ p <- ggplot(TO_ic_mean_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Mean duration: Eyes on ic after start of request to intervene") +
+       title = "Mean duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1628,7 +1628,7 @@ p <- ggplot(TO_ic_max_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Max duration: Eyes on ic after start of request to intervene") +
+       title = "Max duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1695,7 +1695,7 @@ p <- ggplot(TO_ic_1st_glance_duration_without_start, aes(x=scale, y=score, fill=
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Duration of first glance to ic after start of request to intervene") +
+       title = "Duration of first glance to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -1810,9 +1810,9 @@ AR_all <- bind_rows(AR_L0_ic, AR_L0_street, AR_L0_surt, AR_L0_wheel,
 #               "L2_ic", "L2_street", "L2_surt", "L2_wheel",
 #               "L3_ic", "L3_street", "L3_surt", "L3_wheel")
 
-labels_AR_all = c("ic", "street", "surt", "wheel", 
-                  "ic", "street", "surt", "wheel",
-                  "ic", "street", "surt", "wheel")
+labels_AR_all = c("IC", "Street", "SuRT", "Wheel", 
+                  "IC", "Street", "SuRT", "Wheel",
+                  "IC", "Street", "SuRT", "Wheel")
 
 p <- ggplot(AR_all, aes(x=scale, y=score, fill=HMI)) + 
   # geom_rect(aes(xmin = 0.55, xmax = 4.45, ymin = -Inf, ymax = Inf), 
@@ -2083,8 +2083,8 @@ TO_all_glance_at_start_perc <- TO_all_glance_at_start %>%
   dplyr::rename(mean = numeric.mean)
 
 ## lables ##
-labels_TO_all_glance_at_start = c("ic", "street", "surt", "wheel", 
-                                  "ic", "street", "surt", "wheel")
+labels_TO_all_glance_at_start = c("IC", "Street", "SuRT", "Wheel", 
+                                  "IC", "Street", "SuRT", "Wheel")
 
 ## n ##
 p <- ggplot(TO_all_glance_at_start, aes(x=scale, y = score, fill=HMI)) + 
@@ -2242,8 +2242,8 @@ TO_all_n_glances_after_start <- bind_rows(TO_TC10_ic_n_glances_after_start, TO_T
 # labels_TO_all_n_glances_after_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_n_glances_after_start = c("ic", "street", "surt", "wheel", 
-                                        "ic", "street", "surt", "wheel")
+labels_TO_all_n_glances_after_start = c("IC", "Street", "SuRT", "Wheel", 
+                                        "IC", "Street", "SuRT", "Wheel")
 
 p <- ggplot(TO_all_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) + 
   geom_rect(aes(xmin = 0.5, xmax = 4.5, ymin = 0, ymax = 8),
@@ -2343,8 +2343,8 @@ TO_all_n_glances_after_start <- bind_rows(TO_TC10_ic_n_glances_after_start, TO_T
 # labels_TO_all_n_glances_after_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_n_glances_after_start = c("ic", "street", "surt", "wheel", 
-                                        "ic", "street", "surt", "wheel")
+labels_TO_all_n_glances_after_start = c("IC", "Street", "SuRT", "Wheel", 
+                                        "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) + 
@@ -2444,8 +2444,8 @@ TO_all_total_duration <- bind_rows(TO_TC10_ic_total_duration, TO_TC10_street_tot
 # labels_TO_all_total_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_total_duration = c("ic", "street", "surt", "wheel", 
-                                 "ic", "street", "surt", "wheel")
+labels_TO_all_total_duration = c("IC", "Street", "SuRT", "Wheel", 
+                                 "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_total_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -2550,8 +2550,8 @@ TO_all_mean_duration <- bind_rows(TO_TC10_ic_mean_duration, TO_TC10_street_mean_
 # labels_TO_all_mean_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_mean_duration = c("ic", "street", "surt", "wheel", 
-                                "ic", "street", "surt", "wheel")
+labels_TO_all_mean_duration = c("IC", "Street", "SuRT", "Wheel", 
+                                "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_mean_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -2656,8 +2656,8 @@ TO_all_max_duration <- bind_rows(TO_TC10_ic_max_duration, TO_TC10_street_max_dur
 # labels_TO_all_max_duration = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_max_duration = c("ic", "street", "surt", "wheel", 
-                               "ic", "street", "surt", "wheel")
+labels_TO_all_max_duration = c("IC", "Street", "SuRT", "Wheel", 
+                               "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_max_duration, aes(x=scale, y=score, fill=HMI)) + 
@@ -2762,8 +2762,8 @@ TO_all_1st_glance_duration_without_start <- bind_rows(TO_TC10_ic_1st_glance_dura
 # labels_TO_all_1st_glance_duration_without_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
 #                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
 
-labels_TO_all_1st_glance_duration_without_start = c("ic", "street", "surt", "wheel", 
-                                                    "ic", "street", "surt", "wheel")
+labels_TO_all_1st_glance_duration_without_start = c("IC", "Street", "SuRT", "Wheel", 
+                                                    "IC", "Street", "SuRT", "Wheel")
 
 
 p <- ggplot(TO_all_1st_glance_duration_without_start, aes(x=scale, y=score, fill=HMI)) + 
@@ -2872,7 +2872,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number", x="",
-       title = "First glance to ic after [...] glances to other AOIs\nafter start of request to intervene") +
+       title = "First glance to IC after [...] glances to other AOIs\nstarting with the request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -2935,7 +2935,7 @@ p <- ggplot(TO_ic_nth_gaze_to_ic, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number", x="",
-       title = "First glance to ic after [...] glances to other AOIs\nafter start of request to intervene") +
+       title = "First glance to IC after [...] glances to other AOIs\nafter start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3002,7 +3002,7 @@ p <- ggplot(TO_ic_glance_allocation_time, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Time [s]", x="",
-       title = "Glance allocation time to ic after start of request to intervene") +
+       title = "Glance allocation time to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3067,7 +3067,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number of glances", x="",
-       title = "Number of glances to ic after start of request to intervene") +
+       title = "Number of glances to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3130,7 +3130,7 @@ p <- ggplot(TO_ic_n_glances_after_start, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Number of glances", x="",
-       title = "Number of glances to ic after start of request to intervene") +
+       title = "Number of glances to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3197,7 +3197,7 @@ p <- ggplot(TO_ic_total_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Total duration: Eyes on ic after start of request to intervene") +
+       title = "Total duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3264,7 +3264,7 @@ p <- ggplot(TO_ic_mean_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Mean duration: Eyes on ic after start of request to intervene") +
+       title = "Mean duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3332,7 +3332,7 @@ p <- ggplot(TO_ic_max_duration, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Max duration: Eyes on ic after start of request to intervene") +
+       title = "Max duration: Eyes on IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -3400,7 +3400,7 @@ p <- ggplot(TO_ic_1st_glance_duration_without_start, aes(x=scale, y=score, fill=
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Duration [s]", x="",
-       title = "Duration of first glance to ic after start of request to intervene") +
+       title = "Duration of first glance to IC after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
