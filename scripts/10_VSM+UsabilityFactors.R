@@ -9,12 +9,18 @@ setwd("~/R/Multilab_Analysis")
 ## functions
 mean_ML = function(x) mean(x, na.rm = TRUE)
 sd_ML = function(x) sd(x, na.rm = TRUE)
-ML_skim <- skim_with(numeric = sfl(n = length, mean = mean_ML, sd = sd_ML), append = FALSE)
+median_ML = function(x) median(x, na.rm = TRUE)
+min_ML = function(x) min(x, na.rm = TRUE)
+max_ML = function(x) max(x, na.rm = TRUE)
+
+ML_skim <- skim_with(numeric = sfl(n = length, mean = mean_ML, sd = sd_ML, median = median_ML, min =  min_ML, max = max_ML), append = FALSE)
+
+# write function for summary stats #
+fun_mean <- function(x){ return(data.frame(y=mean(x),label=round(mean(x,na.rm=T), 2)))}
 
 # import data ####
 # Read in files and modify
 ## for now: left out is: starts_with("Automarke"))
-
 data_TT_USA <- read.csv("data/preprocessed/Lime+AutLvl+UsabQ+shortI+ER_all.csv", encoding = "UTF-8") %>%
   select(Exp, VPNr, 
          Alter, Geschlecht,
@@ -109,10 +115,53 @@ names(data_ON_USA) <- names
 names(data_ON_GER) <- names
 
 ## merge
-data_all <- bind_rows (data_TT_USA, data_ON_GER, data_ON_USA)
+data_all <- bind_rows (data_TT_USA, data_ON_GER, data_ON_USA) %>%
+  mutate(Exp = factor(Exp, levels = c("TT_USA", "ON_USA", "ON_GER"), ordered = TRUE))
 
 ## delete subsets
-rm(list = setdiff(ls(), c("data_all", "mean_ML", "sd_ML", "ML_skim")))
+rm(list = setdiff(ls(), c("data_all", 
+                          "data_TT_USA", "data_ON_GER", "data_ON_USA",
+                          "mean_ML", "sd_ML", "median_ML", "min_ML", "max_ML", "ML_skim", "fun_mean")))
+
+# # descriptive analysis --------------------------------------------------
+sum_Geschlecht <- data_all %>%
+  select(Exp, Geschlecht) %>%
+  mutate_at("Geschlecht", factor) %>%
+  dplyr::group_by(Exp) %>%
+  ML_skim(.) %>% 
+  select (-c(skim_type, complete_rate, factor.ordered, factor.n_unique))
+
+sum_Alter <- data_all %>%
+  select(Exp, Alter) %>%
+  dplyr::group_by(Exp) %>%
+  ML_skim(.) %>% 
+  select (-c(skim_type, complete_rate))
+
+
+# # visualization age -----------------------------------------------------
+# 123_SD_Age  ----------------------------------------------------- 
+## basic plot ##
+p <- ggplot(data_all, aes(x=Exp, y=Alter, fill=Exp)) + 
+  scale_y_continuous(limits = c(15,80), breaks = seq(20,80,10)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
+  geom_boxplot() + 
+  scale_fill_manual(values = c("#E37222", "#FFC371", "#666666")) +
+  labs(y="Years", x="",
+       title = "Age") +
+  stat_summary(fun = mean, geom="point",colour="black", size=2) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=1.7, hjust=0.5) +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11, face = "plain"),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        panel.grid.major.x = element_blank(),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"),
+        legend.position = "none")
+p
+
+ggsave(filename = "data/results/figures/00_Age.png", p, 
+       width = 6, height = 6, dpi = 300, units = "in", device='png')
 
 # #### calculate VSM and create dataset ----------------------------------------------------------------
 ## constants
@@ -177,7 +226,11 @@ VSM_ON_GER <- tibble("Exp" = "ON_GER", "PDI" = ON_GER_PDI, "IDV" = ON_GER_IDV, "
 VSM <- bind_rows(VSM_TT_USA, VSM_ON_USA, VSM_ON_GER)
 
 ## delete subsets
-rm(list = setdiff(ls(), c("data_all", "VSM", "mean_ML", "sd_ML", "ML_skim")))
+rm(list = setdiff(ls(), c("data_all", 
+                          "data_TT_USA", "data_ON_GER", "data_ON_USA",
+                          "sum_Alter", "sum_Geschlecht",
+                          "VSM",
+                          "mean_ML", "sd_ML", "median_ML", "min_ML", "max_ML", "ML_skim")))
 
 # #### visualization VSM -----------------------------------------------
 VSM_long <- reshape2::melt(VSM, id = c("Exp"),
@@ -213,6 +266,41 @@ p
 
 ggsave(filename = "data/results/figures/00_VSM.png", p, 
        width = 8, height = 6, dpi = 600, units = "in", device='png')
+
+## VSM reference
+Country <- c("GER", "GER", "GER", "GER", "GER", "GER",
+             "USA", "USA", "USA", "USA", "USA", "USA")
+Dimension <- c("PDI", "IDV", "MAS", "UAI", "LTO", "IVR",
+               "PDI", "IDV", "MAS", "UAI", "LTO", "IVR")
+Score <- c(35, 67, 66, 65, 83, 40, 
+           40, 91, 62, 46, 26, 68)
+
+VSM_ref = tibble(Country, Dimension, Score) %>%
+  mutate(Country = factor(Country, levels = c("USA", "GER"), ordered = TRUE)) %>%
+  mutate(Dimension = factor(Dimension, levels = c("PDI", "IDV", "MAS", "UAI", "LTO", "IVR"), ordered = TRUE))
+
+p <- ggplot(VSM_ref, aes(x=Dimension, y = Score, fill=Country)) + 
+  geom_bar(stat = "identity", width = 0.7, position=position_dodge()) +
+  scale_x_discrete(labels = labels_VSM) +
+  scale_y_continuous(limits = c(0,105), breaks = seq(0,105, 20)) +
+  scale_fill_manual(values = c("#f5c88c", "#E2E2E2")) +
+  labs(y="Index Score", x="",
+       title = "Cultural Dimensions by Hofstede - Reference Data") +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11),
+        panel.grid.minor.y = element_blank(), 
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        legend.position = c(0.1, 0.87), 
+        legend.background = element_rect(fill = "transparent"), 
+        plot.background = element_rect(fill = "transparent",
+                                       colour = NA_character_),
+        axis.text.x=element_text(color = "black", size=9, angle=15, vjust=.88, hjust=0.8, face = "plain"),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"))
+p
+
+ggsave(filename = "data/results/figures/00_VSM_ref.png", p, 
+       width = 6, height = 6, dpi = 600, units = "in", device='png')
 
 # #### visualization Usability Factors -----------------------------------------------
 UsabF_agg <- data_all %>%
@@ -306,7 +394,7 @@ p <- ggplot(UsabF_agg_max, aes(x=Factor, y = mean, fill=Exp)) +
                      labels = c("-3\nnot\nimportant\nat all", "-2", "-1", "0", "1", "2", "3\nvery\nimportant")) +
   scale_fill_manual(values = c("#E37222", "#FFC371", "#666666")) +
   labs(y="Importance score", x="",
-       title = "Usability Factors") +
+       title = "Usability Factors - most important factors") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -340,7 +428,7 @@ p <- ggplot(UsabF_agg_min, aes(x=Factor, y = mean, fill=Exp)) +
                      labels = c("-3\nnot\nimportant\nat all", "-2", "-1", "0", "1", "2", "3\nvery\nimportant")) +
   scale_fill_manual(values = c("#E37222", "#FFC371", "#666666")) +
   labs(y="Importance score", x="",
-       title = "Usability Factors") +
+       title = "Usability Factors - less important factors") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
