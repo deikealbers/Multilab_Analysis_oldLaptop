@@ -151,7 +151,7 @@ p <- ggplot(L2Hoff, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.25, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
-  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=-.1) +
   scale_x_discrete(labels = labels_L2Hoff) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0,10,2)) +
   facet_grid(HMI ~ Exp) +
@@ -307,7 +307,7 @@ p <- ggplot(TO_TimeToFirstAction, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Time [s]", x="",
-       title = "Take-over time after start of request to intervene") +
+       title = "Time until first action after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
@@ -440,7 +440,7 @@ p <- ggplot(L2Hoff, aes(x=scale, y=score, fill=HMI)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center',
                stackratio=1.3, dotsize=0.25, binwidth = 0.5) +
   stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
-  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=0.5) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=-.1) +
   scale_x_discrete(labels = labels_L2Hoff) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0,10,2)) +
   facet_grid(HMI ~ Exp) +
@@ -601,7 +601,7 @@ p <- ggplot(TO_TimeToFirstAction, aes(x=scale, y=score, fill=HMI)) +
   facet_grid(HMI ~ Exp) +
   scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
   labs(y="Time [s]", x="",
-       title = "Take-over time after start of request to intervene") +
+       title = "Time until first action after start of request to intervene") +
   theme_bw() +
   theme(text=element_text(family = "sans", color="black", size=11),
         panel.grid.minor.y = element_blank(), 
