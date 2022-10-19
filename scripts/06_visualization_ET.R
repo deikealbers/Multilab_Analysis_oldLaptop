@@ -1123,6 +1123,119 @@ ggsave(filename = "data/results/figures/12_ET_TO_all_1st_glance_duration_without
        width = 8, height = 6, dpi = 600, units = "in", device='png')
 
 
+### caution: very few TP left, especially in SuRT!
+# 12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start #### -----------------------------------------------------
+## subset subscales ##
+TO_TC10_ic_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC10_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_ic", .after = "VPNr")
+TO_TC10_street_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC10_street_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_street_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_street_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_street", .after = "VPNr")
+TO_TC10_surt_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC10_surt_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_surt_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_surt_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_surt", .after = "VPNr")
+TO_TC10_wheel_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC10_wheel_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_wheel_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_wheel_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_wheel", .after = "VPNr")
+
+TO_TC12_ic_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC12_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_ic", .after = "VPNr")
+TO_TC12_street_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC12_street_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_street_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_street_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_street", .after = "VPNr")
+TO_TC12_surt_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC12_surt_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_surt_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_surt_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_surt", .after = "VPNr")
+TO_TC12_wheel_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC12_wheel_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_wheel_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_wheel_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_wheel", .after = "VPNr")
+
+## build subset ##
+TO_all_1st_glance_duration_without_start_excl_AOI_start <- bind_rows(TO_TC10_ic_1st_glance_duration_without_start, TO_TC10_street_1st_glance_duration_without_start,
+                                                      TO_TC10_surt_1st_glance_duration_without_start, TO_TC10_wheel_1st_glance_duration_without_start,
+                                                      TO_TC12_ic_1st_glance_duration_without_start, TO_TC12_street_1st_glance_duration_without_start,
+                                                      TO_TC12_surt_1st_glance_duration_without_start, TO_TC12_wheel_1st_glance_duration_without_start) %>%
+  mutate(scale = factor(scale, levels = c("TC10_ic", "TC10_street", "TC10_surt", "TC10_wheel",
+                                          "TC12_ic", "TC12_street", "TC12_surt", "TC12_wheel"), ordered = TRUE))
+
+## lables ##
+# labels_TO_all_1st_glance_duration_without_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
+#                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
+
+labels_TO_all_1st_glance_duration_without_start = c("IC", "Street", "SuRT", "Wheel", 
+                                                    "IC", "Street", "SuRT", "Wheel")
+
+
+p <- ggplot(TO_all_1st_glance_duration_without_start_excl_AOI_start, aes(x=scale, y=score, fill=HMI)) + 
+  geom_rect(aes(xmin = 0.5, xmax = 4.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F8FAA0", 0.002)) +
+  geom_rect(aes(xmin = 4.5, xmax = 8.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F59562", 0.002)) +
+  geom_rect(aes(xmin = 4.495, xmax = 4.505, ymin = -Inf, ymax = Inf), 
+            fill = scales::alpha("#2F2F2F", 1)) +
+  geom_rect(aes(xmin = 0.505, xmax = 4.505, ymin = 19.94, ymax = 20.0), 
+            fill = scales::alpha("red", 0.8)) +
+  geom_rect(aes(xmin = 4.505, xmax = 8.505, ymin = 5.97, ymax = 6.03), 
+            fill = scales::alpha("red", 0.8)) +
+  annotate("text", x = 2.5, y = 20, label = "RtI with time budget", size = 3, vjust = 1) +
+  annotate("text", x = 6.45, y = 20, label = "RtI without time budget", size = 3, vjust = 1) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
+  geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
+  stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  scale_x_discrete(labels = labels_TO_all_1st_glance_duration_without_start) +
+  scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
+  facet_grid(HMI ~ Exp) +
+  scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
+  labs(y="Duration [s]", x="",
+       title = "Duration of first glance to AOI after start of request to intervene") +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11),
+        panel.grid.minor.y = element_blank(), 
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        legend.position = "none", 
+        plot.background = element_rect(fill = "transparent",
+                                       colour = NA_character_),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"))
+p
+
+## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
+g <- ggplot_gtable(ggplot_build(p))
+strip_both <- which(grepl('strip-', g$layout$name))
+fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+k <- 1
+for (i in strip_both) {
+  j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+  g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+  k <- k+1
+}
+grid.draw(g)
+
+plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start <- g
+
+ggsave(filename = "data/results/figures/12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start.png", g, 
+       width = 8, height = 6, dpi = 600, units = "in", device='png')
+
+
 # #### remove not needed data ---------------------------------------------
 rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR", "data_12_TO", "data_23_TO",
                         "fun_mean", "fun_median", "mean_ML", "sd_ML", "skim_ML",
@@ -1130,7 +1243,7 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start")))
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start")))
 
 # 12_ET_TO_ic_nth_gaze_to_ic_dot #### -----------------------------------------------------
 ## subset subscales ##
@@ -1726,6 +1839,76 @@ ggsave(filename = "data/results/figures/12_ET_TO_ic_1st_glance_duration_without_
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
 
+# 12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start #### -----------------------------------------------------
+## subset subscales ##
+TO_TC10_ic_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC10_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10", .after = "VPNr")
+TO_TC12_ic_1st_glance_duration_without_start <- data_12_TO %>%
+  filter(TC12_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12", .after = "VPNr")
+
+## build subset ##
+TO_ic_1st_glance_duration_without_start_excl_ic_start <- bind_rows(TO_TC10_ic_1st_glance_duration_without_start, TO_TC12_ic_1st_glance_duration_without_start) %>%
+  mutate(scale = factor(scale, levels = c("TC10", "TC12_ic"), ordered = TRUE))
+
+labels_TO_ic_1st_glance_duration_without_start = c("RtI with\ntime budget", "RtI without\ntime budget")
+
+p <- ggplot(TO_ic_1st_glance_duration_without_start_excl_ic_start, aes(x=scale, y=score, fill=HMI)) + 
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F8FAA0", 0.002)) +
+  geom_rect(aes(xmin = 1.5, xmax = 2.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F59562", 0.002)) +
+  geom_rect(aes(xmin = 1.497, xmax = 1.503, ymin = -Inf, ymax = Inf), 
+            fill = scales::alpha("#2F2F2F", 1)) +
+  geom_rect(aes(xmin = 0.505, xmax = 1.505, ymin = 19.94, ymax = 20.0), 
+            fill = scales::alpha("red", 0.8)) +
+  geom_rect(aes(xmin = 1.505, xmax = 2.505, ymin = 5.97, ymax = 6.03), 
+            fill = scales::alpha("red", 0.8)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
+  geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
+  stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
+  scale_x_discrete(labels = labels_TO_ic_1st_glance_duration_without_start) +
+  scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
+  facet_grid(HMI ~ Exp) +
+  scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
+  labs(y="Duration [s]", x="",
+       title = "Duration of first glance to IC after start of request to intervene") +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11),
+        panel.grid.minor.y = element_blank(), 
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        legend.position = "none", 
+        plot.background = element_rect(fill = "transparent",
+                                       colour = NA_character_),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"))
+p
+
+## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
+g <- ggplot_gtable(ggplot_build(p))
+strip_both <- which(grepl('strip-', g$layout$name))
+fills <- c("#DAD7CB", "#A2AD00", "#3070b3", "#98C6EA")
+k <- 1
+for (i in strip_both) {
+  j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+  g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+  k <- k+1
+}
+grid.draw(g)
+
+plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start <- g
+
+ggsave(filename = "data/results/figures/12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start.png", g, 
+       width = 6, height = 6, dpi = 600, units = "in", device='png')
+
+
 # #### remove not needed data ---------------------------------------------
 rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR", "data_12_TO", "data_23_TO",
                         "fun_mean", "fun_median", "mean_ML", "sd_ML", "skim_ML",
@@ -1733,11 +1916,11 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_12_ET_TO_ic_nth_gaze_to_ic_dot", "plot_12_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_12_ET_TO_ic_glance_allocation_time", "plot_12_ET_TO_ic_n_glances_after_start_dot", "plot_12_ET_TO_ic_n_glances_after_start_box",
                         "plot_12_ET_TO_ic_total_duration", "plot_12_ET_TO_ic_mean_duration", "plot_12_ET_TO_ic_max_duration", 
-                        "plot_12_ET_TO_ic_1st_glance_duration_without_start")))
+                        "plot_12_ET_TO_ic_1st_glance_duration_without_start", "plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start")))
 # # -------------------------------------------------------- 23 visualization #### -------------------------------------------------
 # # ---------------------------- 23_ET_AR #### -----------------------------------------------------
 # AR_all
@@ -1946,11 +2129,11 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_12_ET_TO_ic_nth_gaze_to_ic_dot", "plot_12_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_12_ET_TO_ic_glance_allocation_time", "plot_12_ET_TO_ic_n_glances_after_start_dot", "plot_12_ET_TO_ic_n_glances_after_start_box",
                         "plot_12_ET_TO_ic_total_duration", "plot_12_ET_TO_ic_mean_duration", "plot_12_ET_TO_ic_max_duration", 
-                        "plot_12_ET_TO_ic_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_ic_1st_glance_duration_without_start", "plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start",
                         "plot_23_ET_AR_all", "plot_23_ET_AR_surt")))
 
 # # ---------------------------- 23_ET_TO #### -----------------------------------------------------
@@ -2184,11 +2367,11 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_12_ET_TO_ic_nth_gaze_to_ic_dot", "plot_12_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_12_ET_TO_ic_glance_allocation_time", "plot_12_ET_TO_ic_n_glances_after_start_dot", "plot_12_ET_TO_ic_n_glances_after_start_box",
                         "plot_12_ET_TO_ic_total_duration", "plot_12_ET_TO_ic_mean_duration", "plot_12_ET_TO_ic_max_duration", 
-                        "plot_12_ET_TO_ic_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_ic_1st_glance_duration_without_start", "plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start",
                         "plot_23_ET_AR_all", "plot_23_ET_AR_surt",
                         "plot_23_ET_TO_all_n_gazes_till_EB_or_TO", "plot_23_ET_TO_glance_at_start", "plot_23_ET_TO_glance_at_start_perc")))
 
@@ -2818,6 +3001,119 @@ ggsave(filename = "data/results/figures/23_ET_TO_all_1st_glance_duration_without
        width = 8, height = 6, dpi = 600, units = "in", device='png')
 
 
+### caution: very few TP left, especially in SuRT!
+# 23_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start #### -----------------------------------------------------
+## subset subscales ##
+TO_TC10_ic_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC10_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_ic", .after = "VPNr")
+TO_TC10_street_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC10_street_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_street_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_street_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_street", .after = "VPNr")
+TO_TC10_surt_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC10_surt_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_surt_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_surt_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_surt", .after = "VPNr")
+TO_TC10_wheel_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC10_wheel_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_wheel_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_wheel_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10_wheel", .after = "VPNr")
+
+TO_TC12_ic_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC12_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_ic", .after = "VPNr")
+TO_TC12_street_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC12_street_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_street_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_street_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_street", .after = "VPNr")
+TO_TC12_surt_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC12_surt_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_surt_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_surt_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_surt", .after = "VPNr")
+TO_TC12_wheel_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC12_wheel_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_wheel_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_wheel_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12_wheel", .after = "VPNr")
+
+## build subset ##
+TO_all_1st_glance_duration_without_start_excl_AOI_start <- bind_rows(TO_TC10_ic_1st_glance_duration_without_start, TO_TC10_street_1st_glance_duration_without_start,
+                                                                     TO_TC10_surt_1st_glance_duration_without_start, TO_TC10_wheel_1st_glance_duration_without_start,
+                                                                     TO_TC12_ic_1st_glance_duration_without_start, TO_TC12_street_1st_glance_duration_without_start,
+                                                                     TO_TC12_surt_1st_glance_duration_without_start, TO_TC12_wheel_1st_glance_duration_without_start) %>%
+  mutate(scale = factor(scale, levels = c("TC10_ic", "TC10_street", "TC10_surt", "TC10_wheel",
+                                          "TC12_ic", "TC12_street", "TC12_surt", "TC12_wheel"), ordered = TRUE))
+
+## lables ##
+# labels_TO_all_1st_glance_duration_without_start = c("RtI_planned_ic", "RtI_planned_street", "RtI_planned_surt","RtI_planned_wheel",
+#                                             "RtI_malfunction_ic", "RtI_malfunction_street", "RtI_malfunction_surt","RtI_malfunction_wheel")
+
+labels_TO_all_1st_glance_duration_without_start = c("IC", "Street", "SuRT", "Wheel", 
+                                                    "IC", "Street", "SuRT", "Wheel")
+
+
+p <- ggplot(TO_all_1st_glance_duration_without_start_excl_AOI_start, aes(x=scale, y=score, fill=HMI)) + 
+  geom_rect(aes(xmin = 0.5, xmax = 4.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F8FAA0", 0.002)) +
+  geom_rect(aes(xmin = 4.5, xmax = 8.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F59562", 0.002)) +
+  geom_rect(aes(xmin = 4.495, xmax = 4.505, ymin = -Inf, ymax = Inf), 
+            fill = scales::alpha("#2F2F2F", 1)) +
+  geom_rect(aes(xmin = 0.505, xmax = 4.505, ymin = 19.94, ymax = 20.0), 
+            fill = scales::alpha("red", 0.8)) +
+  geom_rect(aes(xmin = 4.505, xmax = 8.505, ymin = 5.97, ymax = 6.03), 
+            fill = scales::alpha("red", 0.8)) +
+  annotate("text", x = 2.5, y = 20, label = "RtI with time budget", size = 3, vjust = 1) +
+  annotate("text", x = 6.45, y = 20, label = "RtI without time budget", size = 3, vjust = 1) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
+  geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
+  stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  scale_x_discrete(labels = labels_TO_all_1st_glance_duration_without_start) +
+  scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
+  facet_grid(HMI ~ Exp) +
+  scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
+  labs(y="Duration [s]", x="",
+       title = "Duration of first glance to AOI after start of request to intervene") +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11),
+        panel.grid.minor.y = element_blank(), 
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        legend.position = "none", 
+        plot.background = element_rect(fill = "transparent",
+                                       colour = NA_character_),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"))
+p
+
+## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
+g <- ggplot_gtable(ggplot_build(p))
+strip_both <- which(grepl('strip-', g$layout$name))
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
+k <- 1
+for (i in strip_both) {
+  j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+  g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+  k <- k+1
+}
+grid.draw(g)
+
+plot_23_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start <- g
+
+ggsave(filename = "data/results/figures/23_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start.png", g, 
+       width = 8, height = 6, dpi = 600, units = "in", device='png')
+
+
 # #### remove not needed data ---------------------------------------------
 rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR", "data_12_TO", "data_23_TO",
                         "fun_mean", "fun_median", "mean_ML", "sd_ML", "skim_ML",
@@ -2825,16 +3121,16 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_12_ET_TO_ic_nth_gaze_to_ic_dot", "plot_12_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_12_ET_TO_ic_glance_allocation_time", "plot_12_ET_TO_ic_n_glances_after_start_dot", "plot_12_ET_TO_ic_n_glances_after_start_box",
                         "plot_12_ET_TO_ic_total_duration", "plot_12_ET_TO_ic_mean_duration", "plot_12_ET_TO_ic_max_duration", 
-                        "plot_12_ET_TO_ic_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_ic_1st_glance_duration_without_start", "plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start",
                         "plot_23_ET_AR_all", "plot_23_ET_AR_surt",
                         "plot_23_ET_TO_all_n_gazes_till_EB_or_TO", "plot_23_ET_TO_glance_at_start", "plot_23_ET_TO_glance_at_start_perc",
                         "plot_23_ET_TO_all_n_glances_after_start", "plot_23_ET_TO_all_total_duration",
                         "plot_23_ET_TO_all_mean_duration", "plot_23_ET_TO_all_max_duration", 
-                        "plot_23_ET_TO_all_1st_glance_duration_without_start")))
+                        "plot_23_ET_TO_all_1st_glance_duration_without_start", "plot_23_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start")))
 
 # 23_ET_TO_ic_nth_gaze_to_ic_dot #### -----------------------------------------------------
 ## subset subscales ##
@@ -3431,6 +3727,76 @@ ggsave(filename = "data/results/figures/23_ET_TO_ic_1st_glance_duration_without_
        width = 6, height = 6, dpi = 600, units = "in", device='png')
 
 
+# 23_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start #### -----------------------------------------------------
+## subset subscales ##
+TO_TC10_ic_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC10_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC10_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC10_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC10", .after = "VPNr")
+TO_TC12_ic_1st_glance_duration_without_start <- data_23_TO %>%
+  filter(TC12_ic_glance_at_start == 0) %>%
+  select(Exp, VPNr, HMI, TC12_ic_1st_glance_duration_without_start) %>%
+  dplyr::rename(score = TC12_ic_1st_glance_duration_without_start) %>%
+  add_column(scale = "TC12", .after = "VPNr")
+
+## build subset ##
+TO_ic_1st_glance_duration_without_start_excl_ic_start <- bind_rows(TO_TC10_ic_1st_glance_duration_without_start, TO_TC12_ic_1st_glance_duration_without_start) %>%
+  mutate(scale = factor(scale, levels = c("TC10", "TC12_ic"), ordered = TRUE))
+
+labels_TO_ic_1st_glance_duration_without_start = c("RtI with\ntime budget", "RtI without\ntime budget")
+
+p <- ggplot(TO_ic_1st_glance_duration_without_start_excl_ic_start, aes(x=scale, y=score, fill=HMI)) + 
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F8FAA0", 0.002)) +
+  geom_rect(aes(xmin = 1.5, xmax = 2.5, ymin = 0, ymax = 20),
+            fill = scales::alpha("#F59562", 0.002)) +
+  geom_rect(aes(xmin = 1.497, xmax = 1.503, ymin = -Inf, ymax = Inf), 
+            fill = scales::alpha("#2F2F2F", 1)) +
+  geom_rect(aes(xmin = 0.505, xmax = 1.505, ymin = 19.94, ymax = 20.0), 
+            fill = scales::alpha("red", 0.8)) +
+  geom_rect(aes(xmin = 1.505, xmax = 2.505, ymin = 5.97, ymax = 6.03), 
+            fill = scales::alpha("red", 0.8)) +
+  stat_boxplot(geom ='errorbar', width = 0.3, lwd=0.2) +
+  geom_boxplot(outlier.shape = 21, lwd=0.2, outlier.size = 0.7) +
+  stat_summary(fun = mean, geom = "point" , colour="black", size=1, shape = 16) +
+  stat_summary(fun.data = fun_mean, geom="text", vjust=-.8, hjust=1.5) +
+  scale_x_discrete(labels = labels_TO_ic_1st_glance_duration_without_start) +
+  scale_y_continuous(limits = c(0,20), breaks = seq(0,20,5)) +
+  facet_grid(HMI ~ Exp) +
+  scale_fill_manual(values = c("#3070b3", "#98C6EA")) +
+  labs(y="Duration [s]", x="",
+       title = "Duration of first glance to IC after start of request to intervene") +
+  theme_bw() +
+  theme(text=element_text(family = "sans", color="black", size=11),
+        panel.grid.minor.y = element_blank(), 
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 0.2),
+        legend.position = "none", 
+        plot.background = element_rect(fill = "transparent",
+                                       colour = NA_character_),
+        axis.text.x=element_text(color = "black", size=9, angle=0, vjust=.88, hjust=0.5, face = "plain"),
+        axis.text.y=element_text(color = "black", size=9, face = "plain"))
+p
+
+## change color of facet box (code by CharlotteWoolley , 17 May 2018: https://github.com/tidyverse/ggplot2/issues/2096)
+g <- ggplot_gtable(ggplot_build(p))
+strip_both <- which(grepl('strip-', g$layout$name))
+fills <- c("#A2AD00", "#E37222","#3070b3", "#98C6EA")
+k <- 1
+for (i in strip_both) {
+  j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+  g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+  k <- k+1
+}
+grid.draw(g)
+
+plot_23_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start <- g
+
+ggsave(filename = "data/results/figures/23_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start.png", g, 
+       width = 6, height = 6, dpi = 600, units = "in", device='png')
+
+
 # #### remove not needed data ---------------------------------------------
 rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR", "data_12_TO", "data_23_TO",
                         "fun_mean", "fun_median", "mean_ML", "sd_ML", "skim_ML",
@@ -3438,17 +3804,17 @@ rm(list=setdiff(ls(), c("data_all_AR", "data_all_TO", "data_12_AR", "data_23_AR"
                         "plot_12_ET_TO_all_n_gazes_till_EB_or_TO", "plot_12_ET_TO_glance_at_start", "plot_12_ET_TO_glance_at_start_perc",
                         "plot_12_ET_TO_all_n_glances_after_start", "plot_12_ET_TO_all_total_duration",
                         "plot_12_ET_TO_all_mean_duration", "plot_12_ET_TO_all_max_duration", 
-                        "plot_12_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_all_1st_glance_duration_without_start", "plot_12_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_12_ET_TO_ic_nth_gaze_to_ic_dot", "plot_12_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_12_ET_TO_ic_glance_allocation_time", "plot_12_ET_TO_ic_n_glances_after_start_dot", "plot_12_ET_TO_ic_n_glances_after_start_box",
                         "plot_12_ET_TO_ic_total_duration", "plot_12_ET_TO_ic_mean_duration", "plot_12_ET_TO_ic_max_duration", 
-                        "plot_12_ET_TO_ic_1st_glance_duration_without_start",
+                        "plot_12_ET_TO_ic_1st_glance_duration_without_start", "plot_12_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start",
                         "plot_23_ET_AR_all", "plot_23_ET_AR_surt",
                         "plot_23_ET_TO_all_n_gazes_till_EB_or_TO", "plot_23_ET_TO_glance_at_start", "plot_23_ET_TO_glance_at_start_perc",
                         "plot_23_ET_TO_all_n_glances_after_start", "plot_23_ET_TO_all_total_duration",
                         "plot_23_ET_TO_all_mean_duration", "plot_23_ET_TO_all_max_duration", 
-                        "plot_23_ET_TO_all_1st_glance_duration_without_start",
+                        "plot_23_ET_TO_all_1st_glance_duration_without_start", "plot_23_ET_TO_all_1st_glance_duration_without_start_excl_AOI_start",
                         "plot_23_ET_TO_ic_nth_gaze_to_ic_dot", "plot_23_ET_TO_ic_nth_gaze_to_ic_box",
                         "plot_23_ET_TO_ic_glance_allocation_time", "plot_23_ET_TO_ic_n_glances_after_start_dot", "plot_23_ET_TO_ic_n_glances_after_start_box",
                         "plot_23_ET_TO_ic_total_duration", "plot_23_ET_TO_ic_mean_duration", "plot_23_ET_TO_ic_max_duration", 
-                        "plot_23_ET_TO_ic_1st_glance_duration_without_start")))
+                        "plot_23_ET_TO_ic_1st_glance_duration_without_start", "plot_23_ET_TO_ic_1st_glance_duration_without_start_excl_ic_start")))

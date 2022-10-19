@@ -46,7 +46,11 @@ data_all_TO <- read.csv("data/eyetracking/data_all_TO.csv", encoding = "UTF-8") 
   mutate(Exp = factor(Exp)) %>%
   mutate(HMI = factor(HMI)) %>%
   mutate(GlanceAllocationTime_ic = (TC10_ic_glance_allocation_time + TC12_ic_glance_allocation_time) /2, .before = "TC10_comment") %>%
-  mutate(FirstGlanceDuration_ic = (TC10_ic_1st_glance_duration_without_start + TC12_ic_1st_glance_duration_without_start) /2, .before = "TC10_comment")
+  mutate(FirstGlanceDuration_ic = (TC10_ic_1st_glance_duration_without_start + TC12_ic_1st_glance_duration_without_start) /2, .before = "TC10_comment") %>%
+  mutate(TC10_ic_1st_glance_duration_without_start = ifelse(TC10_ic_glance_at_start == 1, NA, TC10_ic_1st_glance_duration_without_start)) %>%
+  mutate(TC12_ic_1st_glance_duration_without_start = ifelse(TC12_ic_glance_at_start == 1, NA, TC12_ic_1st_glance_duration_without_start)) %>%
+  mutate(FirstGlanceDuration_ic_excl_ic_start = (TC10_ic_1st_glance_duration_without_start + TC12_ic_1st_glance_duration_without_start) /2, .before = "TC10_comment")
+  
 
 data_all_AR <- read.csv("data/eyetracking/data_all_AR.csv", encoding = "UTF-8") %>%
   dplyr::rename(Exp = X.U.FEFF.Exp) %>%
@@ -1214,6 +1218,83 @@ w_TOST_tab12 <- w_TOST_tab12 %>%
 
 d_raw23 = TOST_tab23$X9
 w_TOST_23 <- wilcox_TOST(FirstGlanceDuration_ic ~ Exp, data = data_23, low_eqbound = - d_raw23, high_eqbound = d_raw23)
+w_TOST_tab23 <- data.frame(matrix(unlist(w_TOST_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(w_TOST_tab23) <- c_wTOST
+w_TOST_tab23 <- w_TOST_tab23 %>%
+  select(-c(wTOST_hypothesis:wTOST_decision_NHST))
+
+## prepare dataframe for accumulation
+TOST_tab12ready <- cbind(title_12, TOST_tab12, tab_lev_12, tab_shap_12, w_TOST_tab12)
+names(TOST_tab12ready) <- c_TOST_tab
+TOST_tab23ready <- cbind(title_23, TOST_tab23, tab_lev_23, tab_shap_23, w_TOST_tab23)
+names(TOST_tab23ready) <- c_TOST_tab
+## build results table (first test doesnt include "TOST_results_table")
+TOST_results_table <- bind_rows(TOST_results_table, TOST_tab12ready, TOST_tab23ready)
+
+#### FirstGlanceDuration_ic #### 
+# levene (homogeneity)
+lev_12 <- leveneTest(FirstGlanceDuration_ic_excl_ic_start ~ Exp, data = data_12)
+tab_lev_12 <- data.frame(matrix(unlist(lev_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_lev_12) <- c_lev
+tab_lev_12 <- tab_lev_12 %>%
+  select(-c("lev_x1", "lev_x2"))
+
+lev_23 <- leveneTest(FirstGlanceDuration_ic_excl_ic_start ~ Exp, data = data_23)
+tab_lev_23 <- data.frame(matrix(unlist(lev_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_lev_23) <- c_lev
+tab_lev_23 <- tab_lev_23 %>%
+  select(-c("lev_x1", "lev_x2"))
+
+# shapiro-wilk (normality)
+shap_12 <- data_12 %>%
+  group_by(Exp) %>%
+  shapiro_test(FirstGlanceDuration_ic_excl_ic_start)
+tab_shap_12 <- data.frame(matrix(unlist(shap_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_shap_12) <- c_shap
+tab_shap_12 <- tab_shap_12 %>%
+  select(-c("shap_AV1", "shap_AV2"))
+
+shap_23 <- data_23 %>%
+  group_by(Exp) %>%
+  shapiro_test(FirstGlanceDuration_ic_excl_ic_start)
+tab_shap_23 <- data.frame(matrix(unlist(shap_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(tab_shap_23) <- c_shap
+tab_shap_23 <- tab_shap_23 %>%
+  select(-c("shap_AV1", "shap_AV2"))
+
+# adaptations are needed in the next 5 rows for the different tests
+variable1 <- data_e1$FirstGlanceDuration_ic_excl_ic_start
+variable2 <- data_e2$FirstGlanceDuration_ic_excl_ic_start
+variable3 <- data_e3$FirstGlanceDuration_ic
+title_12 <- c("FirstGlanceDuration_ic_12_excl_ic_start")
+title_23 <- c("FirstGlanceDuration_ic_23_excl_ic_start")
+## define parameters
+m1 <- mean(variable1, na.rm = TRUE)
+sd1 <- sd(variable1, na.rm = TRUE)
+n1 <- length(variable1)
+m2 <- mean(variable2, na.rm = TRUE)
+sd2 <- sd(variable2, na.rm = TRUE)
+n2 <- length(variable2)
+m3 <- mean(variable3, na.rm = TRUE)
+sd3 <- sd(variable3, na.rm = TRUE)
+n3 <- length(variable3)
+## calculate TOST
+TOST_12 <- TOSTtwo(m1 = m1, m2 = m2, sd1 = sd1, sd2 = sd2, n1 = n1, n2 = n2, low_eqbound_d = -d, high_eqbound_d = d)
+TOST_23 <- TOSTtwo(m1 = m2, m2 = m3, sd1 = sd2, sd2 = sd3, n1 = n2, n2 = n3, low_eqbound_d = -d, high_eqbound_d = d)
+## transform results into dataframe
+TOST_tab12 <- data.frame(matrix(unlist(TOST_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+TOST_tab23 <- data.frame(matrix(unlist(TOST_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+
+# Wilcoxon TOST as alternative #
+d_raw12 = TOST_tab12$X9
+w_TOST_12 <- wilcox_TOST(FirstGlanceDuration_ic_excl_ic_start ~ Exp, data = data_12, low_eqbound = - d_raw12, high_eqbound = d_raw12)
+w_TOST_tab12 <- data.frame(matrix(unlist(w_TOST_12), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
+names(w_TOST_tab12) <- c_wTOST
+w_TOST_tab12 <- w_TOST_tab12 %>%
+  select(-c(wTOST_hypothesis:wTOST_decision_NHST))
+
+d_raw23 = TOST_tab23$X9
+w_TOST_23 <- wilcox_TOST(FirstGlanceDuration_ic_excl_ic_start ~ Exp, data = data_23, low_eqbound = - d_raw23, high_eqbound = d_raw23)
 w_TOST_tab23 <- data.frame(matrix(unlist(w_TOST_23), nrow=1, byrow=TRUE),stringsAsFactors=FALSE)
 names(w_TOST_tab23) <- c_wTOST
 w_TOST_tab23 <- w_TOST_tab23 %>%

@@ -318,7 +318,7 @@ UsabF_agg <- data_all %>%
 #                              "Craftsmanship", "Ease of Use", "Efficiency", 
 #                              "Emotion_Affect", "Flexibility", "Fun", "Helpfulness", 
 #                              "Identity", "Immersion", "Intuitive Operation", 
-#                              "Learnability_Perpicuity", "Loyalty", "Novelty", 
+#                              "Learnability_Perspicuity", "Loyalty", "Novelty", 
 #                              "Originality", "Overall", "Pragmatic Quality", "Simplicity", 
 #                              "Social Influence", "Stimulation", "Trust_Credibility")
 
@@ -344,7 +344,7 @@ UsabF_agg<- UsabF_agg %>%
 ## add labels (in order!)
 labels_UsabF <- c("Controllability /\nDependability", "Ease of Use", "Trust / Credibility", 
                   "Pragmatic Quality", "Helpfulness", "Craftsmanship", "Convenience", 
-                  "Learnability / Perpicuity", "Completeness", "Simplicity", "Efficiency", 
+                  "Learnability / Perspicuity", "Completeness", "Simplicity", "Efficiency", 
                   "Intuitive Operation", "Flexibility", "Overall", "Appearance /\nAttractiveness", 
                   "Loyalty", "Stimulation", "Fun", "Emotion / Affect", "Identity", "Novelty", 
                   "Originality", "Social Influence", "Immersion")
@@ -382,7 +382,7 @@ UsabF_agg_max <- UsabF_agg %>%
 
 labels_UsabF_max <- c("Controllability /\nDependability", "Ease of Use", "Trust / Credibility", 
                   "Pragmatic Quality", "Helpfulness", "Craftsmanship", "Convenience", 
-                  "Learnability / Perpicuity", "Completeness", "Simplicity", "Efficiency", 
+                  "Learnability / Perspicuity", "Completeness", "Simplicity", "Efficiency", 
                   "Intuitive Operation")
                   
 p <- ggplot(UsabF_agg_max, aes(x=Factor, y = mean, fill=Exp)) + 
